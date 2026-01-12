@@ -407,13 +407,22 @@ document.getElementById("form-ucapan").addEventListener("submit", function (even
 /** =====================================================
  * Handle Quick RSVP (Formspree Version)
  * ===================================================== */
+/** =====================================================
+ * Handle Quick RSVP (Formspree Version with Pax)
+ * ===================================================== */
 function sendQuickRSVP(status, successMessage, iconClass) {
-    const formspreeUrl = "https://formspree.io/f/xvzzpjgn"; // Your Formspree ID
+    const formspreeUrl = "https://formspree.io/f/xvzzpjgn";
+
+    // Grab the number of pax from the dropdown in your index.html
+    const paxElement = document.getElementById("pax-count");
+    const paxValue = paxElement ? paxElement.value : "1";
 
     // Create the data to send
     const data = {
         Guest_Name: "Quick RSVP User",
         Attendance: status,
+        // If they click 'Hadir', send the pax count. If 'Tidak Hadir', send 0.
+        Total_Pax: status === "Hadir" ? paxValue : "0",
         Message: "Clicked quick RSVP button from menu"
     };
 
@@ -434,6 +443,7 @@ function sendQuickRSVP(status, successMessage, iconClass) {
                 <div class='success-message'>
                     <i class='${iconClass}' style='font-size: 50px; color: #d4af37;'></i>
                     <p style='margin-top: 15px;'>${successMessage}</p>
+                    ${status === "Hadir" ? `<p><b>Jumlah Pax: ${paxValue}</b></p>` : ''}
                     <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
                 </div>`;
             successMenu.classList.add("open");
