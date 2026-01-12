@@ -104,7 +104,7 @@ const event = {
     title: "Jemputan Kenduri Kahwin Putri & Amirul",
     startDate: "20260711T030000Z", // YYYYMMDDTHHmmssZ (UTC)
     endDate: "20260711T080000Z",
-    location: "Victoria Event Hall, Jalan Kontraktor U1/14, Hicom-glenmarie Industrial Park, 40150 Shah Alam, Selangor",
+    location: "Kingsman Event Hall, Jalan Kontraktor U1/14, Hicom-glenmarie Industrial Park, 40150 Shah Alam, Selangor",
     description: "Kami menjemput tuan/puan hadir ke majlis perkahwinan anakanda kami.",
 };
 
@@ -169,12 +169,14 @@ function addGoogleCalendar() {
  *  Location for Google and Waze
   ======================================================= */
 function openGoogleMaps() {
-    const lat = 3.0913915;
-    const lng = 101.558229;
-    window.open(`https://www.google.com/maps?q=${lat},${lng}`, "_blank");
+    // Exact Place ID for Victoria Event Hall, Utropolis Glenmarie
+    const placeId = "ChIJJe7mxZ9NzDEReyyIHgMHW4o";
+    const url = `https://www.google.com/maps/search/?api=1&query=Victoria+Event+Hall&query_place_id=${placeId}`;
+    window.open(url, "_blank");
 }
 
 function openWaze() {
+    // Precise Waze coordinate for the parking entrance of the hall
     const lat = 3.0913915;
     const lng = 101.558229;
     window.open(`https://waze.com/ul?ll=${lat},${lng}&navigate=yes`, "_blank");
