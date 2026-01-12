@@ -405,52 +405,59 @@ document.getElementById("form-ucapan").addEventListener("submit", function (even
 
 
 /** =====================================================
- *  Handle Kehadiran Count
-  ======================================================= */
-function incrementCount(endpoint, successMessage, iconClass, closeMenuId) {
-    fetch(endpoint, {
+ * Handle Quick RSVP (Formspree Version)
+ * ===================================================== */
+function sendQuickRSVP(status, successMessage, iconClass) {
+    const formspreeUrl = "https://formspree.io/f/xvzzpjgn"; // Your Formspree ID
+
+    // Create the data to send
+    const data = {
+        Guest_Name: "Quick RSVP User",
+        Attendance: status,
+        Message: "Clicked quick RSVP button from menu"
+    };
+
+    // Send to Formspree
+    fetch(formspreeUrl, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: 'action=increment',
+        body: JSON.stringify(data)
     })
     .then(response => {
         if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("Request failed");
-        }
-    })
-    .then(data => {
-        if (data.attend) {
-            // Display the success message
+            // Display the success message on the screen
             const successMenu = document.getElementById("success-menu");
-            successMenu.innerHTML = `<div class='success-message'><i class='${iconClass}'></i><p>${successMessage}</p></div>`;
-            successMenu.classList.add("open"); // Open the success menu
-
-            // Optionally close other menu
-            if (closeMenuId) {
-                closeMenu(closeMenuId); // Close the specified menu
-            }
+            successMenu.innerHTML = `
+                <div class='success-message'>
+                    <i class='${iconClass}' style='font-size: 50px; color: #d4af37;'></i>
+                    <p style='margin-top: 15px;'>${successMessage}</p>
+                    <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
+                </div>`;
+            successMenu.classList.add("open");
+            
+            // Close the RSVP menu
+            const rsvpMenu = document.getElementById("rsvp-menu");
+            if (rsvpMenu) rsvpMenu.classList.remove("open");
         } else {
-            console.error("Increment count error:", data.error);
-            alert("Terjadi kesilapan: " + data.error);
+            alert("Maaf, sistem sedang sibuk. Sila cuba lagi.");
         }
     })
     .catch(error => {
-        console.error("AJAX error:", error);
-        alert("Error processing the request.");
+        console.error("Formspree Error:", error);
+        alert("Ralat sambungan. Sila pastikan anda mempunyai internet.");
     });
 }
 
-// Attach the click event to the "Hadir" and "Tidak Hadir" buttons
+// Attach the events to the buttons
 document.getElementById("btn-hadir").onclick = function() {
-    incrementCount('count_hadir.php', "Kami menantikan kedatangan anda!", 'bx bxs-wink-smile', 'rsvp-menu'); // Success message and optionally close RSVP menu
+    sendQuickRSVP("Hadir", "Terima kasih! Kami menantikan kehadiran anda.", "bx bxs-smile");
 };
 
 document.getElementById("btn-tidak-hadir").onclick = function() {
-    incrementCount('count_tidak_hadir.php', "Maaf, mungkin lain kali.", 'bx bxs-sad', 'rsvp-menu'); // Success message and optionally close RSVP menu
+    sendQuickRSVP("Tidak Hadir", "Terima kasih atas makluman anda.", "bx bxs-sad");
 };
 
 
