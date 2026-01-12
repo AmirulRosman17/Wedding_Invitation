@@ -123,30 +123,32 @@ function generateGoogleCalendarLink(event) {
     return `${baseUrl}&${params.toString()}`;
 }
 
-// Function to generate ICS file content
+// Function to generate ICS file content (FIXED VERSION)
 function generateICS(event) {
     const { title, startDate, endDate, location, description } = event;
 
-    return `
-        BEGIN:VCALENDAR
-        VERSION:2.0
-        BEGIN:VEVENT
-        SUMMARY:${title}
-        DTSTART:${startDate}
-        DTEND:${endDate}
-        LOCATION:${location}
-        DESCRIPTION:${description}
-        END:VEVENT
-        END:VCALENDAR
-    `.trim();
+    return [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//My Wedding Invitation//EN",
+        "BEGIN:VEVENT",
+        `SUMMARY:${title}`,
+        `DTSTART:${startDate}`,
+        `DTEND:${endDate}`,
+        `LOCATION:${location}`,
+        `DESCRIPTION:${description}`,
+        "END:VEVENT",
+        "END:VCALENDAR"
+    ].join("\r\n"); // Using join ensures there are no hidden spaces at the start of lines
 }
 
-// Function to download an ICS file
-function downloadICS(filename, content) {
-    const blob = new Blob([content], { type: "text/calendar" });
+// Handler for Apple Calendar button
+function addAppleCalendar() {
+    const icsContent = generateICS(event);
+    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
     const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute("download", "Jemputan_Putri_Amirul.ics");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -158,11 +160,6 @@ function addGoogleCalendar() {
     window.open(googleLink, "_blank");
 }
 
-// Handler for Apple Calendar button
-function addAppleCalendar() {
-    const icsContent = generateICS(event);
-    downloadICS("event.ics", icsContent);
-}
 
 
 
@@ -172,14 +169,14 @@ function addAppleCalendar() {
  *  Location for Google and Waze
   ======================================================= */
 function openGoogleMaps() {
-    const lat = 3.0913;
-    const lng = 101.5582;
+    const lat = 3.0913915;
+    const lng = 101.558229;
     window.open(`https://www.google.com/maps?q=${lat},${lng}`, "_blank");
 }
 
 function openWaze() {
-    const lat = 3.0913;
-    const lng = 101.5582;
+    const lat = 3.0913915;
+    const lng = 101.558229;
     window.open(`https://waze.com/ul?ll=${lat},${lng}&navigate=yes`, "_blank");
 }
 
