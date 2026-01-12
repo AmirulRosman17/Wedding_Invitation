@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-setupCountdown(".campaign-0", new Date().getMilliseconds(), 1924920000000);
+setupCountdown(".campaign-0", new Date().getTime(), 1783742400000);
 
 
 
@@ -101,10 +101,10 @@ setupCountdown(".campaign-0", new Date().getMilliseconds(), 1924920000000);
  *  Add to Calendar
   ======================================================= */
 const event = {
-    title: "Jemputan Kenduri Kahwin John & Sarah",
-    startDate: "99991231T033000Z", // YYYYMMDDTHHmmssZ (UTC)
-    endDate: "99991231T090000Z",
-    location: "10A Jalan Seri Ampang 2, Kampung Pisang, 47300 Subang, Selangor, Malaysia",
+    title: "Jemputan Kenduri Kahwin Putri & Amirul",
+    startDate: "20260711T030000Z", // YYYYMMDDTHHmmssZ (UTC)
+    endDate: "20260711T080000Z",
+    location: "Victoria Event Hall, Jalan Kontraktor U1/14, Hicom-glenmarie Industrial Park, 40150 Shah Alam, Selangor",
     description: "Kami menjemput tuan/puan hadir ke majlis perkahwinan anakanda kami.",
 };
 
