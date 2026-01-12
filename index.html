@@ -287,21 +287,33 @@
         </div>
     </div>
 
-    <div id="rsvp-menu" class="toggle-menu">
-        <div class="rsvp">
-            <h1>Kehadiran</h1>
-            <div class="button">
-                <button type="button" id="btn-hadir">
-                    <i class='bx bx-check'></i>
-                    <span>Hadir</span>
-                </button>
-                <button type="button" id="btn-tidak-hadir">
-                    <i class='bx bx-x'></i>
-                    <span>Tidak Hadir</span>
-                </button>
-            </div>
+   <div id="rsvp-menu" class="toggle-menu">
+    <div class="rsvp">
+        <h1>Kehadiran</h1>
+        
+        <div class="pax-selector" style="margin-bottom: 15px;">
+            <label for="pax-count" style="display: block; margin-bottom: 5px; font-size: 14px;">Bilangan Pax:</label>
+            <select id="pax-count" style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; width: 60px;">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="button">
+            <button type="button" id="btn-hadir">
+                <i class='bx bx-check'></i>
+                <span>Hadir</span>
+            </button>
+            <button type="button" id="btn-tidak-hadir">
+                <i class='bx bx-x'></i>
+                <span>Tidak Hadir</span>
+            </button>
         </div>
     </div>
+</div>
 
     <div id="contact-menu" class="toggle-menu">
         <div class="contact">
@@ -329,8 +341,8 @@
                         </div>
                     </div>
                     <div class="second-section">
-                        <button onclick="makePhoneCall('+60123456789')"><i class='bx bx-phone'></i></button>
-                        <button onclick="openWhatsApp('+60123456789')"><i class='bx bxl-whatsapp'></i></button>
+                        <button onclick="makePhoneCall('+60192751407')"><i class='bx bx-phone'></i></button>
+                        <button onclick="openWhatsApp('+60192751407')"><i class='bx bxl-whatsapp'></i></button>
                     </div>
                 </div>
                 <div class="person">
