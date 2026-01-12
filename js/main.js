@@ -410,23 +410,43 @@ document.getElementById("form-ucapan").addEventListener("submit", function (even
 /** =====================================================
  * Handle Quick RSVP (Formspree Version with Pax)
  * ===================================================== */
+/** =====================================================
+ * Handle Quick RSVP (Name, Pax & Anti-Spam Version)
+ * ===================================================== */
 function sendQuickRSVP(status, successMessage, iconClass) {
     const formspreeUrl = "https://formspree.io/f/xvzzpjgn";
 
-    // Grab the number of pax from the dropdown in your index.html
+    // 1. Grab the Guest Name and Pax values
+    const nameInput = document.getElementById("guest-name-input");
+    const guestName = nameInput ? nameInput.value.trim() : "";
+    
     const paxElement = document.getElementById("pax-count");
     const paxValue = paxElement ? paxElement.value : "1";
 
-    // Create the data to send
+    // 2. VALIDATION: Prevent sending if name is empty
+    if (guestName === "") {
+        alert("Sila masukkan nama anda sebelum klik hantar.");
+        return;
+    }
+
+    // 3. ANTI-SPAM: Disable buttons immediately
+    const btnHadir = document.getElementById("btn-hadir");
+    const btnTidakHadir = document.getElementById("btn-tidak-hadir");
+    
+    btnHadir.disabled = true;
+    btnTidakHadir.disabled = true;
+    const originalHadirText = btnHadir.innerHTML;
+    btnHadir.innerHTML = "<span>Sila tunggu...</span>";
+
+    // 4. Create the data
     const data = {
-        Guest_Name: "Quick RSVP User",
+        Guest_Name: guestName,
         Attendance: status,
-        // If they click 'Hadir', send the pax count. If 'Tidak Hadir', send 0.
         Total_Pax: status === "Hadir" ? paxValue : "0",
         Message: "Clicked quick RSVP button from menu"
     };
 
-    // Send to Formspree
+    // 5. Send to Formspree
     fetch(formspreeUrl, {
         method: 'POST',
         headers: {
@@ -437,41 +457,43 @@ function sendQuickRSVP(status, successMessage, iconClass) {
     })
     .then(response => {
         if (response.ok) {
-            // Display the success message on the screen
             const successMenu = document.getElementById("success-menu");
             successMenu.innerHTML = `
                 <div class='success-message'>
                     <i class='${iconClass}' style='font-size: 50px; color: #d4af37;'></i>
-                    <p style='margin-top: 15px;'>${successMessage}</p>
+                    <p style='margin-top: 15px;'>Terima kasih <b>${guestName}</b>!</p>
+                    <p>${successMessage}</p>
                     ${status === "Hadir" ? `<p><b>Jumlah Pax: ${paxValue}</b></p>` : ''}
-                    <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
+                    <button onclick="location.reload()" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
                 </div>`;
             successMenu.classList.add("open");
             
-            // Close the RSVP menu
             const rsvpMenu = document.getElementById("rsvp-menu");
             if (rsvpMenu) rsvpMenu.classList.remove("open");
         } else {
             alert("Maaf, sistem sedang sibuk. Sila cuba lagi.");
+            btnHadir.disabled = false;
+            btnTidakHadir.disabled = false;
+            btnHadir.innerHTML = originalHadirText;
         }
     })
     .catch(error => {
         console.error("Formspree Error:", error);
         alert("Ralat sambungan. Sila pastikan anda mempunyai internet.");
+        btnHadir.disabled = false;
+        btnTidakHadir.disabled = false;
+        btnHadir.innerHTML = originalHadirText;
     });
 }
 
-// Attach the events to the buttons
+// Re-attach the events (Important to keep these)
 document.getElementById("btn-hadir").onclick = function() {
-    sendQuickRSVP("Hadir", "Terima kasih! Kami menantikan kehadiran anda.", "bx bxs-smile");
+    sendQuickRSVP("Hadir", "Kami menantikan kehadiran anda.", "bx bxs-smile");
 };
 
 document.getElementById("btn-tidak-hadir").onclick = function() {
     sendQuickRSVP("Tidak Hadir", "Terima kasih atas makluman anda.", "bx bxs-sad");
 };
-
-
-
 
 
 /** =====================================================
