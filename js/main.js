@@ -176,9 +176,9 @@ function openGoogleMaps() {
 }
 
 function openWaze() {
-    // Precise Waze coordinate for the parking entrance of the hall
-    const lat = 3.0913915;
-    const lng = 101.558229;
+    // Exact Place ID for Victoria Event Hall, Utropolis Glenmarie
+    const placeId = "ChIJJe7mxZ9NzDEReyyIHgMHW4o";
+    const url = `https://www.google.com/maps/search/?api=1&query=Victoria+Event+Hall&query_place_id=${placeId}`;
     window.open(`https://waze.com/ul?ll=${lat},${lng}&navigate=yes`, "_blank");
 }
 
