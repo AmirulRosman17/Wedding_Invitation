@@ -381,29 +381,31 @@
     </div>
 
     <div id="ucapan-menu" class="toggle-menu">
-        <div class="ucapan-tetamu">
-            <h1>Sampaikan Ucapan</h1>
-            <form id="form-ucapan" class="form-ucapan" action="insert_message.php" method="POST">
-                <label for="name">Nama Anda</label>
-                <input type="text" name="name" placeholder="Uzumaki Naruto" required>
+    <div class="ucapan-tetamu">
+        <h1>Sampaikan Ucapan</h1>
+        <form id="form-ucapan" class="form-ucapan">
+            <label for="wish-name">Nama Anda</label>
+            <input type="text" id="wish-name" name="Name" placeholder="Nama anda" required>
 
-                <label for="ucapan">Ucapan</label>
-                <textarea name="message" id="ucapan" cols="30" rows="10" placeholder="Selemat pengantin baru..."
-                    required></textarea>
+            <label for="wish-text">Ucapan</label>
+            <textarea id="wish-text" name="Message" cols="30" rows="5" placeholder="Selamat pengantin baru..." required></textarea>
+            
+            <input type="hidden" id="wish-date" name="Date_Submitted">
 
-                <div class="button">
-                    <button type="submit" class="hantar" id="hantar">
-                        <i class='bx bxs-paper-plane'></i>
-                        <span>Hantar</span>
-                    </button>
-                    <button class="tutup">
-                        <i class='bx bx-x'></i>
-                        <span>Tutup</span>
-                    </button>
-                </div>
-            </form>
-        </div>
+            <div class="button">
+                <button type="submit" class="hantar" id="btn-hantar-wish">
+                    <i class='bx bxs-paper-plane'></i>
+                    <span>Hantar Ucapan</span>
+                </button>
+                <button type="button" class="tutup" onclick="document.getElementById('ucapan-menu').classList.remove('open')">
+                    <i class='bx bx-x'></i>
+                    <span>Tutup</span>
+                </button>
+            </div>
+        </form>
     </div>
+</div>
+    
     <!-- This container will hold the success message and will be dynamically populated -->
     <div id="success-menu" class="toggle-menu"></div>
 
