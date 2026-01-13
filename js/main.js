@@ -360,91 +360,87 @@ const kehadiranBtn = document.getElementById("kehadiran-btn");
 
 
 /** =====================================================
- * Wish Card Board Handling (Formspree + Real-time Update)
+ * Wish Card Board Handling (Google Sheets Version)
  * ===================================================== */
+const wishApiUrl = "https://script.google.com/macros/s/AKfycbxHW_WAUJBE6yjUkFZB7yvC84XmCH5MDWS9OAUZC_XXiXofmXQxRKls-vcnkAU1tNMTmQ/exec"; // Put your URL from Step 3 here
 let hasSubmittedWish = false;
 
-document.getElementById('form-ucapan').onsubmit = function(e) {
-    e.preventDefault(); 
-    
-    if (hasSubmittedWish) {
-        alert("Anda telah pun menghantar ucapan. Terima kasih!");
-        return;
+// 1. Load existing wishes when the page opens
+async function loadWishes() {
+    const wishBoard = document.querySelector('.container-message');
+    try {
+        const response = await fetch(wishApiUrl);
+        const savedWishes = await response.json();
+        
+        // Clear board and add wishes (Latest at the top)
+        wishBoard.innerHTML = ''; 
+        savedWishes.reverse().forEach(wish => {
+            const wishHTML = `
+                <div class="content">
+                    <div class="name">
+                        <span>${wish.Pengirim}</span>
+                        <span class="wish-time">${wish.Tarikh}</span>
+                    </div>
+                    <p class="message">${wish.Ucapan}</p>
+                </div>`;
+            wishBoard.insertAdjacentHTML('beforeend', wishHTML);
+        });
+    } catch (e) {
+        console.log("No wishes found yet.");
     }
+}
 
-    const wishformspreeUrl = "https://formspree.io/f/mpqqzbqa";
+// 2. Handle sending a new wish
+document.getElementById('form-ucapan').onsubmit = function(e) {
+    e.preventDefault();
+    if (hasSubmittedWish) return alert("Anda telah menghantar ucapan!");
+
     const nameInput = document.getElementById('wish-name');
     const messageInput = document.getElementById('wish-text');
     const btn = document.getElementById('btn-hantar-wish');
-    
     const now = new Date();
     const timeString = now.toLocaleDateString('ms-MY') + " " + now.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
 
-    if (nameInput.value.trim() === "" || messageInput.value.trim() === "") {
-        alert("Sila isi nama dan ucapan anda.");
-        return;
-    }
-
     btn.disabled = true;
-    const originalBtnText = btn.innerHTML;
     btn.innerHTML = "<span>Menghantar...</span>";
 
-    // Prepare data with clean labels for your Spreadsheet
     const data = {
         Pengirim: nameInput.value,
         Ucapan: messageInput.value,
         Tarikh: timeString
     };
 
-    // ONLY ONE FETCH CALL HERE
-    fetch(wishformspreeUrl, {
+    // Sending data to Google Sheets
+    fetch(wishApiUrl, {
         method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     })
-    .then(response => {
-        if (response.ok) {
-            hasSubmittedWish = true;
-
-            const wishBoard = document.querySelector('.container-message');
-            const newWishHTML = `
-                <div class="content" style="border-left: 3px solid #d4af37; animation: slideIn 0.5s ease-out; background: rgba(212, 175, 55, 0.05);">
-                    <div class="name">
-                        <span>${data.Pengirim}</span>
-                        <span class="wish-time">${data.Tarikh}</span>
-                    </div>
-                    <p class="message">${data.Ucapan}</p>
+    .then(() => {
+        hasSubmittedWish = true;
+        
+        // Add to board immediately at the top
+        const wishBoard = document.querySelector('.container-message');
+        const newWishHTML = `
+            <div class="content" style="border-left: 3px solid #d4af37; animation: slideIn 0.5s ease-out;">
+                <div class="name">
+                    <span>${data.Pengirim}</span>
+                    <span class="wish-time">${data.Tarikh}</span>
                 </div>
-            `;
-            wishBoard.insertAdjacentHTML('afterbegin', newWishHTML);
-            
-            const successMenu = document.getElementById("success-menu");
-            successMenu.innerHTML = `
-                <div class='success-message'>
-                    <i class='bx bxs-heart' style='font-size: 50px; color: #d4af37;'></i>
-                    <p style='margin-top: 15px;'>Terima kasih <b>${data.Pengirim}</b>!</p>
-                    <p>Ucapan anda telah berjaya dihantar.</p>
-                    <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
-                </div>`;
-            successMenu.classList.add("open");
-
-            document.getElementById('ucapan-menu').classList.remove('open');
-            document.getElementById('form-ucapan').reset();
-            
-            const mainWishBtn = document.getElementById("ucapan-btn");
-            if(mainWishBtn) mainWishBtn.style.opacity = "0.5";
-        } else {
-            alert("Maaf, ralat berlaku. Sila cuba lagi.");
-            btn.disabled = false;
-            btn.innerHTML = originalBtnText;
-        }
-    })
-    .catch(error => {
-        alert("Ralat sambungan.");
-        btn.disabled = false;
-        btn.innerHTML = originalBtnText;
+                <p class="message">${data.Ucapan}</p>
+            </div>`;
+        wishBoard.insertAdjacentHTML('afterbegin', newWishHTML);
+        
+        // Show Success Menu
+        const successMenu = document.getElementById("success-menu");
+        successMenu.innerHTML = `<div class='success-message'><i class='bx bxs-heart'></i><p>Terima kasih <b>${data.Pengirim}</b>!</p><button onclick="location.reload()">Tutup</button></div>`;
+        successMenu.classList.add("open");
+        
+        document.getElementById('ucapan-menu').classList.remove('open');
     });
 };
+
+// Start loading when page is ready
+document.addEventListener("DOMContentLoaded", loadWishes);
 
 
 
