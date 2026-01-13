@@ -359,7 +359,6 @@ const kehadiranBtn = document.getElementById("kehadiran-btn");
 
 
 
-
 /** =====================================================
  * Wish Card Board Handling (Formspree + Real-time Update)
  * ===================================================== */
@@ -368,7 +367,6 @@ let hasSubmittedWish = false;
 document.getElementById('form-ucapan').onsubmit = function(e) {
     e.preventDefault(); 
     
-    // Check if user already sent a wish this session
     if (hasSubmittedWish) {
         alert("Anda telah pun menghantar ucapan. Terima kasih!");
         return;
@@ -379,41 +377,26 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
     const messageInput = document.getElementById('wish-text');
     const btn = document.getElementById('btn-hantar-wish');
     
-    // Create Time and Date (Malaysia format)
     const now = new Date();
     const timeString = now.toLocaleDateString('ms-MY') + " " + now.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
 
-    // Validation
     if (nameInput.value.trim() === "" || messageInput.value.trim() === "") {
         alert("Sila isi nama dan ucapan anda.");
         return;
     }
 
-    // Disable button during sending
     btn.disabled = true;
     const originalBtnText = btn.innerHTML;
     btn.innerHTML = "<span>Menghantar...</span>";
 
+    // Prepare data with clean labels for your Spreadsheet
     const data = {
-        Name: nameInput.value,
-        Message: messageInput.value,
-        Date_Submitted: timeString
-    };
-// ... inside the onsubmit function ...
-
-    // 1. Prepare the data with custom labels
-    const data = {
-        Pengirim: nameInput.value,    // Labels the column as 'Pengirim' in Formspree
-        Ucapan: messageInput.value,   // Labels the column as 'Ucapan'
-        Tarikh: timeString            // Labels the column as 'Tarikh'
+        Pengirim: nameInput.value,
+        Ucapan: messageInput.value,
+        Tarikh: timeString
     };
 
-    // 2. Send the custom data to your NEW Formspree ID
-    fetch(wishformspreeUrl, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
+    // ONLY ONE FETCH CALL HERE
     fetch(wishformspreeUrl, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -421,9 +404,8 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
     })
     .then(response => {
         if (response.ok) {
-            hasSubmittedWish = true; // Set the lock
+            hasSubmittedWish = true;
 
-            // 1. Add to the board using the new keys (Pengirim, Ucapan, Tarikh)
             const wishBoard = document.querySelector('.container-message');
             const newWishHTML = `
                 <div class="content" style="border-left: 3px solid #d4af37; animation: slideIn 0.5s ease-out; background: rgba(212, 175, 55, 0.05);">
@@ -436,22 +418,19 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
             `;
             wishBoard.insertAdjacentHTML('afterbegin', newWishHTML);
             
-            // 2. Show Success Popup
             const successMenu = document.getElementById("success-menu");
             successMenu.innerHTML = `
                 <div class='success-message'>
                     <i class='bx bxs-heart' style='font-size: 50px; color: #d4af37;'></i>
-                    <p style='margin-top: 15px;'>Terima kasih <b>${data.Name}</b>!</p>
+                    <p style='margin-top: 15px;'>Terima kasih <b>${data.Pengirim}</b>!</p>
                     <p>Ucapan anda telah berjaya dihantar.</p>
                     <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
                 </div>`;
             successMenu.classList.add("open");
 
-            // 3. Reset form and close menu
             document.getElementById('ucapan-menu').classList.remove('open');
             document.getElementById('form-ucapan').reset();
             
-            // Change button to show it's done
             const mainWishBtn = document.getElementById("ucapan-btn");
             if(mainWishBtn) mainWishBtn.style.opacity = "0.5";
         } else {
