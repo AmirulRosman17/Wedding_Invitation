@@ -361,45 +361,95 @@ const kehadiranBtn = document.getElementById("kehadiran-btn");
 
 
 /** =====================================================
- *  Handle Form
-  ======================================================= */
-// function submitUcapan() {
-//     document.getElementById("form-ucapan").submit();
-// }
-document.getElementById("form-ucapan").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission
+ * Wish Card Board Handling (Formspree + Real-time Update)
+ * ===================================================== */
+let hasSubmittedWish = false;
 
-    const form = document.getElementById("form-ucapan");
-    const formData = new FormData(form); // Collect the form data
-    const actionUrl = form.action; // Get the form's target URL
+document.getElementById('form-ucapan').onsubmit = function(e) {
+    e.preventDefault(); 
+    
+    // Check if user already sent a wish this session
+    if (hasSubmittedWish) {
+        alert("Anda telah pun menghantar ucapan. Terima kasih!");
+        return;
+    }
 
-    fetch(actionUrl, {
-        method: "POST", // Use the POST method to submit data
-        body: formData, // Attach the FormData object
+    const formspreeUrl = "https://formspree.io/f/xvzzpjgn";
+    const nameInput = document.getElementById('wish-name');
+    const messageInput = document.getElementById('wish-text');
+    const btn = document.getElementById('btn-hantar-wish');
+    
+    // Create Time and Date (Malaysia format)
+    const now = new Date();
+    const timeString = now.toLocaleDateString('ms-MY') + " " + now.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
+
+    // Validation
+    if (nameInput.value.trim() === "" || messageInput.value.trim() === "") {
+        alert("Sila isi nama dan ucapan anda.");
+        return;
+    }
+
+    // Disable button during sending
+    btn.disabled = true;
+    const originalBtnText = btn.innerHTML;
+    btn.innerHTML = "<span>Menghantar...</span>";
+
+    const data = {
+        Name: nameInput.value,
+        Message: messageInput.value,
+        Date_Submitted: timeString
+    };
+
+    fetch(formspreeUrl, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
     })
     .then(response => {
         if (response.ok) {
-            return response.text(); // Process the response as text
+            hasSubmittedWish = true; // Set the lock
+
+            // 1. Add to the board immediately (at the top)
+            const wishBoard = document.querySelector('.container-message');
+            const newWishHTML = `
+                <div class="content" style="border-left: 3px solid #d4af37; animation: slideIn 0.5s ease-out; background: rgba(212, 175, 55, 0.05);">
+                    <p class="name">${data.Name} <small style="float:right; font-size:10px; color:#888;">${timeString}</small></p>
+                    <p class="message">${data.Message}</p>
+                </div>
+            `;
+            // 'afterbegin' ensures the latest wish stays at the TOP
+            wishBoard.insertAdjacentHTML('afterbegin', newWishHTML);
+            
+            // 2. Show Success Popup
+            const successMenu = document.getElementById("success-menu");
+            successMenu.innerHTML = `
+                <div class='success-message'>
+                    <i class='bx bxs-heart' style='font-size: 50px; color: #d4af37;'></i>
+                    <p style='margin-top: 15px;'>Terima kasih <b>${data.Name}</b>!</p>
+                    <p>Ucapan anda telah berjaya dihantar.</p>
+                    <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
+                </div>`;
+            successMenu.classList.add("open");
+
+            // 3. Reset form and close menu
+            document.getElementById('ucapan-menu').classList.remove('open');
+            document.getElementById('form-ucapan').reset();
+            
+            // Change button to show it's done
+            const mainWishBtn = document.getElementById("ucapan-btn");
+            if(mainWishBtn) mainWishBtn.style.opacity = "0.5";
         } else {
-            throw new Error("Form submission failed"); // Handle errors
+            alert("Maaf, ralat berlaku. Sila cuba lagi.");
+            btn.disabled = false;
+            btn.innerHTML = originalBtnText;
         }
     })
-    .then(result => {
-        // Display the success message in the success-menu
-        const successMenu = document.getElementById("success-menu");
-        successMenu.innerHTML = "<div class='success-message'><i class='bx bx-check'></i><p>Mesej anda berjaya dihantar!</p></div>";
-        successMenu.classList.add("open"); // Open the success menu
-
-        // Close the ucapan menu after successful submission
-        closeMenu('ucapan-menu');
-
-        // Optionally reset the form
-        form.reset();
-    })
     .catch(error => {
-        console.error("Error:", error); // Log any errors
+        alert("Ralat sambungan.");
+        btn.disabled = false;
+        btn.innerHTML = originalBtnText;
     });
-});
+};
 
 
 
