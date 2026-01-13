@@ -413,23 +413,31 @@ document.getElementById("form-ucapan").addEventListener("submit", function (even
 /** =====================================================
  * Handle Quick RSVP (Name, Pax & Anti-Spam Version)
  * ===================================================== */
+// Add this variable at the very top of your main.js file to track submission status
+let hasSubmittedRSVP = false;
+
+/** =====================================================
+ * Handle Quick RSVP (Name, Pax & Anti-Spam Version)
+ * ===================================================== */
 function sendQuickRSVP(status, successMessage, iconClass) {
+    // 1. Check if they already submitted in this session
+    if (hasSubmittedRSVP) {
+        alert("Anda telah pun menghantar maklum balas. Terima kasih!");
+        return;
+    }
+
     const formspreeUrl = "https://formspree.io/f/xvzzpjgn";
 
-    // 1. Grab the Guest Name and Pax values
     const nameInput = document.getElementById("guest-name-input");
     const guestName = nameInput ? nameInput.value.trim() : "";
-    
-    const paxElement = document.getElementById("pax-count");
-    const paxValue = paxElement ? paxElement.value : "1";
+    const paxValue = document.getElementById("pax-count").value;
 
-    // 2. VALIDATION: Prevent sending if name is empty
     if (guestName === "") {
         alert("Sila masukkan nama anda sebelum klik hantar.");
         return;
     }
 
-    // 3. ANTI-SPAM: Disable buttons immediately
+    // 2. Lock the buttons immediately
     const btnHadir = document.getElementById("btn-hadir");
     const btnTidakHadir = document.getElementById("btn-tidak-hadir");
     
@@ -438,15 +446,13 @@ function sendQuickRSVP(status, successMessage, iconClass) {
     const originalHadirText = btnHadir.innerHTML;
     btnHadir.innerHTML = "<span>Sila tunggu...</span>";
 
-    // 4. Create the data
     const data = {
         Guest_Name: guestName,
         Attendance: status,
         Total_Pax: status === "Hadir" ? paxValue : "0",
-        Message: "Clicked quick RSVP button from menu"
+        Message: "Quick RSVP from menu"
     };
 
-    // 5. Send to Formspree
     fetch(formspreeUrl, {
         method: 'POST',
         headers: {
@@ -457,36 +463,44 @@ function sendQuickRSVP(status, successMessage, iconClass) {
     })
     .then(response => {
         if (response.ok) {
+            // 3. Set the global lock to true
+            hasSubmittedRSVP = true;
+
             const successMenu = document.getElementById("success-menu");
             successMenu.innerHTML = `
                 <div class='success-message'>
                     <i class='${iconClass}' style='font-size: 50px; color: #d4af37;'></i>
                     <p style='margin-top: 15px;'>Terima kasih <b>${guestName}</b>!</p>
                     <p>${successMessage}</p>
-                    ${status === "Hadir" ? `<p><b>Jumlah Pax: ${paxValue}</b></p>` : ''}
-                    <button onclick="location.reload()" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
+                    <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
                 </div>`;
             successMenu.classList.add("open");
             
             const rsvpMenu = document.getElementById("rsvp-menu");
             if (rsvpMenu) rsvpMenu.classList.remove("open");
+
+            // 4. Change the main RSVP button appearance (Optional but helpful)
+            const mainRSVPBtn = document.getElementById("rsvp-btn");
+            if (mainRSVPBtn) {
+                mainRSVPBtn.style.opacity = "0.5";
+                mainRSVPBtn.title = "Anda telah menghantar RSVP";
+            }
         } else {
-            alert("Maaf, sistem sedang sibuk. Sila cuba lagi.");
+            alert("Maaf, sistem sedang sibuk.");
             btnHadir.disabled = false;
             btnTidakHadir.disabled = false;
             btnHadir.innerHTML = originalHadirText;
         }
     })
     .catch(error => {
-        console.error("Formspree Error:", error);
-        alert("Ralat sambungan. Sila pastikan anda mempunyai internet.");
+        alert("Ralat sambungan.");
         btnHadir.disabled = false;
         btnTidakHadir.disabled = false;
         btnHadir.innerHTML = originalHadirText;
     });
 }
 
-// Re-attach the events (Important to keep these)
+// Keep your event listeners
 document.getElementById("btn-hadir").onclick = function() {
     sendQuickRSVP("Hadir", "Kami menantikan kehadiran anda.", "bx bxs-smile");
 };
@@ -494,8 +508,6 @@ document.getElementById("btn-hadir").onclick = function() {
 document.getElementById("btn-tidak-hadir").onclick = function() {
     sendQuickRSVP("Tidak Hadir", "Terima kasih atas makluman anda.", "bx bxs-sad");
 };
-
-
 /** =====================================================
  *  Image Carousel
   ======================================================= */
