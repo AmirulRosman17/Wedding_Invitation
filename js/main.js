@@ -399,7 +399,21 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
         Message: messageInput.value,
         Date_Submitted: timeString
     };
+// ... inside the onsubmit function ...
 
+    // 1. Prepare the data with custom labels
+    const data = {
+        Pengirim: nameInput.value,    // Labels the column as 'Pengirim' in Formspree
+        Ucapan: messageInput.value,   // Labels the column as 'Ucapan'
+        Tarikh: timeString            // Labels the column as 'Tarikh'
+    };
+
+    // 2. Send the custom data to your NEW Formspree ID
+    fetch(wishformspreeUrl, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
     fetch(wishformspreeUrl, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -409,15 +423,17 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
         if (response.ok) {
             hasSubmittedWish = true; // Set the lock
 
-            // 1. Add to the board immediately (at the top)
+            // 1. Add to the board using the new keys (Pengirim, Ucapan, Tarikh)
             const wishBoard = document.querySelector('.container-message');
             const newWishHTML = `
                 <div class="content" style="border-left: 3px solid #d4af37; animation: slideIn 0.5s ease-out; background: rgba(212, 175, 55, 0.05);">
-                    <p class="name">${data.Name} <small style="float:right; font-size:10px; color:#888;">${timeString}</small></p>
-                    <p class="message">${data.Message}</p>
+                    <div class="name">
+                        <span>${data.Pengirim}</span>
+                        <span class="wish-time">${data.Tarikh}</span>
+                    </div>
+                    <p class="message">${data.Ucapan}</p>
                 </div>
             `;
-            // 'afterbegin' ensures the latest wish stays at the TOP
             wishBoard.insertAdjacentHTML('afterbegin', newWishHTML);
             
             // 2. Show Success Popup
