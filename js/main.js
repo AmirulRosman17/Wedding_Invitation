@@ -366,27 +366,39 @@ const wishApiUrl = "https://script.google.com/macros/s/AKfycbxHW_WAUJBE6yjUkFZB7
 let hasSubmittedWish = false;
 
 // 1. Load existing wishes when the page opens
+/** =====================================================
+ * Fetch and Display Wishes with Live Updates
+ * ===================================================== */
 async function loadWishes() {
     const wishBoard = document.querySelector('.container-message');
+    
     try {
+        // Fetch data from your Google Web App URL
         const response = await fetch(wishApiUrl);
         const savedWishes = await response.json();
         
-        // Clear board and add wishes (Latest at the top)
-        wishBoard.innerHTML = ''; 
-        savedWishes.reverse().forEach(wish => {
-            const wishHTML = `
-                <div class="content">
-                    <div class="name">
-                        <span>${wish.Pengirim}</span>
-                        <span class="wish-time">${wish.Tarikh}</span>
-                    </div>
-                    <p class="message">${wish.Ucapan}</p>
-                </div>`;
-            wishBoard.insertAdjacentHTML('beforeend', wishHTML);
-        });
+        // We only update the board if the number of wishes has changed
+        // This prevents the screen from "flickering" every few seconds
+        const currentDisplayedCount = wishBoard.querySelectorAll('.content').length;
+        
+        if (savedWishes.length !== currentDisplayedCount) {
+            // Clear and rebuild the board
+            wishBoard.innerHTML = ''; 
+            savedWishes.reverse().forEach(wish => {
+                const wishHTML = `
+                    <div class="content">
+                        <div class="name">
+                            <span>${wish.Pengirim}</span>
+                            <span class="wish-time">${wish.Tarikh}</span>
+                        </div>
+                        <p class="message">${wish.Ucapan}</p>
+                    </div>`;
+                wishBoard.insertAdjacentHTML('beforeend', wishHTML);
+            });
+            console.log("Wish board updated with new messages.");
+        }
     } catch (e) {
-        console.log("No wishes found yet.");
+        console.log("Checking for wishes...");
     }
 }
 
@@ -430,12 +442,16 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
             </div>`;
         wishBoard.insertAdjacentHTML('afterbegin', newWishHTML);
         
-        // Show Success Menu
-        const successMenu = document.getElementById("success-menu");
-        successMenu.innerHTML = `<div class='success-message'><i class='bx bxs-heart'></i><p>Terima kasih <b>${data.Pengirim}</b>!</p><button onclick="location.reload()">Tutup</button></div>`;
-        successMenu.classList.add("open");
-        
-        document.getElementById('ucapan-menu').classList.remove('open');
+       // Show Success Menu - No Refresh Version
+const successMenu = document.getElementById("success-menu");
+successMenu.innerHTML = `
+    <div class='success-message'>
+        <i class='bx bxs-heart' style='font-size: 50px; color: #d4af37;'></i>
+        <p style='margin-top: 15px;'>Terima kasih <b>${data.Pengirim}</b>!</p>
+        <p>Ucapan anda telah berjaya dihantar.</p>
+        <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
+    </div>`;
+successMenu.classList.add("open");
     });
 };
 
@@ -443,14 +459,6 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
 document.addEventListener("DOMContentLoaded", loadWishes);
 
 
-
-
-/** =====================================================
- * Handle Quick RSVP (Formspree Version)
- * ===================================================== */
-/** =====================================================
- * Handle Quick RSVP (Formspree Version with Pax)
- * ===================================================== */
 /** =====================================================
  * Handle Quick RSVP (Name, Pax & Anti-Spam Version)
  * ===================================================== */
@@ -549,6 +557,15 @@ document.getElementById("btn-hadir").onclick = function() {
 document.getElementById("btn-tidak-hadir").onclick = function() {
     sendQuickRSVP("Tidak Hadir", "Terima kasih atas makluman anda.", "bx bxs-sad");
 };
+
+// Load wishes immediately when page opens
+document.addEventListener("DOMContentLoaded", loadWishes);
+
+// Check for new wishes every 10 seconds (10000 milliseconds)
+setInterval(loadWishes, 10000);
+
+
+
 /** =====================================================
  *  Image Carousel
   ======================================================= */
