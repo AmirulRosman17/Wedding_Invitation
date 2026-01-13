@@ -374,7 +374,7 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
         return;
     }
 
-    const formspreeUrl = "https://formspree.io/f/xvzzpjgn";
+    const wishformspreeUrl = "https://formspree.io/f/mpqqzbqa";
     const nameInput = document.getElementById('wish-name');
     const messageInput = document.getElementById('wish-text');
     const btn = document.getElementById('btn-hantar-wish');
@@ -400,7 +400,7 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
         Date_Submitted: timeString
     };
 
-    fetch(formspreeUrl, {
+    fetch(wishformspreeUrl, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -476,7 +476,7 @@ function sendQuickRSVP(status, successMessage, iconClass) {
         return;
     }
 
-    const formspreeUrl = "https://formspree.io/f/xvzzpjgn";
+    const rsvpformspreeUrl = "https://formspree.io/f/xvzzpjgn";
 
     const nameInput = document.getElementById("guest-name-input");
     const guestName = nameInput ? nameInput.value.trim() : "";
@@ -503,7 +503,7 @@ function sendQuickRSVP(status, successMessage, iconClass) {
         Message: "Quick RSVP from menu"
     };
 
-    fetch(formspreeUrl, {
+    fetch(rsvpformspreeUrl, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
