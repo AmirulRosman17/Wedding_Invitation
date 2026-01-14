@@ -89,36 +89,36 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 /*============================================================================================
-    # Overlay & Button
+    # Intro/Overlay Section
 ============================================================================================*/
 .overlay {
-    width: 420px;
+    width: 100%;
+    max-width: 420px; /* Matching your card width */
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1); 
-    background-image: url('../images/intro-bg.png');
+    
+    /* Using your new Intro-page.png */
+    background-image: url('../images/Intro-page.png'); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /* Transition for smooth disappearance when opening */
-    transition: transform 0.8s ease, opacity 0.5s ease;
-}
-
-.wrapper.hidden .overlay {
-    transform: scale(0.9);
-    opacity: 0;
+    
+    position: relative;
+    box-shadow: 0 10px 30px rgba(93, 64, 55, 0.2);
 }
 
 .overlay .overlay-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    text-align: center;
-    backdrop-filter: blur(3px);
+    /* If your image has text/design in the middle, we can add a slight blur 
+       or just leave it transparent to show your artwork */
+    background: rgba(255, 255, 255, 0.1); 
 }
 
 .overlay .overlay-content .toggle-button {
@@ -126,31 +126,33 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1);
+    background-color: #ffffff;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    font-size: 24px;
+    width: 130px;
+    height: 130px;
     cursor: pointer;
-    border: 1px solid #BCA89F;
+    border: 2px solid #BCA89F;
+    box-shadow: 0 8px 15px rgba(93, 64, 55, 0.15);
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Slight hover effect for the button */
+.overlay .overlay-content .toggle-button:hover {
+    transform: scale(1.05);
 }
 
 .overlay .overlay-content .toggle-button p {
-    margin: 0;
-    padding: 0;
-    font-size: 30px;
-    font-weight: 500;
     font-family: "Great Vibes", cursive;
+    font-size: 28px;
     color: #5D4037;
+    line-height: 1;
 }
 
 .overlay .overlay-content .toggle-button .buka {
-    font-size: 16px;
-    font-weight: 300;
     font-family: "Cinzel", serif;
+    font-size: 14px;
     color: #BCA89F;
-    margin-top: 10px;
+    margin-top: 8px;
     letter-spacing: 2px;
 }
 
