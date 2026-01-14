@@ -17,7 +17,7 @@ body {
 }
 
 /*============================================================================================
-    # Wrapper Overlay
+    # Wrapper Overlay (Folding Card Transition)
 ============================================================================================*/
 .wrapper {
     display: flex;
@@ -26,26 +26,126 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #F4EEE8; /* Nude Background */
-    transition: opacity 0.5s ease;
+    position: fixed; /* Keep it on top until finished */
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background: #F4EEE8;
+    transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1); /* Smoother "door" feel */
+}
+
+/* Creating the "Split" effect */
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #F4EEE8; /* Same as background */
+    z-index: -1;
+    transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.wrapper::before { left: 0; border-right: 1px solid rgba(188, 168, 159, 0.3); }
+.wrapper::after { right: 0; }
+
+/* When 'hidden' is added via JS, the sides slide out */
+.wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.wrapper.hidden .overlay {
+    transform: scale(0.8); /* Shrinks slightly as it opens */
+    opacity: 0;
+}
+
+/* If your JS targets the wrapper, the two halves move like this */
+.wrapper.hidden::before {
+    transform: translateX(-100%);
+}
+
+.wrapper.hidden::after {
+    transform: translateX(100%);
+}
+
+/*============================================================================================
+    # Wrapper Overlay (Folding Card Transition)
+============================================================================================*/
+.wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background: transparent; /* Changed to transparent to let pseudo-elements show */
+}
+
+/* These two elements create the "Two Doors" that split open */
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #F4EEE8; /* Your Nude Color */
+    z-index: -1;
+    transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.wrapper::before { 
+    left: 0; 
+    border-right: 1px solid rgba(188, 168, 159, 0.3); 
+}
+.wrapper::after { 
+    right: 0; 
+}
+
+/* Opening Action */
+.wrapper.hidden::before {
+    transform: translateX(-100%);
+}
+.wrapper.hidden::after {
+    transform: translateX(100%);
 }
 
 .wrapper.hidden {
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 1.2s ease;
+    transition-delay: 0.2s; /* Brief delay so doors start moving first */
 }
 
+/*============================================================================================
+    # Overlay & Button
+============================================================================================*/
 .overlay {
     width: 420px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Softened the shadow to match Boho style */
     box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1); 
     background-image: url('../images/intro-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    /* Transition for smooth disappearance when opening */
+    transition: transform 0.8s ease, opacity 0.5s ease;
+}
+
+.wrapper.hidden .overlay {
+    transform: scale(0.9);
+    opacity: 0;
 }
 
 .overlay .overlay-content {
@@ -64,14 +164,13 @@ body {
     align-items: center;
     justify-content: center;
     background-color: white;
-    /* Softened the shadow */
     box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1);
     border-radius: 50%;
     width: 150px;
     height: 150px;
     font-size: 24px;
     cursor: pointer;
-    border: 1px solid #BCA89F; /* Added a thin Boho-colored border */
+    border: 1px solid #BCA89F;
 }
 
 .overlay .overlay-content .toggle-button p {
@@ -80,19 +179,17 @@ body {
     font-size: 30px;
     font-weight: 500;
     font-family: "Great Vibes", cursive;
-    color: #5D4037; /* Elegant Dark Brown */
+    color: #5D4037;
 }
 
 .overlay .overlay-content .toggle-button .buka {
     font-size: 16px;
     font-weight: 300;
-    font-family: "Cinzel", serif; /* Changed from Bebas Neue to Cinzel */
-    color: #BCA89F; /* Muted Gold/Brown */
+    font-family: "Cinzel", serif;
+    color: #BCA89F;
     margin-top: 10px;
     letter-spacing: 2px;
 }
-
-
 
 
 /*============================================================================================
