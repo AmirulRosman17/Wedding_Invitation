@@ -12,31 +12,40 @@
 // });
 
 document.getElementById("toggle-content").addEventListener("click", function () {
-    var wrapper = document.querySelector(".wrapper");
-    var card = document.querySelector(".card");
+    const wrapper = document.querySelector(".wrapper");
+    const card = document.querySelector(".card");
     const audioPlayer = document.getElementById("audio-player");
 
     // 1. Play the audio
     if (audioPlayer) {
-        audioPlayer.play();
+        audioPlayer.play().catch(error => {
+            console.log("Autoplay prevented or audio error:", error);
+        });
     }
 
-    // 2. Make the card exist in the layout first
+    // 2. Reveal the card structure
     card.style.display = "block"; 
 
-    // 3. Give the browser a tiny "breath" (10ms) to render the card 
-    // before we start the zoom and door animation
+    // 3. Trigger the 3D door swing and the zoom-in
+    // We use a double Frame request for smoother performance
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            wrapper.classList.add("hidden");
+            card.classList.add("zoom-in");
+        });
+    });
+
+    // 4. After the animation, make the card 'relative' again 
+    // so it scrolls naturally down the page
     setTimeout(() => {
-        wrapper.classList.add("hidden");
-        card.classList.add("zoom-in");
-    }, 20);
-
-    // 4. Cleanup: Only hide the wrapper after the doors are fully open
-    wrapper.addEventListener("transitionend", function () {
+        card.style.position = "relative";
+        card.style.left = "0";
+        card.style.transform = "scale(1)";
         wrapper.style.display = "none";
-    }, { once: true });
+        // Allow scrolling again
+        document.body.style.overflowY = "auto";
+    }, 1600);
 });
-
 
 
 /** =====================================================
