@@ -19,13 +19,14 @@ body {
 /*============================================================================================
     # Wrapper Overlay (3D Doors & Zoom Reveal)
 ============================================================================================*/
-/* Ensure the body allows the 3D effect to show */
+/* Ensure the body doesn't hide the card */
 body {
     background: #F4EEE8;
     margin: 0;
-    overflow-x: hidden;
+    padding: 0;
 }
 
+/* 1. The Wrapper (The Doors) */
 .wrapper {
     display: flex;
     width: 100%;
@@ -35,8 +36,8 @@ body {
     position: fixed; 
     top: 0;
     left: 0;
-    z-index: 9999;
-    perspective: 2000px; /* Essential for 3D */
+    z-index: 999; /* Doors are at 999 */
+    perspective: 2000px;
     background: transparent;
 }
 
@@ -50,25 +51,21 @@ body {
     background: #F4EEE8;
     z-index: 10;
     transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
 }
 
 .wrapper::before { left: 0; transform-origin: left; border-right: 1px solid rgba(93, 64, 55, 0.1); }
 .wrapper::after { right: 0; transform-origin: right; }
 
-/* The 3D Swing Action */
+/* The Opening Action */
 .wrapper.hidden::before { transform: rotateY(-110deg); opacity: 0; }
 .wrapper.hidden::after { transform: rotateY(110deg); opacity: 0; }
 
 .wrapper.hidden {
     pointer-events: none;
     visibility: hidden;
-    transition: visibility 1.5s;
 }
 
-/*============================================================================================
-    # Card (The Invitation Content)
-============================================================================================*/
+/* 2. The Card (The Content) */
 .card {
     display: none; 
     max-width: 420px;
@@ -76,22 +73,22 @@ body {
     margin: 0 auto;
     background: white;
     
-    /* FIX: This stacks it behind the doors */
-    position: absolute; 
-    top: 0;
+    /* FIX: This forces the card to stay in the center of the screen while zooming */
+    position: fixed; 
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) scale(0.6);
+    transform: translate(-50%, -50%) scale(0.7);
     
     opacity: 0;
-    z-index: 1;
+    z-index: 1000; /* Card is at 1000 (Higher than doors) */
     transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1.2s ease;
 }
 
 .card.zoom-in {
     display: block !important;
     opacity: 1 !important;
-    transform: translateX(-50%) scale(1) !important;
-    z-index: 10000; /* Jumps to the front */
+    /* Scales up to full size while staying centered */
+    transform: translate(-50%, -50%) scale(1) !important;
 }
 /*============================================================================================
     # Overlay & Button
