@@ -18,27 +18,27 @@ document.getElementById("toggle-content").addEventListener("click", function () 
 
     // 1. Play Audio
     if (audioPlayer) {
-        audioPlayer.play().catch(e => console.log("Audio play blocked"));
+        audioPlayer.play().catch(e => console.log("Music blocked"));
     }
 
-    // 2. Force Card Visible
+    // 2. Prepare the card
     card.style.display = "block";
-    
-    // Use a slight delay to ensure the display:block is rendered
+
+    // 3. Start Animations
     setTimeout(() => {
         wrapper.classList.add("hidden");
         card.classList.add("zoom-in");
-        
-        // Ensure the body can scroll now
-        document.body.style.overflow = "auto";
     }, 50);
 
-    // 3. Clean up the wrapper so it doesn't take up space
+    // 4. IMPORTANT: Convert card back to normal scrolling after animation
     setTimeout(() => {
+        card.style.position = "relative";
+        card.style.left = "0";
+        card.style.transform = "scale(1)";
         wrapper.style.display = "none";
-    }, 1500);
+        document.body.style.overflowY = "auto";
+    }, 1600);
 });
-
 /** =====================================================
  *  Timer Countdown
   ======================================================= */
