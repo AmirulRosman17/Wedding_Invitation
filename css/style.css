@@ -8,18 +8,15 @@
     box-sizing: border-box;
 }
 
-
-/*============================================================================================
-    # Wrapper Overlay (3D Doors & Zoom Reveal)
-============================================================================================*/
-/* Ensure the body doesn't hide the card */
 body {
-    background: #F4EEE8;
-    margin: 0;
-    padding: 0;
+    background: #F4EEE8; /* Boho Nude */
+    font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
 }
 
-/* 1. The Wrapper (The Doors) */
+/*============================================================================================
+    # Wrapper Overlay (Original Stable Version)
+============================================================================================*/
 .wrapper {
     display: flex;
     width: 100%;
@@ -29,59 +26,67 @@ body {
     position: fixed; 
     top: 0;
     left: 0;
-    z-index: 999; /* Doors are at 999 */
-    perspective: 2000px;
-    background: transparent;
-}
-
-.wrapper::before,
-.wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 50.5%;
-    height: 100%;
+    z-index: 9999;
     background: #F4EEE8;
-    z-index: 10;
-    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.8s ease, visibility 0.8s;
 }
-
-.wrapper::before { left: 0; transform-origin: left; border-right: 1px solid rgba(93, 64, 55, 0.1); }
-.wrapper::after { right: 0; transform-origin: right; }
-
-/* The Opening Action */
-.wrapper.hidden::before { transform: rotateY(-110deg); opacity: 0; }
-.wrapper.hidden::after { transform: rotateY(110deg); opacity: 0; }
 
 .wrapper.hidden {
-    pointer-events: none;
+    opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 }
 
-/* 2. The Card (The Content) */
+.overlay {
+    width: 420px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/intro-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.15);
+}
+
+.overlay .overlay-content .toggle-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    border: 1px solid #BCA89F;
+    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1);
+}
+
+.overlay .overlay-content .toggle-button p {
+    font-family: "Great Vibes", cursive;
+    font-size: 30px;
+    color: #5D4037; /* Dark Brown */
+}
+
+.overlay .overlay-content .toggle-button .buka {
+    font-family: "Cinzel", serif;
+    font-size: 16px;
+    color: #BCA89F;
+    letter-spacing: 2px;
+}
+
+/*============================================================================================
+    # Card (The Invitation)
+============================================================================================*/
 .card {
-    display: none; 
+    display: none; /* Hidden until button click */
     max-width: 420px;
-    width: 100%;
     margin: 0 auto;
     background: white;
-    
-    /* FIX: This forces the card to stay in the center of the screen while zooming */
-    position: fixed; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.7);
-    
-    opacity: 0;
-    z-index: 1000; /* Card is at 1000 (Higher than doors) */
-    transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1.2s ease;
-}
-
-.card.zoom-in {
-    display: block !important;
-    opacity: 1 !important;
-    /* Scales up to full size while staying centered */
-    transform: translate(-50%, -50%) scale(1) !important;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 /*============================================================================================
     # Overlay & Button
