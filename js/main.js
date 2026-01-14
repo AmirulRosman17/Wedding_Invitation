@@ -16,22 +16,22 @@ document.getElementById("toggle-content").addEventListener("click", function () 
     var card = document.querySelector(".card");
     const audioPlayer = document.getElementById("audio-player");
 
-    // 1. Prepare the card for the zoom (Display block but still invisible via CSS)
-    card.style.display = "block"; 
-    
-    // Use a tiny timeout to ensure the browser registers the display:block 
-    // before we trigger the CSS transition
-    setTimeout(() => {
-        card.classList.add("zoom-in");
-        wrapper.classList.add("hidden");
-    }, 10);
-
-    // 2. Play the audio
+    // 1. Play the audio
     if (audioPlayer) {
         audioPlayer.play();
     }
 
-    // 3. Cleanup
+    // 2. Make the card exist in the layout first
+    card.style.display = "block"; 
+
+    // 3. Give the browser a tiny "breath" (10ms) to render the card 
+    // before we start the zoom and door animation
+    setTimeout(() => {
+        wrapper.classList.add("hidden");
+        card.classList.add("zoom-in");
+    }, 20);
+
+    // 4. Cleanup: Only hide the wrapper after the doors are fully open
     wrapper.addEventListener("transitionend", function () {
         wrapper.style.display = "none";
     }, { once: true });
