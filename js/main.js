@@ -16,37 +16,28 @@ document.getElementById("toggle-content").addEventListener("click", function () 
     const card = document.querySelector(".card");
     const audioPlayer = document.getElementById("audio-player");
 
-    // 1. Play the audio
+    // 1. Play Audio
     if (audioPlayer) {
-        audioPlayer.play().catch(error => {
-            console.log("Autoplay prevented or audio error:", error);
-        });
+        audioPlayer.play().catch(e => console.log("Audio play blocked"));
     }
 
-    // 2. Reveal the card structure
-    card.style.display = "block"; 
-
-    // 3. Trigger the 3D door swing and the zoom-in
-    // We use a double Frame request for smoother performance
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            wrapper.classList.add("hidden");
-            card.classList.add("zoom-in");
-        });
-    });
-
-    // 4. After the animation, make the card 'relative' again 
-    // so it scrolls naturally down the page
+    // 2. Force Card Visible
+    card.style.display = "block";
+    
+    // Use a slight delay to ensure the display:block is rendered
     setTimeout(() => {
-        card.style.position = "relative";
-        card.style.left = "0";
-        card.style.transform = "scale(1)";
-        wrapper.style.display = "none";
-        // Allow scrolling again
-        document.body.style.overflowY = "auto";
-    }, 1600);
-});
+        wrapper.classList.add("hidden");
+        card.classList.add("zoom-in");
+        
+        // Ensure the body can scroll now
+        document.body.style.overflow = "auto";
+    }, 50);
 
+    // 3. Clean up the wrapper so it doesn't take up space
+    setTimeout(() => {
+        wrapper.style.display = "none";
+    }, 1500);
+});
 
 /** =====================================================
  *  Timer Countdown
