@@ -31,19 +31,17 @@ body {
     left: 0;
     z-index: 9999;
     background: transparent;
-    /* This creates the 3D depth for the "hinge" effect */
     perspective: 1500px; 
 }
 
-/* These create the left and right "Doors" */
 .wrapper::before,
 .wrapper::after {
     content: "";
     position: absolute;
     top: 0;
-    width: 50%;
+    width: 50.5%; /* Prevents gap in middle */
     height: 100%;
-    background: #F4EEE8; /* Your Nude Color */
+    background: #F4EEE8;
     z-index: 10;
     transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     backface-visibility: hidden;
@@ -51,25 +49,17 @@ body {
 
 .wrapper::before { 
     left: 0; 
-    transform-origin: left; /* Door hinge on the left */
+    transform-origin: left; 
     border-right: 1px solid rgba(93, 64, 55, 0.1); 
 }
 
 .wrapper::after { 
     right: 0; 
-    transform-origin: right; /* Door hinge on the right */
+    transform-origin: right; 
 }
 
-/* THE 3D OPENING ACTION */
-.wrapper.hidden::before {
-    transform: rotateY(-100deg); /* Swings away */
-    opacity: 0;
-}
-
-.wrapper.hidden::after {
-    transform: rotateY(100deg); /* Swings away */
-    opacity: 0;
-}
+.wrapper.hidden::before { transform: rotateY(-100deg); opacity: 0; }
+.wrapper.hidden::after { transform: rotateY(100deg); opacity: 0; }
 
 .wrapper.hidden {
     pointer-events: none;
@@ -81,24 +71,28 @@ body {
     # Card Zoom Effect
 ============================================================================================*/
 .card {
-    display: none; /* JS will turn this to 'block' */
+    display: none; 
     max-width: 420px;
+    width: 100%;
     margin: 0 auto;
     background: white;
-    position: relative;
     
-    /* These keep it invisible initially */
-    transform: scale(0.8);
+    /* FIX: Position absolute and top:0 centers it behind the doors */
+    position: absolute; 
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    
+    z-index: 1; /* Behind doors initially */
     opacity: 0;
-    
-    /* This makes the zoom smooth */
     transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.2s ease;
 }
 
 .card.zoom-in {
-    /* These bring it to life */
+    display: block !important;
     opacity: 1 !important;
-    transform: scale(1) !important;
+    transform: translateX(-50%) scale(1) !important;
+    z-index: 100; /* Moves to front when revealed */
 }
 /*============================================================================================
     # Overlay & Button
