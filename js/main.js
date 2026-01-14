@@ -16,25 +16,26 @@ document.getElementById("toggle-content").addEventListener("click", function () 
     var card = document.querySelector(".card");
     const audioPlayer = document.getElementById("audio-player");
 
-    // 1. Show the card immediately (it's hidden behind the wrapper)
+    // 1. Prepare the card for the zoom (Display block but still invisible via CSS)
     card.style.display = "block"; 
+    
+    // Use a tiny timeout to ensure the browser registers the display:block 
+    // before we trigger the CSS transition
+    setTimeout(() => {
+        card.classList.add("zoom-in");
+        wrapper.classList.add("hidden");
+    }, 10);
 
-    // 2. Start the splitting animation
-    wrapper.classList.add("hidden");
-
-    // 3. Play the audio
+    // 2. Play the audio
     if (audioPlayer) {
         audioPlayer.play();
     }
 
-    // 4. Cleanup: Remove the wrapper from the DOM after the doors finish opening
+    // 3. Cleanup
     wrapper.addEventListener("transitionend", function () {
         wrapper.style.display = "none";
     }, { once: true });
 });
-
-
-
 
 
 
