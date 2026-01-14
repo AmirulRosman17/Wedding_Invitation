@@ -12,24 +12,26 @@
 // });
 
 document.getElementById("toggle-content").addEventListener("click", function () {
-    var wrapper = document.querySelector(".wrapper"); // Change to wrapper
+    var wrapper = document.querySelector(".wrapper");
     var card = document.querySelector(".card");
+    const audioPlayer = document.getElementById("audio-player");
 
-    // Add the 'hidden' class to start the fade out transition
+    // 1. Show the card immediately (it's hidden behind the wrapper)
+    card.style.display = "block"; 
+
+    // 2. Start the splitting animation
     wrapper.classList.add("hidden");
 
-    // Wait for the transition to complete
+    // 3. Play the audio
+    if (audioPlayer) {
+        audioPlayer.play();
+    }
+
+    // 4. Cleanup: Remove the wrapper from the DOM after the doors finish opening
     wrapper.addEventListener("transitionend", function () {
-        // After fade out is complete, hide the wrapper and show the card
-        wrapper.style.display = "none"; // Hide the wrapper
-        card.style.display = "block";   // Show the card
+        wrapper.style.display = "none";
     }, { once: true });
-
-    // Play the audio
-    const audioPlayer = document.getElementById("audio-player");
-    audioPlayer.play();  // Start playing the audio
 });
-
 
 
 
