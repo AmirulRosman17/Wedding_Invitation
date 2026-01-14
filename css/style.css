@@ -1,5 +1,5 @@
 /* Import */
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@100;300;400;700&family=Cinzel:wght@400;700&display=swap');
 
 /* General Global Setting */
 * {
@@ -10,9 +10,8 @@
 
 body {
     position: relative;
-    /*background: linear-gradient(to right, #24243e, #302b63, #0f0c29);*/
-    background: #F8F4FF;
-    font-family: "Roboto", sans-serif;
+    background: #F4EEE8; /* Nude Background */
+    font-family: "Montserrat", sans-serif; /* Changed from Roboto */
     width: 100%;
     height: 100%;
 }
@@ -27,32 +26,28 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #F8F4FF;
+    background: #F4EEE8; /* Nude Background */
     transition: opacity 0.5s ease;
 }
 
 .wrapper.hidden {
     opacity: 0;
-    /* Fade out effect when 'hidden' class is added */
 }
 
-/* Overlay that covers the entire viewport */
 .overlay {
     width: 420px;
-    /* Same width as the card-container */
     height: 100%;
-    /* Blur the background */
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    /* Softened the shadow to match Boho style */
+    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1); 
     background-image: url('../images/intro-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
-/* Center the button within the overlay */
 .overlay .overlay-content {
     display: flex;
     align-items: center;
@@ -63,20 +58,20 @@ body {
     backdrop-filter: blur(3px);
 }
 
-/* Circular toggle button */
 .overlay .overlay-content .toggle-button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: white;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    /* Softened the shadow */
+    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1);
     border-radius: 50%;
     width: 150px;
     height: 150px;
     font-size: 24px;
     cursor: pointer;
-    border: none;
+    border: 1px solid #BCA89F; /* Added a thin Boho-colored border */
 }
 
 .overlay .overlay-content .toggle-button p {
@@ -85,17 +80,17 @@ body {
     font-size: 30px;
     font-weight: 500;
     font-family: "Great Vibes", cursive;
-    color: #302b63;
+    color: #5D4037; /* Elegant Dark Brown */
 }
 
 .overlay .overlay-content .toggle-button .buka {
     font-size: 16px;
-    font-family: 300;
-    font-family: "Bebas Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-family: "Cinzel", serif; /* Changed from Bebas Neue to Cinzel */
+    color: #BCA89F; /* Muted Gold/Brown */
     margin-top: 10px;
+    letter-spacing: 2px;
 }
-
-
 
 
 
