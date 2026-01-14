@@ -12,40 +12,27 @@
 // });
 
 document.getElementById("toggle-content").addEventListener("click", function () {
-    const wrapper = document.querySelector(".wrapper");
-    const card = document.querySelector(".card");
+    var wrapper = document.querySelector(".wrapper");
+    var card = document.querySelector(".card");
     const audioPlayer = document.getElementById("audio-player");
 
-    // 1. Play Music
+    // 1. Start the fade out of the opening screen
+    wrapper.classList.add("hidden");
+
+    // 2. Play the audio
     if (audioPlayer) {
-        audioPlayer.play().catch(e => console.log("Audio play blocked by browser"));
+        audioPlayer.play().catch(e => console.log("Audio play prevented"));
     }
 
-    // 2. Show the card (it's currently fixed/centered)
-    card.style.display = "block";
-
-    // 3. Start Animation
-    setTimeout(() => {
-        wrapper.classList.add("hidden");
-        card.classList.add("zoom-in");
-    }, 50);
-
-    // 4. AFTER animation finishes (1.6s), make it scrollable
-    setTimeout(() => {
-        // Reset positioning so the user can scroll normally
-        card.style.position = "relative";
-        card.style.top = "0";
-        card.style.left = "0";
-        card.style.transform = "none";
-        card.style.margin = "0 auto";
-        
-        // Remove wrapper from DOM to be safe
+    // 3. Wait for the fade to finish, then show the card
+    wrapper.addEventListener("transitionend", function () {
         wrapper.style.display = "none";
-        
-        // Allow the body to scroll
+        card.style.display = "block";
+        // Ensure page is scrollable
         document.body.style.overflowY = "auto";
-    }, 1600);
+    }, { once: true });
 });
+
 /** =====================================================
  *  Timer Countdown
   ======================================================= */
