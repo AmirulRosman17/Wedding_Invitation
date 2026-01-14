@@ -81,23 +81,24 @@ body {
     # Card Zoom Effect
 ============================================================================================*/
 .card {
-    display: none; /* Controlled by JS */
+    display: none; /* JS will turn this to 'block' */
     max-width: 420px;
     margin: 0 auto;
     background: white;
     position: relative;
     
-    /* Starts small and slightly transparent */
+    /* These keep it invisible initially */
     transform: scale(0.8);
     opacity: 0;
-    transition: transform 1.8s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 1.5s ease;
+    
+    /* This makes the zoom smooth */
+    transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.2s ease;
 }
 
-/* This class is added by JS to trigger the zoom */
 .card.zoom-in {
-    display: block;
-    transform: scale(1);
-    opacity: 1;
+    /* These bring it to life */
+    opacity: 1 !important;
+    transform: scale(1) !important;
 }
 /*============================================================================================
     # Overlay & Button
