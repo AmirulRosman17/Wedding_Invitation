@@ -16,26 +16,33 @@ document.getElementById("toggle-content").addEventListener("click", function () 
     const card = document.querySelector(".card");
     const audioPlayer = document.getElementById("audio-player");
 
-    // 1. Play Audio
+    // 1. Play Music
     if (audioPlayer) {
-        audioPlayer.play().catch(e => console.log("Music blocked"));
+        audioPlayer.play().catch(e => console.log("Audio play blocked by browser"));
     }
 
-    // 2. Prepare the card
+    // 2. Show the card (it's currently fixed/centered)
     card.style.display = "block";
 
-    // 3. Start Animations
+    // 3. Start Animation
     setTimeout(() => {
         wrapper.classList.add("hidden");
         card.classList.add("zoom-in");
     }, 50);
 
-    // 4. IMPORTANT: Convert card back to normal scrolling after animation
+    // 4. AFTER animation finishes (1.6s), make it scrollable
     setTimeout(() => {
+        // Reset positioning so the user can scroll normally
         card.style.position = "relative";
+        card.style.top = "0";
         card.style.left = "0";
-        card.style.transform = "scale(1)";
+        card.style.transform = "none";
+        card.style.margin = "0 auto";
+        
+        // Remove wrapper from DOM to be safe
         wrapper.style.display = "none";
+        
+        // Allow the body to scroll
         document.body.style.overflowY = "auto";
     }, 1600);
 });
