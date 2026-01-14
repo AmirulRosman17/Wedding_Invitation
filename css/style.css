@@ -17,62 +17,7 @@ body {
 }
 
 /*============================================================================================
-    # Wrapper Overlay (Folding Card Transition)
-============================================================================================*/
-.wrapper {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: fixed; /* Keep it on top until finished */
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    background: #F4EEE8;
-    transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1); /* Smoother "door" feel */
-}
-
-/* Creating the "Split" effect */
-.wrapper::before,
-.wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background: #F4EEE8; /* Same as background */
-    z-index: -1;
-    transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
-}
-
-.wrapper::before { left: 0; border-right: 1px solid rgba(188, 168, 159, 0.3); }
-.wrapper::after { right: 0; }
-
-/* When 'hidden' is added via JS, the sides slide out */
-.wrapper.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.wrapper.hidden .overlay {
-    transform: scale(0.8); /* Shrinks slightly as it opens */
-    opacity: 0;
-}
-
-/* If your JS targets the wrapper, the two halves move like this */
-.wrapper.hidden::before {
-    transform: translateX(-100%);
-}
-
-.wrapper.hidden::after {
-    transform: translateX(100%);
-}
-
-/*============================================================================================
-    # Wrapper Overlay (Folding Card Transition)
+    # Wrapper Overlay (3D Doors & Zoom Reveal)
 ============================================================================================*/
 .wrapper {
     display: flex;
@@ -85,10 +30,12 @@ body {
     top: 0;
     left: 0;
     z-index: 9999;
-    background: transparent; /* Changed to transparent to let pseudo-elements show */
+    background: transparent;
+    /* This creates the 3D depth for the "hinge" effect */
+    perspective: 1500px; 
 }
 
-/* These two elements create the "Two Doors" that split open */
+/* These create the left and right "Doors" */
 .wrapper::before,
 .wrapper::after {
     content: "";
@@ -97,34 +44,61 @@ body {
     width: 50%;
     height: 100%;
     background: #F4EEE8; /* Your Nude Color */
-    z-index: -1;
-    transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+    z-index: 10;
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
 }
 
 .wrapper::before { 
     left: 0; 
-    border-right: 1px solid rgba(188, 168, 159, 0.3); 
-}
-.wrapper::after { 
-    right: 0; 
+    transform-origin: left; /* Door hinge on the left */
+    border-right: 1px solid rgba(93, 64, 55, 0.1); 
 }
 
-/* Opening Action */
-.wrapper.hidden::before {
-    transform: translateX(-100%);
+.wrapper::after { 
+    right: 0; 
+    transform-origin: right; /* Door hinge on the right */
 }
+
+/* THE 3D OPENING ACTION */
+.wrapper.hidden::before {
+    transform: rotateY(-100deg); /* Swings away */
+    opacity: 0;
+}
+
 .wrapper.hidden::after {
-    transform: translateX(100%);
+    transform: rotateY(100deg); /* Swings away */
+    opacity: 0;
 }
 
 .wrapper.hidden {
-    opacity: 0;
-    visibility: hidden;
     pointer-events: none;
-    transition: all 1.2s ease;
-    transition-delay: 0.2s; /* Brief delay so doors start moving first */
+    visibility: hidden;
+    transition: visibility 1.5s;
 }
 
+/*============================================================================================
+    # Card Zoom Effect
+============================================================================================*/
+.card {
+    display: none; /* Controlled by JS */
+    max-width: 420px;
+    margin: 0 auto;
+    background: white;
+    position: relative;
+    
+    /* Starts small and slightly transparent */
+    transform: scale(0.8);
+    opacity: 0;
+    transition: transform 1.8s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 1.5s ease;
+}
+
+/* This class is added by JS to trigger the zoom */
+.card.zoom-in {
+    display: block;
+    transform: scale(1);
+    opacity: 1;
+}
 /*============================================================================================
     # Overlay & Button
 ============================================================================================*/
