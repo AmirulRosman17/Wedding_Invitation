@@ -1,85 +1,45 @@
 /* Import */
 @import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@100;300;400;700&family=Cinzel:wght@400;700&display=swap');
 
-/*============================================================================================
-    # 1. Global & Background (The Fixed Backdrop)
-============================================================================================*/
-body {
+/* Force Mobile View Only */
+html, body {
     margin: 0;
     padding: 0;
-    /* This makes the image stay fixed like a wallpaper */
-    background-image: url('../images/Intro-page.png');
-    background-attachment: fixed; 
-    background-size: cover;
-    background-position: center;
-    overflow-x: hidden;
-    /* Prevents scrolling before the button is clicked */
-    overflow-y: hidden; 
-}
-
-/* The Animation triggered by JavaScript */
-.zoom-effect {
-    animation: backgroundZoom 3s ease-in-out forwards;
-}
-
-@keyframes backgroundZoom {
-    0% { transform: scale(1); }
-    30% { transform: scale(0.95); } /* Zoom out slightly */
-    100% { transform: scale(1.1); } /* Zoom in back for the reveal */
-}
-
-/*============================================================================================
-    # 2. Wrapper (The Buka Overlay)
-============================================================================================*/
-.wrapper {
-    display: flex;
     width: 100%;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    background: transparent; /* Allows you to see the zooming background */
+    /* This prevents the background from moving when you scroll */
+    background: url('../images/Intro-page.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
 }
 
-/*============================================================================================
-    # 3. The Card (The Floating Bubble)
-============================================================================================*/
+/* The "Bubble" Card seen in your screenshot */
 .card {
-    display: none; 
-    max-width: 450px;
-    width: 92%;
-    /* margin-top: 100vh makes it start below the intro screen */
-    margin: 100vh auto 40px auto; 
+    display: none; /* Hidden until 'Buka' is clicked */
+    position: relative;
+    width: 90%; /* Leaves a small gap on the sides like an app */
+    max-width: 400px; 
+    margin: 100vh auto 40px auto; /* Starts one full screen down */
     
     /* Glassmorphism Effect */
-    background: rgba(255, 255, 255, 0.85); 
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     
-    border-radius: 40px 40px 40px 40px; /* Bubbly border */
-    padding: 40px 20px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-    position: relative;
+    border-radius: 30px; /* Bubbly rounded corners */
+    padding: 30px 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     z-index: 10;
 }
 
-/* Animation for the card appearing */
-.reveal-card {
-    animation: fadeInUp 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes fadeInUp {
-    from { 
-        opacity: 0; 
-        transform: translateY(100px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+/* The Intro Details (Names that show before scrolling) */
+.intro-details {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #5D4037;
+    text-align: center;
 }
 
 /*============================================================================================
