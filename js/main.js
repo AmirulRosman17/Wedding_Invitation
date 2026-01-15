@@ -14,49 +14,31 @@
 document.getElementById("toggle-content").addEventListener("click", function () {
     const wrapper = document.querySelector(".wrapper");
     const card = document.querySelector(".card");
-    const body = document.body;
-    const audioPlayer = document.getElementById("audio-player");
+    const audio = document.getElementById("audio-player");
 
-    // 1. Play the music
-    if (audioPlayer) {
-        audioPlayer.play().catch(e => console.log("Music blocked"));
-    }
+    if (audio) audio.play();
 
-    // 2. Start the Background Zoom Animation (Triggering CSS @keyframes)
-    body.classList.add("zoom-effect");
+    // 1. Zoom Animation Sequence
+    document.body.style.transition = "transform 2s ease-in-out";
+    document.body.style.transform = "scale(0.9)"; // Zoom out slightly
 
-    // 3. Fade out the "Buka" Overlay
-    wrapper.style.transition = "opacity 1.2s ease, visibility 1.2s";
-    wrapper.style.opacity = "0";
-    wrapper.style.visibility = "hidden";
+    setTimeout(() => {
+        document.body.style.transform = "scale(1.1)"; // Zoom in back
+        wrapper.style.opacity = "0"; // Fade out the button
+    }, 1000);
 
-    // 4. Wait for the fade, then bring up the "Bubble" Card
+    // 2. Show the Content
     setTimeout(() => {
         wrapper.style.display = "none";
-        
-        // Show the card
         card.style.display = "block";
         
-        // Add the animation class for the card floating up
-        card.classList.add("reveal-card");
-
-        // Allow user to scroll
-        body.style.overflowY = "auto";
-    }, 1200);
+        // Smooth scroll down to the "Bubble" card
+        window.scrollTo({
+            top: window.innerHeight * 0.5,
+            behavior: "smooth"
+        });
+    }, 2000);
 });
-
-/* --- SCROLL-TRIGGERED WAVY MOVEMENT --- */
-window.addEventListener('scroll', function() {
-    const letters = document.querySelectorAll('.letter');
-    const scrollValue = window.scrollY;
-
-    letters.forEach((letter, index) => {
-        // Creates a wave based on scroll position
-        const movement = Math.sin((scrollValue * 0.005) + (index * 0.5)) * 15;
-        letter.style.transform = `translateY(${movement}px)`;
-    });
-});
-
 /** =====================================================
  *  Timer Countdown
   ======================================================= */
