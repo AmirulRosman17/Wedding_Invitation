@@ -12,25 +12,49 @@
 // });
 
 document.getElementById("toggle-content").addEventListener("click", function () {
-    var wrapper = document.querySelector(".wrapper");
-    var card = document.querySelector(".card");
+    const wrapper = document.querySelector(".wrapper");
+    const card = document.querySelector(".card");
+    const body = document.body;
     const audioPlayer = document.getElementById("audio-player");
 
-    // 1. Start the fade out of the opening screen
-    wrapper.classList.add("hidden");
-
-    // 2. Play the audio
+    // 1. Play the music
     if (audioPlayer) {
-        audioPlayer.play().catch(e => console.log("Audio play prevented"));
+        audioPlayer.play().catch(e => console.log("Music blocked"));
     }
 
-    // 3. Wait for the fade to finish, then show the card
-    wrapper.addEventListener("transitionend", function () {
+    // 2. Start the Background Zoom Animation (Triggering CSS @keyframes)
+    body.classList.add("zoom-effect");
+
+    // 3. Fade out the "Buka" Overlay
+    wrapper.style.transition = "opacity 1.2s ease, visibility 1.2s";
+    wrapper.style.opacity = "0";
+    wrapper.style.visibility = "hidden";
+
+    // 4. Wait for the fade, then bring up the "Bubble" Card
+    setTimeout(() => {
         wrapper.style.display = "none";
+        
+        // Show the card
         card.style.display = "block";
-        // Ensure page is scrollable
-        document.body.style.overflowY = "auto";
-    }, { once: true });
+        
+        // Add the animation class for the card floating up
+        card.classList.add("reveal-card");
+
+        // Allow user to scroll
+        body.style.overflowY = "auto";
+    }, 1200);
+});
+
+/* --- SCROLL-TRIGGERED WAVY MOVEMENT --- */
+window.addEventListener('scroll', function() {
+    const letters = document.querySelectorAll('.letter');
+    const scrollValue = window.scrollY;
+
+    letters.forEach((letter, index) => {
+        // Creates a wave based on scroll position
+        const movement = Math.sin((scrollValue * 0.005) + (index * 0.5)) * 15;
+        letter.style.transform = `translateY(${movement}px)`;
+    });
 });
 
 /** =====================================================
