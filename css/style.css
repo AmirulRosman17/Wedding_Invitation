@@ -1,21 +1,35 @@
 /* Import */
 @import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@100;300;400;700&family=Cinzel:wght@400;700&display=swap');
 
-/* General Global Setting */
-* {
+/*============================================================================================
+    # 1. Global & Background (The Fixed Backdrop)
+============================================================================================*/
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* This makes the image stay fixed like a wallpaper */
+    background-image: url('../images/Intro-page.png');
+    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    /* Prevents scrolling before the button is clicked */
+    overflow-y: hidden; 
 }
 
-body {
-    background: #F4EEE8; /* Boho Nude */
-    font-family: "Montserrat", sans-serif;
-    overflow-x: hidden;
+/* The Animation triggered by JavaScript */
+.zoom-effect {
+    animation: backgroundZoom 3s ease-in-out forwards;
+}
+
+@keyframes backgroundZoom {
+    0% { transform: scale(1); }
+    30% { transform: scale(0.95); } /* Zoom out slightly */
+    100% { transform: scale(1.1); } /* Zoom in back for the reveal */
 }
 
 /*============================================================================================
-    # Wrapper Overlay (Original Stable Version)
+    # 2. Wrapper (The Buka Overlay)
 ============================================================================================*/
 .wrapper {
     display: flex;
@@ -23,58 +37,49 @@ body {
     height: 100vh;
     align-items: center;
     justify-content: center;
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
-    background: #F4EEE8;
-    transition: opacity 0.8s ease, visibility 0.8s;
+    background: transparent; /* Allows you to see the zooming background */
 }
 
-.wrapper.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+/*============================================================================================
+    # 3. The Card (The Floating Bubble)
+============================================================================================*/
+.card {
+    display: none; 
+    max-width: 450px;
+    width: 92%;
+    /* margin-top: 100vh makes it start below the intro screen */
+    margin: 100vh auto 40px auto; 
+    
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    
+    border-radius: 40px 40px 40px 40px; /* Bubbly border */
+    padding: 40px 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
 }
 
-.overlay {
-    width: 420px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../images/intro-bg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.15);
+/* Animation for the card appearing */
+.reveal-card {
+    animation: fadeInUp 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-.overlay .overlay-content .toggle-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    cursor: pointer;
-    border: 1px solid #BCA89F;
-    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1);
-}
-
-.overlay .overlay-content .toggle-button p {
-    font-family: "Great Vibes", cursive;
-    font-size: 30px;
-    color: #5D4037; /* Dark Brown */
-}
-
-.overlay .overlay-content .toggle-button .buka {
-    font-family: "Cinzel", serif;
-    font-size: 16px;
-    color: #BCA89F;
-    letter-spacing: 2px;
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(100px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 
 /*============================================================================================
