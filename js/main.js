@@ -12,32 +12,25 @@
 // });
 
 document.getElementById("toggle-content").addEventListener("click", function () {
-    const wrapper = document.querySelector(".wrapper");
-    const card = document.querySelector(".card");
-    const audio = document.getElementById("audio-player");
+    var wrapper = document.querySelector(".wrapper");
+    var card = document.querySelector(".card");
+    const audioPlayer = document.getElementById("audio-player");
 
-    if (audio) audio.play();
+    // 1. Start the fade out of the opening screen
+    wrapper.classList.add("hidden");
 
-    // 1. Zoom Animation Sequence
-    document.body.style.transition = "transform 2s ease-in-out";
-    document.body.style.transform = "scale(0.9)"; // Zoom out slightly
+    // 2. Play the audio
+    if (audioPlayer) {
+        audioPlayer.play().catch(e => console.log("Audio play prevented"));
+    }
 
-    setTimeout(() => {
-        document.body.style.transform = "scale(1.1)"; // Zoom in back
-        wrapper.style.opacity = "0"; // Fade out the button
-    }, 1000);
-
-    // 2. Show the Content
-    setTimeout(() => {
+    // 3. Wait for the fade to finish, then show the card
+    wrapper.addEventListener("transitionend", function () {
         wrapper.style.display = "none";
         card.style.display = "block";
-        
-        // Smooth scroll down to the "Bubble" card
-        window.scrollTo({
-            top: window.innerHeight * 0.5,
-            behavior: "smooth"
-        });
-    }, 2000);
+        // Ensure page is scrollable
+        document.body.style.overflowY = "auto";
+    }, { once: true });
 });
 /** =====================================================
  *  Timer Countdown
