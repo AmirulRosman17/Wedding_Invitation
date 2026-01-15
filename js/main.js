@@ -566,3 +566,26 @@ setInterval(loadWishes, 10000);
 /** =====================================================
  *  Image Carousel
   ======================================================= */
+
+/* --- SCROLL-TRIGGERED WAVY MOVEMENT --- */
+window.addEventListener('scroll', function() {
+    const letters = document.querySelectorAll('.letter');
+    const scrollValue = window.scrollY;
+
+    letters.forEach((letter, index) => {
+        // This math creates the "wave" based on scroll position
+        // Change '0.05' to make it faster/slower
+        // Change '10' to make the wave higher/lower
+        const movement = Math.sin((scrollValue * 0.005) + (index * 0.5)) * 15;
+        
+        letter.style.transform = `translateY(${movement}px)`;
+    });
+});
+
+/* --- POP-UP MENU FUNCTION --- */
+function toggleMenu(id) {
+    const menu = document.getElementById(id);
+    if (menu) {
+        menu.classList.toggle('active');
+    }
+}
