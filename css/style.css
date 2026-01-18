@@ -222,7 +222,7 @@ body {
 ============================================================================================*/
 .petal-container {
     position: absolute;
-    z-index: 1;
+    z-index: 0;
     width: 100%;
     /* Full width within the card */
     height: 100%;
