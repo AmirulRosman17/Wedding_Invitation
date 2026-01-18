@@ -27,7 +27,8 @@ body {
     top: 0;
     left: 0;
     z-index: 9999;
-    background: #F4EEE8;
+    /* CHANGE THIS: from #F4EEE8 to transparent */
+    background: transparent; 
     transition: opacity 0.8s ease, visibility 0.8s;
 }
 
@@ -39,7 +40,7 @@ body {
 
 .overlay {
     width: 420px;
-    height: 100%;
+    height: 100%; /* If this makes it too tall, you can change to 90% */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,12 +82,17 @@ body {
     # Card (The Invitation)
 ============================================================================================*/
 .card {
-    display: none; /* Hidden until button click */
+    display: none;
+    /* CHANGE THIS: to exactly 420px to match overlay */
+    width: 420px; 
     max-width: 420px;
     margin: 0 auto;
     background: white;
     position: relative;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    /* ADD THIS: to match overlay bubble shape */
+    border-radius: 40px;
+    overflow: hidden;
 }
 /*============================================================================================
     # Intro/Overlay Section
