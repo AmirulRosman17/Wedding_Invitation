@@ -182,7 +182,7 @@ body {
     position: absolute;
     left: -10px;
     /* Start just off the left edge of the card */
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #ebdcc3, #efb3a6, #d76e7d);
     border-radius: 50%;
     /* Rounded shape */
     opacity: 0.5;
@@ -229,7 +229,7 @@ section {
     # Intro
 ============================================================================================*/
 .card section.intro {
-    background: url(../images/intro-bg.png), linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF);
+    background: url(../images/intro-bg.png), linear-gradient(to right, #FDFCFB 0%, #F4EEE8 100%);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -294,7 +294,7 @@ section {
     justify-content: center;
     gap: 10px;
     padding: 50px 0px;
-    background: linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF);
+    background: linear-gradient(to right, #FDFCFB 0%, #F4EEE8 100%);
     min-height: 100vh;
 }
 
