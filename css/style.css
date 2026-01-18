@@ -1,5 +1,5 @@
 /* Import */
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@100;300;400;700&family=Cinzel:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /* General Global Setting */
 * {
@@ -9,13 +9,16 @@
 }
 
 body {
+    position: relative;
+    /*background: linear-gradient(to right, #24243e, #302b63, #0f0c29);*/
     background: #F4EEE8; /* Boho Nude */
     font-family: "Montserrat", sans-serif;
-    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 /*============================================================================================
-    # Wrapper Overlay (Original Stable Version)
+    # Wrapper Overlay
 ============================================================================================*/
 .wrapper {
     display: flex;
@@ -23,141 +26,80 @@ body {
     height: 100vh;
     align-items: center;
     justify-content: center;
-    position: fixed; 
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    background: #F4EEE8;
-    transition: opacity 0.8s ease, visibility 0.8s;
+    overflow: hidden;
+    background: #F8F4FF;
+    transition: opacity 0.5s ease;
 }
 
 .wrapper.hidden {
     opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    /* Fade out effect when 'hidden' class is added */
 }
 
+/* Overlay that covers the entire viewport */
 .overlay {
     width: 420px;
+    /* Same width as the card-container */
     height: 100%;
+    /* Blur the background */
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     background-image: url('../images/intro2-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.15);
 }
 
+/* Center the button within the overlay */
+.overlay .overlay-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    backdrop-filter: blur(3px);
+}
+
+/* Circular toggle button */
 .overlay .overlay-content .toggle-button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     border-radius: 50%;
     width: 150px;
     height: 150px;
+    font-size: 24px;
     cursor: pointer;
-    border: 1px solid #BCA89F;
-    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1);
+    border: none;
 }
 
 .overlay .overlay-content .toggle-button p {
-    font-family: "Great Vibes", cursive;
+    margin: 0;
+    padding: 0;
     font-size: 30px;
-    color: #5D4037; /* Dark Brown */
-}
-
-.overlay .overlay-content .toggle-button .buka {
-    font-family: "Cinzel", serif;
-    font-size: 16px;
-    color: #BCA89F;
-    letter-spacing: 2px;
-}
-
-/*============================================================================================
-    # Card (The Invitation)
-============================================================================================*/
-.card {
-    display: none; /* Hidden until button click */
-    max-width: 420px;
-    margin: 0 auto;
-    background: white;
-    position: relative;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-/*============================================================================================
-    # Intro/Overlay Section
-============================================================================================*/
-.overlay {
-    width: 100%;
-    max-width: 420px;
-    /* CHANGE: Change 100% to 100vh */
-    height: 100vh; 
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    background-image: url('../images/intro2-bg.png'); 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    
-    /* ADD THIS: Prevents content from pushing the container larger */
-    overflow: hidden; 
-    position: relative;
-    box-shadow: 0 10px 30px rgba(93, 64, 55, 0.2);
-}
-.overlay .overlay-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    /* CHANGE: Use 100% here so it fills the fixed 100vh of the parent */
-    height: 100%; 
-    background: rgba(255, 255, 255, 0.1); 
-    /* ADD THIS: */
-    box-sizing: border-box; 
-}
-
-.overlay .overlay-content .toggle-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
-    border-radius: 50%;
-    width: 130px;
-    height: 130px;
-    cursor: pointer;
-    border: 2px solid #BCA89F;
-    box-shadow: 0 8px 15px rgba(93, 64, 55, 0.15);
-    transition: transform 0.3s ease;
-}
-
-/* Optional: Slight hover effect for the button */
-.overlay .overlay-content .toggle-button:hover {
-    transform: scale(1.05);
-}
-
-.overlay .overlay-content .toggle-button p {
+    font-weight: 500;
     font-family: "Great Vibes", cursive;
-    font-size: 28px;
-    color: #5D4037;
-    line-height: 1;
+    color: #302b63;
 }
 
 .overlay .overlay-content .toggle-button .buka {
-    font-family: "Cinzel", serif;
-    font-size: 14px;
-    color: #BCA89F;
-    margin-top: 8px;
-    letter-spacing: 2px;
+    font-size: 16px;
+    font-family: 300;
+    font-family: "Bebas Neue", Arial, sans-serif;
+    margin-top: 10px;
 }
+
+
+
+
+
+
 /*============================================================================================
     # Animation
 ============================================================================================*/
@@ -219,6 +161,7 @@ body {
     width: 50%;
     height: 20px;
 }
+
 /*============================================================================================
     # Background Animation
 ============================================================================================*/
@@ -284,35 +227,24 @@ section {
     # Intro
 ============================================================================================*/
 .card section.intro {
-    /* 1. This applies the background image to the whole section */
-    background: url('../images/intro2-bg.png');
+    background: url(../images/intro2-bg.png), linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF);
     background-repeat: no-repeat;
-    background-size: cover; /* This makes the background fill the area */
+    background-size: cover;
     background-position: center;
-    
-    /* 2. Keeps the section height natural based on your content */
-    min-height: auto; 
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(195, 195, 195, 0.3);
+    min-height: 100vh;
+    z-index: 500;
+    border-bottom: 1px solid rgb(195, 195, 195);
 }
 
 .card section.intro .content {
-    /* 3. SHIFT UP: Use a smaller top padding to move Bismillah up */
-    padding: 40px 20px; 
+    display: block;
+    padding: 200px 0px;
     text-align: center;
-    position: relative;
-    z-index: 2; /* Ensures text stays above the background image */
 }
 
 .card section.intro .content img {
-    /* 4. ANTI-STRETCH: Ensures Bismillah keeps its original shape */
-    width: 60%; 
-    max-width: 250px;
-    height: auto; 
-    margin: 0 auto 10px auto;
-    display: block;
+    width: 50%;
+    height: 10%;
 }
 
 .card section.intro .content p {
@@ -346,6 +278,7 @@ section {
     letter-spacing: 1px;
     font-size: 16px;
 }
+
 
 
 
@@ -447,6 +380,7 @@ section {
     font-weight: 700;
     margin-bottom: 10px;
 }
+
 /*============================================================================================
     # Countdown Timer
 ============================================================================================*/
