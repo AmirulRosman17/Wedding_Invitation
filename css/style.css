@@ -273,200 +273,378 @@ body {
 
 
 /*============================================================================================
+
     # Card
+
 ============================================================================================*/
+
 .card {
+
     display: none;
+
     max-width: 420px;
+
     margin: 0 auto;
+
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
     background: white;
+
     border-radius: 3px;
+
     font-size: 14px;
+
     line-height: 16px;
+
     font-family: "Roboto", sans-serif;
+
     position: relative;
+
     overflow: hidden;
+
 }
+
+
 
 section {
+
     display: block;
+
     unicode-bidi: isolate;
+
 }
 
+
+
 /*============================================================================================
+
     # Intro
+
 ============================================================================================*/
+
 .card section.intro {
+
     /* 1. This applies the background image to the whole section */
+
     background: url('../images/intro2-bg.png');
+
     background-repeat: no-repeat;
+
     background-size: cover; /* This makes the background fill the area */
+
     background-position: center;
+
     
+
     /* 2. Keeps the section height natural based on your content */
+
     min-height: auto; 
+
     width: 100%;
+
     position: relative;
+
     overflow: hidden;
+
     border-bottom: 1px solid rgba(195, 195, 195, 0.3);
+
 }
+
+
 
 .card section.intro .content {
+
     /* 3. SHIFT UP: Use a smaller top padding to move Bismillah up */
+
     padding: 40px 20px; 
+
     text-align: center;
+
     position: relative;
+
     z-index: 2; /* Ensures text stays above the background image */
+
 }
+
+
 
 .card section.intro .content img {
+
     /* 4. ANTI-STRETCH: Ensures Bismillah keeps its original shape */
+
     width: 60%; 
+
     max-width: 250px;
+
     height: auto; 
+
     margin: 0 auto 10px auto;
+
     display: block;
+
 }
+
+
 
 .card section.intro .content p {
+
     margin-top: 10px;
+
     margin-bottom: 20px;
+
 }
+
+
 
 .card section.intro .content p.title {
+
     margin-top: 30px;
+
     margin-bottom: 30px;
+
     color: #111111;
+
     text-transform: uppercase;
+
     font-size: 16px;
+
     font-weight: 700;
+
     font-family: "Roboto", sans-serif;
+
     letter-spacing: 1px;
+
 }
+
+
 
 .card section.intro .content h2 {
+
     margin-top: 50px;
+
     margin-bottom: 50px;
+
     font-family: "Allura", cursive;
+
     font-size: 48px;
+
     font-weight: 500;
+
     color: #111111;
+
 }
+
+
 
 .card section.intro .content .date {
+
     color: #111111;
+
     font-family: "Roboto", sans-serif;
+
     letter-spacing: 1px;
+
     font-size: 16px;
+
 }
 
+
+
 /*============================================================================================
+
     # Event Info
+
 ============================================================================================*/
-/*============================================================================================
-    # Event Info
-============================================================================================*/
+
 .card section.info {
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 10px;
+
     padding: 50px 0px;
-    /* CHANGE: Background is now transparent to show the card wallpaper */
-    background: transparent; 
-    min-height: auto; /* Changed from 100vh to fit the content naturally */
+
+    background: linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF);
+
+    min-height: 100vh;
+
 }
+
+
 
 .card section.info .assalamualaikum {
+
     width: 80%;
-    /* FIX: Changed height to auto to prevent stretching */
-    height: auto; 
-    object-fit: contain; /* Changed from cover to show the whole image */
+
+    height: 30%;
+
+    object-fit: cover;
+
     position: relative;
+
     z-index: 500;
+
 }
+
+
 
 .card section.info .event-info {
+
     width: 75%;
+
     text-align: center;
+
     position: relative;
+
     z-index: 500;
+
 }
+
+
 
 .card section.info .event-info p {
+
     font-family: "Roboto", sans-serif;
+
     color: #111111;
+
 }
+
+
 
 .card section.info .event-info .one {
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 3px;
+
 }
+
+
 
 .card section.info .event-info .three,
+
 .card section.info .event-info .four {
+
     margin-bottom: 15px;
+
 }
+
+
 
 .card section.info .event-info .one p,
+
 .card section.info .event-info .three p,
+
 .card section.info .event-info .four p,
+
 .card section.info .event-info .five p {
+
     color: #111111;
+
     font-weight: 300;
+
     font-size: 14px;
+
     letter-spacing: 1px;
+
 }
+
+
 
 .card section.info .event-info .one .parent {
+
     display: flex;
+
     flex-direction: column;
+
     margin-top: 20px;
+
     margin-bottom: 20px;
+
     gap: 5px;
+
 }
+
+
 
 .card section.info .event-info .one .parent p {
+
     font-size: 18px;
+
     font-weight: 700;
+
 }
+
+
 
 .card section.info .event-info .two {
+
     display: flex;
+
     flex-direction: column;
+
     margin-top: 20px;
+
     margin-bottom: 20px;
+
     gap: 15px;
+
 }
+
+
 
 .card section.info .event-info .two p {
+
     font-family: "Playfair Display", serif;
+
     color: darkcyan;
+
     font-weight: 700;
+
     font-size: 18px;
+
 }
 
+
+
 .card section.info .event-info .three .title,
+
 .card section.info .event-info .four .title,
+
 .card section.info .event-info .five .title {
+
     margin-top: 30px;
+
 }
+
+
 
 .card section.info .event-info .three .title,
+
 .card section.info .event-info .four .title,
+
 .card section.info .event-info .five .title {
+
     font-size: 18px;
+
     font-weight: 700;
+
     margin-bottom: 10px;
+
 }
-
-
-
 
 /*============================================================================================
     # Countdown Timer
