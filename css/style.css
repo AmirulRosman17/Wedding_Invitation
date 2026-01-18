@@ -43,7 +43,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../images/intro-bg.png');
+    background-image: url('../images/intro2-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -100,7 +100,7 @@ body {
     align-items: center;
     
     /* Using your new Intro-page.png */
-    background-image: url('../images/Intro-page.png'); 
+    background-image: url('../images/intro2-page.png'); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
