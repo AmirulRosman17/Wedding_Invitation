@@ -187,8 +187,9 @@ body {
 }
 
 .fade-top-3 {
-    animation: elegantSlide 1.5s ease-out forwards;
-    animation-delay: 1s; /* Names appear slowly later */
+    opacity: 0;
+    animation: elegantFadeIn 2s ease-out forwards;
+    animation-delay: 1s; /* The names appear 1 second after the card starts showing */
 }
 
 .fade-top-4 {
