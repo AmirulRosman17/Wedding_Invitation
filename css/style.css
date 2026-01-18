@@ -284,24 +284,35 @@ section {
     # Intro
 ============================================================================================*/
 .card section.intro {
-    background: url(../images/intro2-bg.png), linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF);
+    /* 1. This applies the background image to the whole section */
+    background: url('../images/intro2-bg.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; /* This makes the background fill the area */
     background-position: center;
-    min-height: 100vh;
-    z-index: 500;
-    border-bottom: 1px solid rgb(195, 195, 195);
+    
+    /* 2. Keeps the section height natural based on your content */
+    min-height: auto; 
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(195, 195, 195, 0.3);
 }
 
 .card section.intro .content {
-    display: block;
-    padding: 200px 0px;
+    /* 3. SHIFT UP: Use a smaller top padding to move Bismillah up */
+    padding: 40px 20px; 
     text-align: center;
+    position: relative;
+    z-index: 2; /* Ensures text stays above the background image */
 }
 
 .card section.intro .content img {
-    width: 50%;
-    height: 10%;
+    /* 4. ANTI-STRETCH: Ensures Bismillah keeps its original shape */
+    width: 60%; 
+    max-width: 250px;
+    height: auto; 
+    margin: 0 auto 10px auto;
+    display: block;
 }
 
 .card section.intro .content p {
