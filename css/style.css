@@ -70,29 +70,25 @@ body {
     align-items: center;
     justify-content: center;
     background-color: white;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    font-size: 24px;
     cursor: pointer;
-    border: none;
+    border: 1px solid #BCA89F;
+    box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1);
 }
 
 .overlay .overlay-content .toggle-button p {
-    margin: 0;
-    padding: 0;
-    font-size: 30px;
-    font-weight: 500;
     font-family: "Great Vibes", cursive;
-    color: #302b63;
+    font-size: 30px;
+    color: #5D4037; /* Dark Brown */
 }
 
 .overlay .overlay-content .toggle-button .buka {
+    font-family: "Cinzel", serif;
     font-size: 16px;
-    font-family: 300;
-    font-family: "Bebas Neue", Arial, sans-serif;
-    margin-top: 10px;
+    color: #BCA89F;
+    letter-spacing: 2px;
 }
 
 
