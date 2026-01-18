@@ -81,12 +81,28 @@ body {
     # Card (The Invitation)
 ============================================================================================*/
 .card {
-    display: none; /* Hidden until button click */
-    max-width: 420px;
-    margin: 0 auto;
-    background: white;
+    display: none; 
     position: relative;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 420px;
+    margin: 100vh auto 40px auto;
+    
+    /* ADD THIS: This applies the image to every 'page' inside the card */
+    background: url('../images/intro2-bg.png');
+    background-repeat: repeat-y; /* This ensures it repeats downwards if the invite is long */
+    background-size: 100% auto;
+    background-position: top center;
+    
+    /* Glassmorphism Effect */
+    background-color: rgba(255, 255, 255, 0.9); /* Keeps it light so text is readable */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    border-radius: 40px;
+    padding: 10px; /* Base padding for the whole card */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    z-index: 10;
+    overflow: hidden;
 }
 /*============================================================================================
     # Intro/Overlay Section
@@ -348,6 +364,9 @@ section {
 /*============================================================================================
     # Event Info
 ============================================================================================*/
+/*============================================================================================
+    # Event Info
+============================================================================================*/
 .card section.info {
     display: flex;
     flex-direction: column;
@@ -355,14 +374,16 @@ section {
     justify-content: center;
     gap: 10px;
     padding: 50px 0px;
-    background: linear-gradient(to right, #F8F4FF, #f9fcff, #F8F4FF);
-    min-height: 100vh;
+    /* CHANGE: Background is now transparent to show the card wallpaper */
+    background: transparent; 
+    min-height: auto; /* Changed from 100vh to fit the content naturally */
 }
 
 .card section.info .assalamualaikum {
     width: 80%;
-    height: 30%;
-    object-fit: cover;
+    /* FIX: Changed height to auto to prevent stretching */
+    height: auto; 
+    object-fit: contain; /* Changed from cover to show the whole image */
     position: relative;
     z-index: 500;
 }
