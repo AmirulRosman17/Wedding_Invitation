@@ -83,7 +83,6 @@ body {
 .card {
     display: none; /* Hidden until button click */
     max-width: 420px;
-    height: 100vh;
     margin: 0 auto;
     background: white;
     position: relative;
