@@ -156,7 +156,6 @@ body {
     letter-spacing: 2px;
 }
 
-
 /*============================================================================================
     # Animation
 ============================================================================================*/
@@ -164,43 +163,38 @@ body {
     opacity: 1;
 }
 
-/* This handles the elegant slide-up for the Bismillah, names, etc. */
-@keyframes elegantSlide {
+.active.fade-bottom {
+    animation: fade-bottom 1s ease-in-out;
+}
+
+@keyframes fade-bottom {
     0% {
-        transform: translateY(20px);
+        transform: translateY(50px);
         opacity: 0;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
     }
 }
 
-/* Applying delays so elements appear one after another */
 .fade-top-1 {
-    animation: elegantSlide 1.5s ease-out forwards;
+    animation: growth 0.5s ease-in-out;
 }
 
 .fade-top-2 {
-    animation: elegantSlide 1.5s ease-out forwards;
-    animation-delay: 0.5s; /* Appears slightly after the first */
+    animation: growth 0.8s ease-in-out;
 }
 
 .fade-top-3 {
-    opacity: 0;
-    animation: elegantFadeIn 2s ease-out forwards;
-    animation-delay: 1s; /* The names appear 1 second after the card starts showing */
+    animation: growth 1s ease-in-out;
 }
 
 .fade-top-4 {
-    animation: elegantSlide 1.5s ease-out forwards;
-    animation-delay: 1.5s; /* Date is the last to appear */
+    animation: growth 1.2s ease-in-out;
 }
 
-/* Ensure elements are hidden BEFORE animation starts */
-.fade-top-1, .fade-top-2, .fade-top-3, .fade-top-4 {
-    opacity: 0;
-}
 @keyframes growth {
     0% {
         transform: scale(0);
