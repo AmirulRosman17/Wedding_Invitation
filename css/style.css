@@ -93,32 +93,35 @@ body {
 ============================================================================================*/
 .overlay {
     width: 100%;
-    max-width: 420px; /* Matching your card width */
-    height: 100%;
+    max-width: 420px;
+    /* CHANGE: Change 100% to 100vh */
+    height: 100vh; 
+    
     display: flex;
     justify-content: center;
     align-items: center;
     
-    /* Using your new intro2-bg.png */
     background-image: url('../images/intro2-bg.png'); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     
+    /* ADD THIS: Prevents content from pushing the container larger */
+    overflow: hidden; 
     position: relative;
     box-shadow: 0 10px 30px rgba(93, 64, 55, 0.2);
 }
-
 .overlay .overlay-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
-    /* If your image has text/design in the middle, we can add a slight blur 
-       or just leave it transparent to show your artwork */
+    /* CHANGE: Use 100% here so it fills the fixed 100vh of the parent */
+    height: 100%; 
     background: rgba(255, 255, 255, 0.1); 
+    /* ADD THIS: */
+    box-sizing: border-box; 
 }
 
 .overlay .overlay-content .toggle-button {
