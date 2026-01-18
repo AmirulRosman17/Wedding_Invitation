@@ -83,7 +83,7 @@ body {
 .card {
     display: none; 
     position: relative;
-    width: 90%;
+    width: 100%;
     max-width: 420px;
     margin: 100vh auto 40px auto;
     
