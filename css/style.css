@@ -38,7 +38,8 @@ body {
 }
 
 .overlay {
-    width: 420px;
+    width: 100%;
+    max-width: 420px; /* Matching your card width */
     height: 100%;
     display: flex;
     justify-content: center;
