@@ -250,11 +250,6 @@ section {
     padding: 0; /* Keep this at 0 so it stays centered */
 }
 
-.card section.intro .content img {
-    width: 50%;
-    height: 10%;
-}
-
 .card section.intro .content p {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -263,11 +258,11 @@ section {
 .card section.intro .content p.title {
     margin-top: 30px;
     margin-bottom: 30px;
-    color: #efb3a6;
+    color: #565a2f;
     text-transform: uppercase;
-    font-size: 32px;
+    font-size: 16px;
     font-weight: 700;
-    font-family: "Allura", cursive;
+    font-family: "Times New Roman", Times, serif;
     letter-spacing: 1px;
 }
 
@@ -275,20 +270,20 @@ section {
     margin-top: 50px;
     margin-bottom: 50px;
     font-family: "Allura", cursive;
-    font-size: 72px;
+    font-size: 48px;
     font-weight: 500;
-    color: #efb3a6;
+    color: #565a2f;
 }
-
-.card section.intro .content .date {
-    color: #efb3a6;
+.card section.intro .content img {
+    width: 50%;
+    height: 10%;
+}
+.card section.intro .content .venue {
+    color: #565a2f;
     font-family: "Roboto", sans-serif;
     letter-spacing: 1px;
     font-size: 16px;
 }
-
-
-
 
 /*============================================================================================
     # Event Info
