@@ -9,7 +9,7 @@
 }
 
 body {
-    background: #F4EEE8; /* Boho Nude */
+    background: (to right, #FDFCFB 0%, #F4EEE8 100%); /* Boho Nude */
     font-family: "Montserrat", sans-serif;
     overflow-x: hidden;
 }
