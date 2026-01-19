@@ -100,6 +100,12 @@ body {
     letter-spacing: 2px;
 }
 
+/* In the Buka Page */
+.overlay .overlay-content img {
+    width: 50%; /* Match the width of the card image */
+    height: auto; 
+}
+
 /*============================================================================================
     # Animation
 ============================================================================================*/
@@ -227,33 +233,30 @@ section {
     # Intro
 ============================================================================================*/
 .card section.intro {
-    background: url(../images/intro2-bg.png), linear-gradient(to right, #FDFCFB 0%, #F4EEE8 100%);
+    background: url(../images/intro2-bg.png); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
-    z-index: 500;
-    border-bottom: 1px solid rgb(195, 195, 195);
-    
-    /* ADD THESE LINES TO CENTER CONTENT */
+    /* CHANGE: Use 100vh to match the Buka page perfectly */
+    height: 100vh; 
+    /* CHANGE: Use flexbox to center instead of padding */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 500;
+    border-bottom: 1px solid rgb(195, 195, 195);
 }
 
 .card section.intro .content {
+    /* CHANGE: Removed padding: 200px 0px; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     width: 100%;
-    padding: 0; /* Keep this at 0 so it stays centered */
 }
 
-.card section.intro .content p {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
 
 .card section.intro .content p.title {
     margin-top: 10px;
@@ -275,12 +278,12 @@ section {
     font-weight: 500;
     color: #565a2f;
 }
+/* In the Card Page */
 .card section.intro .content img {
-    margin-top: 10px;
-    width: 50%;
-    height: 10%;
-    margin-bottom: 10px;
+    width: 50%; 
+    height: auto; /* Changed from 10% to auto to prevent squishing */
 }
+
 .card section.intro .content .venue {
     margin-top: 5px;     /* Tighten address lines */
     margin-bottom: 5px;
