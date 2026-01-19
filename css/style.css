@@ -39,19 +39,17 @@ body {
 
 .overlay {
     width: 100%;
-    max-width: 420px; /* Matching your card width */
-    height: 100%;
+    max-width: 420px;
+    height: 100vh; /* Use vh to match the card */
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* Using your new Intro-page.png */
     background-image: url('../images/intro2-bg.png'); 
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; 
     background-position: center;
-    
     position: relative;
+    /* Remove the height: 100% from overlay-content inside this as well */
     box-shadow: 0 10px 30px rgba(93, 64, 55, 0.2);
 }
 
@@ -233,15 +231,15 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 100vh;
-    z-index: 500;
-    border-bottom: 1px solid rgb(195, 195, 195);
+    height: 100vh; /* Match the Buka page exactly */
+    display: flex; /* Use flex to center content instead of 200px padding */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card section.intro .content {
-    display: block;
-    padding: 200px 0px;
-    text-align: center;
+    padding: 0; /* Remove the 200px padding that was causing the crop */
 }
 
 .card section.intro .content img {
