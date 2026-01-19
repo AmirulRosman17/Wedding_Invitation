@@ -263,11 +263,11 @@ section {
 .card section.intro .content p.title {
     margin-top: 30px;
     margin-bottom: 30px;
-    color: #111111;
+    color: #efb3a6;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 32px;
     font-weight: 700;
-    font-family: "Roboto", sans-serif;
+    font-family: "Allura", cursive;
     letter-spacing: 1px;
 }
 
@@ -275,13 +275,13 @@ section {
     margin-top: 50px;
     margin-bottom: 50px;
     font-family: "Allura", cursive;
-    font-size: 48px;
+    font-size: 72px;
     font-weight: 500;
-    color: #111111;
+    color: #efb3a6;
 }
 
 .card section.intro .content .date {
-    color: #111111;
+    color: #efb3a6;
     font-family: "Roboto", sans-serif;
     letter-spacing: 1px;
     font-size: 16px;
