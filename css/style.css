@@ -322,7 +322,7 @@ section {
 
 .card section.info .event-info p {
     font-family: "Roboto", sans-serif;
-    color: #111111;
+    color: #565a2f;
 }
 
 .card section.info .event-info .one {
@@ -342,7 +342,7 @@ section {
 .card section.info .event-info .three p,
 .card section.info .event-info .four p,
 .card section.info .event-info .five p {
-    color: #111111;
+    color: #565a2f;
     font-weight: 300;
     font-size: 14px;
     letter-spacing: 1px;
@@ -586,11 +586,11 @@ section {
     font-family: "Roboto", sans-serif;
     text-align: center;
     letter-spacing: 1px;
-    color: #111111;
+    color: #565a2f;
 }
 
 .card section.info .aturcara .title {
-    color: #111111;
+    color: #565a2f;
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     font-weight: 700;
@@ -610,7 +610,7 @@ section {
 .card section.info .aturcara .two p,
 .card section.info .aturcara .three p,
 .card section.info .aturcara .four p {
-    color: #111111;
+    color: #565a2f;
     font-weight: 300;
     font-size: 14px;
     letter-spacing: 1px;
@@ -681,7 +681,7 @@ section {
 
 .card section.info .rsvp h2 {
     text-transform: uppercase;
-    color: #111111;
+    color: #565a2f;
     text-align: center;
     margin-bottom: 30px;
 }
@@ -782,7 +782,7 @@ section {
     border: 1px solid grey;
     /* background: linear-gradient(90deg, #E5BDF6, #D8DEDE) !important; */
     /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
-    background: #F8F4FF;
+    background: #ebdcc3;
     cursor: pointer;
     gap: 10px;
 }
@@ -790,7 +790,7 @@ section {
 .card section.info .rsvp .beri-ucapan-button button:hover {
     /* background: linear-gradient(90deg, #E5BDF6, #D8DEDE) !important; */
     /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
-    background: #F8F4FF;
+    background: #ebdcc3;
     opacity: 0.8;
 }
 
@@ -853,7 +853,7 @@ section {
     right: 0;
     max-width: 400px;
     margin: 0 auto;
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #5a601f, #969133, #565a2f);
     box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.2);
     padding: 20px;
     transition: bottom 0.4s;
@@ -914,11 +914,11 @@ section {
     width: 250px;
     height: 40px;
     cursor: pointer;
-    background: #F8F4FF;
+    background: #ebdcc3;
 }
 
 .toggle-menu .calendar .button button:hover {
-    background: #F8F4FF;
+    background: #ebdcc3;
     opacity: 0.9;
 }
 
@@ -969,11 +969,11 @@ section {
     width: 180px;
     height: 35px;
     cursor: pointer;
-    background: #F8F4FF;
+    background: #ebdcc3;
 }
 
 .toggle-menu .location .button button:hover {
-    background: #F8F4FF;
+    background: #ebdcc3;
     opacity: 0.9;
 }
 
@@ -1018,11 +1018,11 @@ section {
     border-radius: 5px;
     gap: 5px;
     cursor: pointer;
-    background: #F8F4FF;
+    background: #ebdcc3;
 }
 
 .toggle-menu .rsvp .button button:hover {
-    background: #F8F4FF;
+    background: #ebdcc3;
     opacity: 0.9;
 }
 
@@ -1085,7 +1085,7 @@ section {
 .toggle-menu .contact .content .person .first-section .name span {
     font-size: 16px;
     font-family: 'Cormorant Garamond', serif;
-    color: #F8F4FF;
+    color: #ebdcc3;
     font-weight: 700;
 }
 
@@ -1102,7 +1102,7 @@ section {
 }
 
 .toggle-menu .contact .content .person .second-section .bx {
-    color: #F8F4FF;
+    color: #ebdcc3;
     font-size: 30px;
 }
 
@@ -1155,12 +1155,12 @@ section {
     border-radius: 5px;
     padding: 8px 6px;
     cursor: pointer;
-    background: #F8F4FF;
+    background: #ebdcc3;
     gap: 5px;
 }
 
 .toggle-menu .ucapan-tetamu .button button:hover {
-    background: #F8F4FF;
+    background: #ebdcc3;
     opacity: 0.9;
 }
 
