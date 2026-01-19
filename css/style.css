@@ -256,8 +256,8 @@ section {
 }
 
 .card section.intro .content p.title {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: #565a2f;
     text-transform: uppercase;
     font-size: 16px;
@@ -267,8 +267,9 @@ section {
 }
 
 .card section.intro .content h2 {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 15px;    /* Reduced from 50px */
+    margin-bottom: 15px; /* Reduced from 50px */
+    line-height: 1.2;    /* Keeps the script font from taking too much vertical space */
     font-family: "Allura", cursive;
     font-size: 48px;
     font-weight: 500;
@@ -279,10 +280,13 @@ section {
     height: 10%;
 }
 .card section.intro .content .venue {
+    margin-top: 5px;     /* Tighten address lines */
+    margin-bottom: 5px;
     color: #565a2f;
     font-family: "Times New Roman", Times, serif;
     letter-spacing: 1px;
-    font-size: 16px;
+    margin: 2px 0; /* This brings the address lines very close together */
+    font-size: 14px;
 }
 
 /*============================================================================================
