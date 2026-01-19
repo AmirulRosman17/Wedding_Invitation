@@ -231,15 +231,23 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh; /* Match the Buka page exactly */
-    display: flex; /* Use flex to center content instead of 200px padding */
+    height: 100vh;
+    z-index: 500;
+    border-bottom: 1px solid rgb(195, 195, 195);
+    
+    /* ADD THESE LINES TO CENTER CONTENT */
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .card section.intro .content {
-    padding: 0; /* Remove the 200px padding that was causing the crop */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0; /* Keep this at 0 so it stays centered */
 }
 
 .card section.intro .content img {
