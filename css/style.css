@@ -278,6 +278,7 @@ section {
 .card section.intro .content img {
     width: 50%;
     height: 10%;
+    margin-bottom: 5px;
 }
 .card section.intro .content .venue {
     margin-top: 5px;     /* Tighten address lines */
