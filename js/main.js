@@ -16,21 +16,26 @@ document.getElementById("toggle-content").addEventListener("click", function () 
     var card = document.querySelector(".card");
     const audioPlayer = document.getElementById("audio-player");
 
-    // 1. Start the fade out of the opening screen
-    wrapper.classList.add("hidden");
-
-    // 2. Play the audio
+    // 1. Play the audio immediately
     if (audioPlayer) {
         audioPlayer.play().catch(e => console.log("Audio play prevented"));
     }
 
-    // 3. Wait for the fade to finish, then show the card
-    wrapper.addEventListener("transitionend", function () {
+    // 2. Unlock the body scroll immediately so the transition is fluid
+    document.body.style.overflowY = "auto";
+    document.body.classList.add("unlocked");
+
+    // 3. Start the cross-fade
+    // Wrapper fades out (via CSS .hidden class)
+    wrapper.classList.add("hidden");
+    
+    // Card fades in (via CSS .show class)
+    card.classList.add("show");
+
+    // 4. Clean up: Only hide the wrapper from the DOM after it's fully invisible
+    setTimeout(() => {
         wrapper.style.display = "none";
-        card.style.display = "block";
-        // Ensure page is scrollable
-        document.body.style.overflowY = "auto";
-    }, { once: true });
+    }, 1200); // Matches the 1.2s transition time in your CSS
 });
 /** =====================================================
  *  Timer Countdown
