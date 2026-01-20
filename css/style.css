@@ -1244,6 +1244,65 @@ section {
     font-weight: bold;
     color: #333;
 }
+
+/* Container for the whole widget */
+.photo-widget {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+}
+
+/* The scrollable area */
+.photo-tray {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px; /* Space between photos */
+    padding: 10px 40px; /* This creates the "peek" effect for side photos */
+    box-sizing: border-box;
+}
+
+/* Hide scrollbars */
+.photo-tray::-webkit-scrollbar { display: none; }
+.photo-tray { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* The Photo Card Style */
+.photo-card {
+    flex: 0 0 100%; /* Makes one photo fill the center area */
+    scroll-snap-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.photo-card img {
+    width: 280px; /* Square size to fit within 420px card with margins */
+    height: 280px; /* Keeps it square */
+    object-fit: cover;
+    border-radius: 20px; /* Rounded corners like your screenshot */
+    border: 8px solid #ffffff; /* The white border frame */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Soft shadow */
+}
+
+/* Optional Dot Indicators */
+.photo-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #BCA89F;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+.dot.active { opacity: 1; width: 20px; border-radius: 10px; }
 /*============================================================================================
     # Image Carousel
 ============================================================================================*/
