@@ -356,6 +356,33 @@
 
     <!-- Custom Js -->
     <script src="./js/main.js"></script>
+
+
+
+    <script>
+        const stack = document.querySelector('.gallery-stack');
+        
+        // This makes sure the script only runs if the stack exists
+        if (stack) {
+            stack.addEventListener('click', function() {
+                const topCard = stack.lastElementChild; 
+                
+                // 1. Animation: Slide out to the right and rotate
+                topCard.style.transform = 'translateX(150%) rotate(20deg)';
+                topCard.style.opacity = '0';
+
+                setTimeout(() => {
+                    // 2. Reset position and move to the bottom of the pile
+                    topCard.style.transform = '';
+                    topCard.style.opacity = '';
+                    stack.prepend(topCard);
+                }, 500); // 500ms matches the transition speed in your CSS
+            });
+        }
+    </script>
 </body>
+</html>
+</body>
+    
 
 </html>
