@@ -360,29 +360,59 @@
 
 
     <script>
-        const stack = document.querySelector('.gallery-stack');
-        
-        // This makes sure the script only runs if the stack exists
-        if (stack) {
-            stack.addEventListener('click', function() {
-                const topCard = stack.lastElementChild; 
-                
-                // 1. Animation: Slide out to the right and rotate
-                topCard.style.transform = 'translateX(150%) rotate(20deg)';
+    const stack = document.querySelector('.gallery-stack');
+    let startX = 0;
+    let isDragging = false;
+
+    if (stack) {
+        // 1. Detect when finger touches the photo
+        stack.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+
+        // 2. Detect when finger moves
+        stack.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            let moveX = e.touches[0].clientX - startX;
+            const topCard = stack.lastElementChild;
+
+            // Move the card slightly with your finger for feedback
+            if (Math.abs(moveX) < 100) {
+                topCard.style.transform = `translateX(${moveX}px) rotate(${moveX / 10}deg)`;
+            }
+        });
+
+        // 3. Detect when finger lifts up
+        stack.addEventListener('touchend', (e) => {
+            isDragging = false;
+            const topCard = stack.lastElementChild;
+            let endX = e.changedTouches[0].clientX;
+            let diffX = endX - startX;
+
+            if (Math.abs(diffX) > 50) { // If swiped more than 50px
+                // Slide out left or right based on swipe direction
+                let direction = diffX > 0 ? 1 : -1;
+                topCard.style.transform = `translateX(${direction * 150}%) rotate(${direction * 30}deg)`;
                 topCard.style.opacity = '0';
 
                 setTimeout(() => {
-                    // 2. Reset position and move to the bottom of the pile
+                    topCard.style.transition = 'none'; // Temporarily disable animation to reset
                     topCard.style.transform = '';
                     topCard.style.opacity = '';
-                    stack.prepend(topCard);
-                }, 500); // 500ms matches the transition speed in your CSS
-            });
-        }
-    </script>
+                    stack.prepend(topCard); // Put it at the bottom
+                    
+                    // Force a tiny pause, then turn animation back on
+                    setTimeout(() => {
+                        topCard.style.transition = '';
+                    }, 10);
+                }, 700);
+            } else {
+                // Not enough swipe? Snap back to center
+                topCard.style.transform = '';
+            }
+        });
+    }
+</script>
 </body>
-</html>
-</body>
-    
-
 </html>
