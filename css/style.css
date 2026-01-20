@@ -29,7 +29,7 @@ body {
     align-items: center;
     background: #F4EEE8;
     /* Smooth fade out duration */
-    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+    transition: opacity 2s ease-in-out, visibility 2s;
 }
 
 .wrapper.hidden {
@@ -229,7 +229,7 @@ body {
     overflow: hidden;
     
     /* ADD: This is the speed of the fade-in */
-    transition: opacity 1.2s ease-in-out;
+    transition: opacity 2s ease-in-out;
 }
 
 /* This is the class your JavaScript will add to make it fade in */
