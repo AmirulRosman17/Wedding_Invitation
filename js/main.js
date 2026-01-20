@@ -33,9 +33,9 @@ document.getElementById("toggle-content").addEventListener("click", function () 
     card.classList.add("show");
 
     // 4. Clean up: Only hide the wrapper from the DOM after it's fully invisible
-    setTimeout(() => {
+   setTimeout(() => {
         wrapper.style.display = "none";
-    }, 1200); // Matches the 1.2s transition time in your CSS
+    }, 2000); // Matches the 1.2s transition time in your CSS
 });
 /** =====================================================
  *  Timer Countdown
