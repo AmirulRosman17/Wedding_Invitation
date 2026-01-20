@@ -1271,24 +1271,13 @@ section {
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
-    border: 8px solid #ffffff; /* The white frame */
+    border: 8px solid #ffffff;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    /* CHANGE: Slower duration (0.7s) and smoother movement */
+    transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
     cursor: grab;
     user-select: none;
-}
-
-/* This creates the "Stacked" look for the photos behind the top one */
-.stack-card:nth-child(n+2) {
-    transform: scale(0.95) translateY(10px);
-    opacity: 0.8;
-    z-index: -1;
-}
-
-.stack-card:nth-child(n+3) {
-    transform: scale(0.9) translateY(20px);
-    opacity: 0.5;
-    z-index: -2;
+    touch-action: none; /* Prevents the whole page from scrolling while swiping photos */
 }
 
 .swipe-hint {
