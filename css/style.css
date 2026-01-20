@@ -324,7 +324,7 @@ section {
 }
 
 .card section.info .event-info p {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #565a2f;
 }
 
@@ -373,7 +373,7 @@ section {
 }
 
 .card section.info .event-info .two p {
-    font-family: "Playfair Display", serif;
+    font-family: 'Montserrat', sans-serif;
     color: darkcyan;
     font-weight: 700;
     font-size: 18px;
@@ -586,7 +586,7 @@ section {
 }
 
 .card section.info .aturcara p {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     letter-spacing: 1px;
     color: #565a2f;
@@ -594,7 +594,7 @@ section {
 
 .card section.info .aturcara .title {
     color: #565a2f;
-    font-family: "Roboto", sans-serif;
+   font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 18px;
@@ -655,7 +655,7 @@ section {
 
 .card section.info .ucapan .content p {
     font-size: 16px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     text-align: center;
 }
@@ -708,7 +708,7 @@ section {
 
 .card section.info .rsvp .container-message .content p {
     font-size: 16px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     text-align: left;
 }
@@ -897,7 +897,7 @@ section {
 
 .toggle-menu .calendar p span {
     font-size: 16px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
 }
 
@@ -945,13 +945,13 @@ section {
 
 .toggle-menu .calendar .button button span {
     font-size: 16px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .toggle-menu .location p {
     font-size: 16px;
     font-weight: 300;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
 }
 
@@ -992,7 +992,7 @@ section {
 
 .toggle-menu .music p {
     font-size: 16px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     color: wheat;
     text-align: center;
 }
@@ -1087,7 +1087,7 @@ section {
 
 .toggle-menu .contact .content .person .first-section .name span {
     font-size: 16px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     color: #fffcf6;
     font-weight: 700;
 }
@@ -1122,7 +1122,7 @@ section {
     color: white;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .toggle-menu .ucapan-tetamu form input {
@@ -1200,7 +1200,7 @@ section {
 .toggle-menu .success-message p {
     font-size: 16px;
     font-weight: 300;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
 }
 
