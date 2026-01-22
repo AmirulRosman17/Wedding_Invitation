@@ -10,7 +10,18 @@
 //    const audioPlayer = document.getElementById("audio-player");
 //    audioPlayer.play();  // Start playing the audio
 // });
+// This runs as soon as the page is finished loading
+window.addEventListener('load', function() {
+    const wrapper = document.querySelector('.wrapper');
+    if (wrapper) {
+        // A tiny delay (100ms) makes the start of the fade feel more intentional
+        setTimeout(() => {
+            wrapper.classList.add('visible');
+        }, 100);
+    }
+});
 
+// Your existing toggle-content code stays below this...
 document.getElementById("toggle-content").addEventListener("click", function () {
     var wrapper = document.querySelector(".wrapper");
     var card = document.querySelector(".card");
