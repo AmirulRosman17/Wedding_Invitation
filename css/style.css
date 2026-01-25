@@ -1266,12 +1266,11 @@ section {
     font-style: italic;
     margin-top: 2px;
 }
-/* Theme-Matched Highlight */
+
+/* Specific styling for the Latest/New Wish */
 .container-message .content:first-child {
-    border-left: 4px solid #565a2f; /* Olive green instead of gold */
-    background: rgba(86, 90, 47, 0.08); /* Very subtle green tint */
-    margin-bottom: 5px;
-    border-radius: 0 10px 10px 0;
+    border-left: 4px solid #d4af37; /* Gold accent for the top wish */
+    background: rgba(212, 175, 55, 0.05); /* Very subtle gold tint */
     transition: all 0.3s ease;
 }
 
