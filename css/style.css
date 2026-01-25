@@ -700,7 +700,8 @@ section {
 
 .card section.info .ucapan .content p {
     font-size: 14px;
-    font-family: "Lucida Handwriting";
+    font-family: Courier;
+    color: #5a601f;
     margin: 0;
     text-align: center;
 }
