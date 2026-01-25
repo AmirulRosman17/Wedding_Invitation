@@ -16,16 +16,7 @@ body {
 
 /*============================================================================================
     # Wrapper Overlay (Original Stable Version)
-============================================================================================*/\
-/* Master container to hold everything in one spot */
-.invitation-frame {
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    position: relative;
-    height: 100vh;
-    overflow: hidden; /* Keeps motion icons from leaking out */
-}
+============================================================================================*/
 .wrapper {
     position: fixed;
     top: 0;
@@ -247,31 +238,6 @@ body {
     
     /* ADD: This is the speed of the fade-in */
     transition: opacity 2s ease-in-out;
-}
-.card-animated-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('images/floral-pattern.png');
-    background-repeat: repeat-y;
-    background-size: contain;
-    opacity: 0.3; /* Subtle background */
-    z-index: 0;
-    /* Optional: make the background slowly drift */
-    animation: drift 60s linear infinite;
-}
-
-@keyframes drift {
-    from { background-position: 0 0; }
-    to { background-position: 0 1000px; }
-}
-
-/* Ensure your text sections sit ON TOP of the background */
-section {
-    position: relative;
-    z-index: 1;
 }
 
 /* This is the class your JavaScript will add to make it fade in */
@@ -1341,29 +1307,6 @@ section {
     font-size: 13px;
     color: #BCA89F;
     font-family: 'Roboto', sans-serif;
-}
-
-.moving-leaf {
-    position: absolute;
-    width: 80px;
-    z-index: 5;
-    pointer-events: none;
-    /* This ensures they stay inside the 420px frame */
-}
-
-/* Use percentages so they stay proportional to the 420px width */
-.leaf-top-left {
-    top: 5%;
-    left: 2%;
-    animation: sway 4s ease-in-out infinite;
-}
-.leaf1 { top: 10%; left: 5%; animation: sway 4s ease-in-out infinite; }
-.leaf2 { bottom: 15%; right: 5%; animation: sway 5s ease-in-out infinite reverse; }
-
-@keyframes sway {
-    0% { transform: rotate(0deg) translateY(0px); }
-    50% { transform: rotate(10deg) translateY(-10px); }
-    100% { transform: rotate(0deg) translateY(0px); }
 }
 /*============================================================================================
     # Image Carousel
