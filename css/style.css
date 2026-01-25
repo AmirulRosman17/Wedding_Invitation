@@ -1134,8 +1134,8 @@ section {
 }
 
 .toggle-menu .contact .content .person .first-section .name span {
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-family: "Times New Roman";
     color: #fffcf6;
     font-weight: 700;
 }
@@ -1170,7 +1170,7 @@ section {
     color: white;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Times New Roman";
 }
 
 .toggle-menu .ucapan-tetamu form input {
