@@ -836,7 +836,6 @@ section {
     border: 1px solid grey;
     /* background: linear-gradient(90deg, #E5BDF6, #D8DEDE) !important; */
     /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
-    background: #fffcf6;
     cursor: pointer;
     gap: 10px;
 }
