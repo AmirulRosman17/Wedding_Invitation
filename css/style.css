@@ -254,23 +254,36 @@ section {
 /*============================================================================================
     # Intro
 ============================================================================================*/
-.card section.intro {
+.card section.main-content {
+    /* Use your intro background for the WHOLE thing */
     background: url(../images/intro2-bg.png); 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    /* CHANGE: Use 100vh to match the Buka page perfectly */
-    height: 100vh; 
-    /* CHANGE: Use flexbox to center instead of padding */
+    background-repeat: repeat-y; /* Changed to repeat-y so it covers long content */
+    background-size: 100% auto;
+    background-position: top center;
+    
+    /* Removed height: 100vh so it grows with your content */
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px; /* Space for the floral borders */
+}
+
+/* Adjust the intro part to still feel like a full first page */
+.intro-part {
+    height: 80vh; 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    z-index: 500;
-    border-bottom: 1px solid rgb(195, 195, 195);
 }
 
-.card section.intro .content {
+/* Your info part simply follows underneath */
+.info-part {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.card section.main-content .content {
     /* CHANGE: Removed padding: 200px 0px; */
     display: flex;
     flex-direction: column;
@@ -280,7 +293,7 @@ section {
 }
 
 
-.card section.intro .content p.title {
+.card section.main-content .content p.title {
     margin-top: 10px;
     margin-bottom: 20px;
     color: #565a2f;
@@ -291,7 +304,7 @@ section {
     letter-spacing: 1px;
 }
 
-.card section.intro .content h2 {
+.card section.main-content .content h2 {
     margin-top: 5px;    /* Reduced from 50px */
     margin-bottom: 5px; /* Reduced from 50px */
     line-height: 1.2;    /* Keeps the script font from taking too much vertical space */
@@ -301,12 +314,12 @@ section {
     color: #565a2f;
 }
 /* In the Card Page */
-.card section.intro .content img {
+.card section.main-content .content img {
     width: 50%; 
     height: auto; /* Changed from 10% to auto to prevent squishing */
 }
 
-.card section.intro .content .venue {
+.card section.main-content .content .venue {
     margin-top: 5px;     /* Tighten address lines */
     margin-bottom: 5px;
     color: #565a2f;
@@ -319,18 +332,11 @@ section {
 /*============================================================================================
     # Event Info
 ============================================================================================*/
-.card section.info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 50px 0px;
-    background: linear-gradient(to right, #FDFCFB 0%, #F4EEE8 100%);
-    min-height: 100vh;
-}
 
-.card section.info .assalamualaikum {
+
+
+
+.card section.main-content .assalamualaikum {
     width: 80%;
     height: 30%;
     object-fit: cover;
@@ -338,19 +344,19 @@ section {
     z-index: 500;
 }
 
-.card section.info .event-info {
+.card section.main-content .event-info {
     width: 75%;
     text-align: center;
     position: relative;
     z-index: 500;
 }
 
-.card section.info .event-info p {
+.card section.main-content .event-info p {
     font-family: 'Montserrat', sans-serif;
     color: #565a2f;
 }
 
-.card section.info .event-info .one {
+.card section.main-content .event-info .one {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -358,22 +364,22 @@ section {
     gap: 3px;
 }
 
-.card section.info .event-info .three,
-.card section.info .event-info .four {
+.card section.main-content .event-info .three,
+.card section.main-content .event-info .four {
     margin-bottom: 15px;
 }
 
-.card section.info .event-info .one p,
-.card section.info .event-info .three p,
-.card section.info .event-info .four p,
-.card section.info .event-info .five p {
+.card section.main-content .event-info .one p,
+.card section.main-content .event-info .three p,
+.card section.main-content .event-info .four p,
+.card section.main-content .event-info .five p {
     color: #565a2f;
     font-weight: 300;
     font-size: 14px;
     letter-spacing: 1px;
 }
 
-.card section.info .event-info .one .parent {
+.card section.main-content .event-info .one .parent {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -381,12 +387,12 @@ section {
     gap: 5px;
 }
 
-.card section.info .event-info .one .parent p {
+.card section.main-content .event-info .one .parent p {
     font-size: 18px;
     font-weight: 700;
 }
 
-.card section.info .event-info .two {
+.card section.main-content .event-info .two {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -394,22 +400,22 @@ section {
     gap: 15px;
 }
 
-.card section.info .event-info .two p {
+.card section.main-content .event-info .two p {
     font-family: "Playfair Display", serif;
     color: #d76e7d; 
     font-weight: 700;
     font-size: 18px;
 }
 
-.card section.info .event-info .three .title,
-.card section.info .event-info .four .title,
-.card section.info .event-info .five .title {
+.card section.main-content .event-info .three .title,
+.card section.main-content .event-info .four .title,
+.card section.main-content .event-info .five .title {
     margin-top: 30px;
 }
 
-.card section.info .event-info .three .title,
-.card section.info .event-info .four .title,
-.card section.info .event-info .five .title {
+.card section.main-content .event-info .three .title,
+.card section.main-content .event-info .four .title,
+.card section.main-content .event-info .five .title {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 10px;
@@ -421,11 +427,11 @@ section {
 /*============================================================================================
     # Countdown Timer
 ============================================================================================*/
-.card section.info .countdown .counter h1,
-.card section.info .countdown .counter h2,
-.card section.info .countdown .counter h3,
-.card section.info .countdown .counter h4,
-.card section.info .countdown .counter h5 {
+.card section.main-content .countdown .counter h1,
+.card section.main-content .countdown .counter h2,
+.card section.main-content .countdown .counter h3,
+.card section.main-content .countdown .counter h4,
+.card section.main-content .countdown .counter h5 {
     font-family: "Bebas Neue", Arial, sans-serif;
     font-weight: 400;
     color: #efebe0;
@@ -433,13 +439,13 @@ section {
     margin: 0;
 }
 
-.card section.info .countdown .counter p,
-.card section.info .countdown .counter span {
+.card section.main-content .countdown .counter p,
+.card section.main-content .countdown .counter span {
     color: #d6d6d6b3;
 }
 
 
-.card section.info .countdown .container {
+.card section.main-content .countdown .container {
     flex-grow: 1;
     margin: 0 auto;
     position: relative;
@@ -447,33 +453,33 @@ section {
 }
 
 @media screen and (min-width: 1024px) {
-    .card section.info .countdown .container {
+    .card section.main-content .countdown .container {
         max-width: 960px;
     }
 }
 
 @media screen and (min-width: 1204px) {
-    .card section.info .countdown .container {
+    .card section.main-content .countdown .container {
         max-width: 1140px;
     }
 
-    .card section.info .countdown .container {
+    .card section.main-content .countdown .container {
         max-width: 1140px;
     }
 }
 
-.card section.info .countdown .hero {
+.card section.main-content .countdown .hero {
     background: transparent;
     min-height: 70vh;
 }
 
 @media screen and (max-width: 768px) {
-    .card section.info .countdown .hero {
+    .card section.main-content .countdown .hero {
         min-height: auto;
     }
 }
 
-.card section.info .countdown .hero .hero-body .campaign {
+.card section.main-content .countdown .hero .hero-body .campaign {
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -481,11 +487,11 @@ section {
     width: 100%;
 }
 
-.card section.info .countdown .hero.connect-page {
+.card section.main-content .countdown .hero.connect-page {
     min-height: auto;
 }
 
-.card section.info .countdown .hero .hero-body {
+.card section.main-content .countdown .hero .hero-body {
     padding: 32px 0;
     display: flex;
     flex-direction: column;
@@ -494,18 +500,18 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    .card section.info .countdown .hero .hero-body {
+    .card section.main-content .countdown .hero .hero-body {
         padding: 2rem 0;
     }
 }
 
-.card section.info .countdown .section.pair .pair-steps .step .step-number .value {
+.card section.main-content .countdown .section.pair .pair-steps .step .step-number .value {
     color: #fff;
     font-weight: 700;
     font-size: 3rem;
 }
 
-.card section.info .countdown .hero .hero-body .counter {
+.card section.main-content .countdown .hero .hero-body .counter {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -514,12 +520,12 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    .card section.info .countdown .hero .hero-body .counter {
+    .card section.main-content .countdown .hero .hero-body .counter {
         margin: 2rem 0 0;
     }
 }
 
-.card section.info .countdown .hero .hero-body .counter .title {
+.card section.main-content .countdown .hero .hero-body .counter .title {
     color: #9c9c9c;
     font-size: 1rem;
     font-weight: 700;
@@ -529,12 +535,12 @@ section {
     text-shadow: 0 1px 2px #0003;
 }
 
-.card section.info .countdown .hero .hero-body .counter .counter-boxes {
+.card section.main-content .countdown .hero .hero-body .counter .counter-boxes {
     display: flex;
     flex-direction: row;
 }
 
-.card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box {
+.card section.main-content .countdown .hero .hero-body .counter .counter-boxes .count-box {
     background-color: #1a1c1ccc;
     box-shadow: 0 5px 10px #0000004d;
     border-radius: 8px;
@@ -550,13 +556,13 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    .card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box {
+    .card section.main-content .countdown .hero .hero-body .counter .counter-boxes .count-box {
         width: 70px;
         height: 70px;
     }
 }
 
-.card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box h1 {
+.card section.main-content .countdown .hero .hero-body .counter .counter-boxes .count-box h1 {
     color: #fff;
     padding: 8px 0 0;
     margin: 0;
@@ -565,12 +571,12 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    .card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box h1 {
+    .card section.main-content .countdown .hero .hero-body .counter .counter-boxes .count-box h1 {
         font-size: 2rem;
     }
 }
 
-.card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box span {
+.card section.main-content .countdown .hero .hero-body .counter .counter-boxes .count-box span {
     color: #9c9c9c;
     font-size: 0.75rem;
     font-weight: 700;
@@ -579,17 +585,17 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    .card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box span {
+    .card section.main-content .countdown .hero .hero-body .counter .counter-boxes .count-box span {
         font-size: 10px;
         letter-spacing: 0;
     }
 }
 
-.card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box:last-of-type {
+.card section.main-content .countdown .hero .hero-body .counter .counter-boxes .count-box:last-of-type {
     margin-right: 0;
 }
 
-.card section.info .countdown .container {
+.card section.main-content .countdown .container {
     width: 100%;
     z-index: 500;
 }
@@ -599,7 +605,7 @@ section {
 /*============================================================================================
     # Aturcara
 ============================================================================================*/
-.card section.info .aturcara {
+.card section.main-content .aturcara {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -607,14 +613,14 @@ section {
     position: relative;
 }
 
-.card section.info .aturcara p {
+.card section.main-content .aturcara p {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     letter-spacing: 1px;
     color: #565a2f;
 }
 
-.card section.info .aturcara .title {
+.card section.main-content .aturcara .title {
     color: #565a2f;
    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
@@ -622,29 +628,29 @@ section {
     font-size: 18px;
 }
 
-.card section.info .aturcara .one,
-.card section.info .aturcara .two,
-.card section.info .aturcara .three,
-.card section.info .aturcara .four {
+.card section.main-content .aturcara .one,
+.card section.main-content .aturcara .two,
+.card section.main-content .aturcara .three,
+.card section.main-content .aturcara .four {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.card section.info .aturcara .one p,
-.card section.info .aturcara .two p,
-.card section.info .aturcara .three p,
-.card section.info .aturcara .four p {
+.card section.main-content .aturcara .one p,
+.card section.main-content .aturcara .two p,
+.card section.main-content .aturcara .three p,
+.card section.main-content .aturcara .four p {
     color: #565a2f;
     font-weight: 300;
     font-size: 14px;
     letter-spacing: 1px;
 }
 
-.card section.info .aturcara .one p:nth-child(2),
-.card section.info .aturcara .two p:nth-child(2),
-.card section.info .aturcara .three p:nth-child(2),
-.card section.info .aturcara .four p:nth-child(2) {
+.card section.main-content .aturcara .one p:nth-child(2),
+.card section.main-content .aturcara .two p:nth-child(2),
+.card section.main-content .aturcara .three p:nth-child(2),
+.card section.main-content .aturcara .four p:nth-child(2) {
     color: darkgrey;
 }
 
@@ -655,7 +661,7 @@ section {
 /*============================================================================================
     # Ucapan
 ============================================================================================*/
-.card section.info .ucapan .container {
+.card section.main-content .ucapan .container {
     position: relative;
     max-width: 420px;
     display: flex;
@@ -666,7 +672,7 @@ section {
     z-index: 500;
 }
 
-.card section.info .ucapan .content {
+.card section.main-content .ucapan .content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -675,14 +681,14 @@ section {
     width: 85%;
 }
 
-.card section.info .ucapan .content p {
+.card section.main-content .ucapan .content p {
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     text-align: center;
 }
 
-.card section.info .ucapan img {
+.card section.main-content .ucapan img {
     width: 100%;
     height: auto;
 }
@@ -692,7 +698,7 @@ section {
 /*============================================================================================
     # RSVP
 ============================================================================================*/
-.card section.info .rsvp {
+.card section.main-content .rsvp {
     position: relative;
     width: 100%;
     display: flex;
@@ -704,14 +710,14 @@ section {
     z-index: 500;
 }
 
-.card section.info .rsvp h2 {
+.card section.main-content .rsvp h2 {
     text-transform: uppercase;
     color: #565a2f;
     text-align: center;
     margin-bottom: 30px;
 }
 
-.card section.info .rsvp .container-message {
+.card section.main-content .rsvp .container-message {
     width: 95%;
     height: 450px;
     overflow-y: auto;
@@ -720,7 +726,7 @@ section {
     border-bottom: 1px solid wheat;
 }
 
-.card section.info .rsvp .container-message .content {
+.card section.main-content .rsvp .container-message .content {
     overflow: hidden;
     width: 100%;
     white-space: normal;
@@ -728,39 +734,39 @@ section {
     border-bottom: 1px solid #DDDDDD;
 }
 
-.card section.info .rsvp .container-message .content p {
+.card section.main-content .rsvp .container-message .content p {
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     text-align: left;
 }
 
-.card section.info .rsvp .container-message .content p.name {
+.card section.main-content .rsvp .container-message .content p.name {
     color: darkcyan;
     margin-top: 10px;
 }
 
-.card section.info .rsvp .container-message .content p.name::before {
+.card section.main-content .rsvp .container-message .content p.name::before {
     content: '--';
     color: grey;
     font-size: 0.9em;
     margin-right: 8px;
 }
 
-.card section.info .rsvp .container-message .content p.name::after {
+.card section.main-content .rsvp .container-message .content p.name::after {
     content: '--';
     color: grey;
     font-size: 16px;
     margin-left: 8px;
 }
 
-.card section.info .rsvp .container-message .content p.message {
+.card section.main-content .rsvp .container-message .content p.message {
     color: darkgrey;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.card section.info .rsvp .container-message .content-empty {
+.card section.main-content .rsvp .container-message .content-empty {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -769,25 +775,25 @@ section {
     overflow: hidden;
 }
 
-.card section.info .rsvp .container-message .content-empty p.empty-message {
+.card section.main-content .rsvp .container-message .content-empty p.empty-message {
     color: darkgray;
     text-align: center;
 }
 
 
-.card section.info .rsvp .container-message::-webkit-scrollbar {
+.card section.main-content .rsvp .container-message::-webkit-scrollbar {
     width: 2px;
     background-color: #ADD8E6;
 }
 
-.card section.info .rsvp .container-message::-webkit-scrollbar-thumb {
+.card section.main-content .rsvp .container-message::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 6px rgb(114, 243, 243);
     -webkit-box-shadow: inset 0 0 6px rgb(1, 66, 66);
     background-color: navy;
     border-radius: 12px;
 }
 
-.card section.info .rsvp .beri-ucapan-button {
+.card section.main-content .rsvp .beri-ucapan-button {
     width: 100%;
     display: flex;
     align-items: center;
@@ -797,7 +803,7 @@ section {
     gap: 5px;
 }
 
-.card section.info .rsvp .beri-ucapan-button button {
+.card section.main-content .rsvp .beri-ucapan-button button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -812,19 +818,19 @@ section {
     gap: 10px;
 }
 
-.card section.info .rsvp .beri-ucapan-button button:hover {
+.card section.main-content .rsvp .beri-ucapan-button button:hover {
     /* background: linear-gradient(90deg, #E5BDF6, #D8DEDE) !important; */
     /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
     background: #fffcf6;
     opacity: 0.8;
 }
 
-.card section.info .rsvp .beri-ucapan-button button .bx {
+.card section.main-content .rsvp .beri-ucapan-button button .bx {
     font-size: 16px;
     color: darkcyan;
 }
 
-.card section.info .rsvp .beri-ucapan-button button span {
+.card section.main-content .rsvp .beri-ucapan-button button span {
     font-size: 14px;
     font-weight: 500;
 }
