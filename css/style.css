@@ -720,14 +720,13 @@ section {
 /*============================================================================================
     # RSVP
 ============================================================================================*/
-/* Ensure the RSVP section wraps everything neatly */
 .card section.info .rsvp {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 20px 0; /* Add vertical breathing room */
-    gap: 20px;       /* Automatically spaces out Title, List, and Buttons */
+    gap: 20px; /* This creates perfect space between each element */
+    padding: 20px 0;
 }
 
 /* Fix the Title spacing */
@@ -736,36 +735,49 @@ section {
     font-weight: 700;
 }
 
+.card section.info .rsvp .beri-ucapan-button {
+    width: 90%; /* Keeps buttons within the screen edges */
+    display: flex;
+    flex-direction: row; /* Force them to stay side-by-side */
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
 .card section.info .rsvp .beri-ucapan-button button {
+    flex: 1; /* Makes both buttons exactly the same width */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;         /* Keeps icon and text perfectly apart */
-    width: 48%;
     padding: 12px 5px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.7); /* Soft glass white */
+    
+    /* Soft Glass Effect */
+    background: rgba(255, 255, 255, 0.5); 
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    gap: 8px;
 }
 
-/* Ensure the text is visible and pretty */
 .card section.info .rsvp .beri-ucapan-button button span {
-    color: #565a2f;    /* Your theme olive green */
-    font-size: 13px;
+    font-size: 12px; /* Slightly smaller for mobile fitting */
+    color: #565a2f;  /* Your theme green */
     font-weight: 600;
-    white-space: nowrap; /* Forces text to stay on one line */
+    white-space: nowrap; /* Prevents text from breaking into 2 lines */
 }
 
 .card section.info .rsvp .container-message {
     width: 90%;
-    max-height: 300px; /* Limit height so buttons stay visible on screen */
-    background: rgba(255, 255, 255, 0.3);
+    height: 300px; /* Reduced height to make room for buttons on mobile */
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 15px;
-    padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
     overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Style each individual message row */
@@ -1089,7 +1101,7 @@ section {
 
 .toggle-menu .ucapan-tetamu form label {
     text-align: center;
-    color: white;
+    color: darkcyan;
     font-size: 16px;
     font-weight: 500;
     font-family: "Times New Roman";
@@ -1139,6 +1151,7 @@ section {
 
 .toggle-menu .ucapan-tetamu .button button i {
     font-size: 24px;
+    background: #fffcf6;
 }
 
 .toggle-menu .ucapan-tetamu .button button i.bxs-paper-plane {
