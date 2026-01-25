@@ -838,6 +838,7 @@ section {
     /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
     cursor: pointer;
     gap: 10px;
+    
 }
 
 .card section.info .rsvp .beri-ucapan-button button:hover {
