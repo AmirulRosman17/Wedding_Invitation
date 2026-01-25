@@ -700,7 +700,7 @@ section {
 
 .card section.info .ucapan .content p {
     font-size: 14px;
-    font-family: Courier;
+    font-family: "Times New Roman";
     color: #5a601f;
     margin: 0;
     text-align: center;
@@ -919,6 +919,7 @@ section {
     font-weight: 700;
     margin-bottom: 10px;
     color: white;
+    font-family: "Times New Roman";
     text-transform: uppercase;
 }
 
@@ -943,7 +944,7 @@ section {
 
 .toggle-menu .calendar p span {
     font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Times New Roman";
     color: white;
 }
 
@@ -991,13 +992,13 @@ section {
 
 .toggle-menu .calendar .button button span {
     font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Times New Roman";
 }
 
 .toggle-menu .location p {
     font-size: 16px;
     font-weight: 300;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Times New Roman";
     color: white;
 }
 
@@ -1038,7 +1039,7 @@ section {
 
 .toggle-menu .music p {
     font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Times New Roman";
     color: wheat;
     text-align: center;
 }
@@ -1077,6 +1078,7 @@ section {
 
 .toggle-menu .rsvp .button button i {
     font-size: 24px;
+    font-family: "Times New Roman";
 }
 
 .toggle-menu .rsvp .button #btn-hadir i {
@@ -1246,7 +1248,7 @@ section {
 .toggle-menu .success-message p {
     font-size: 16px;
     font-weight: 300;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Times New Roman";
     color: white;
 }
 
@@ -1330,7 +1332,7 @@ section {
     margin-top: 30px;
     font-size: 13px;
     color: #BCA89F;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Times New Roman";
 }
 /*============================================================================================
     # Image Carousel
