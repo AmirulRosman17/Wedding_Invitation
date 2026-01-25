@@ -284,7 +284,12 @@ section {
 /* Your info part simply follows underneath */
 .info-part {
     width: 100%;
-    margin-top: 50px;
+    /* This creates the gap you wanted between sections */
+    margin-top: 100px; 
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card section.main-content .content {
@@ -342,7 +347,9 @@ section {
 
 .card section.main-content .assalamualaikum {
     width: 80%;
-    height: 30%;
+    margin-bottom: 40px; /* Space before the text starts */
+    height: auto;
+    object-fit: contain;
     object-fit: cover;
     position: relative;
     z-index: 500;
