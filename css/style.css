@@ -560,7 +560,7 @@ section {
 
 .card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box {
     background-color: #5a601f;
-    opacity: 0.2;
+    opacity: 0.4;
     box-shadow: 0 5px 10px #0000004d;
     border-radius: 8px;
     backdrop-filter: blur(5px);
