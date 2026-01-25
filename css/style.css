@@ -560,7 +560,7 @@ section {
 
 .card section.info .countdown .hero .hero-body .counter .counter-boxes .count-box {
     background-color: #5a601f;
-    opacity: 0.5;
+    opacity: 0.2;
     box-shadow: 0 5px 10px #0000004d;
     border-radius: 8px;
     backdrop-filter: blur(5px);
@@ -683,7 +683,7 @@ section {
 .card section.info .ucapan .container {
     position: relative;
     max-width: 420px;
-    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -694,15 +694,15 @@ section {
 
 .card section.info .ucapan .content {
     position: absolute;
-    top: 80%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    width: 85%;
+    width: 80%;
 }
 
 .card section.info .ucapan .content p {
-    font-size: 16px;
+    font-size: 18px;
     font-family: "Times New Roman";
     color: #5a601f;
     margin: 0;
