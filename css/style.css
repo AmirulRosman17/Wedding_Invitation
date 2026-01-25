@@ -16,7 +16,16 @@ body {
 
 /*============================================================================================
     # Wrapper Overlay (Original Stable Version)
-============================================================================================*/
+============================================================================================*/\
+/* Master container to hold everything in one spot */
+.invitation-frame {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    position: relative;
+    height: 100vh;
+    overflow: hidden; /* Keeps motion icons from leaking out */
+}
 .wrapper {
     position: fixed;
     top: 0;
@@ -1336,11 +1345,18 @@ section {
 
 .moving-leaf {
     position: absolute;
-    width: 80px; /* Adjust size */
+    width: 80px;
+    z-index: 5;
     pointer-events: none;
-    z-index: 1;
+    /* This ensures they stay inside the 420px frame */
 }
 
+/* Use percentages so they stay proportional to the 420px width */
+.leaf-top-left {
+    top: 5%;
+    left: 2%;
+    animation: sway 4s ease-in-out infinite;
+}
 .leaf1 { top: 10%; left: 5%; animation: sway 4s ease-in-out infinite; }
 .leaf2 { bottom: 15%; right: 5%; animation: sway 5s ease-in-out infinite reverse; }
 
