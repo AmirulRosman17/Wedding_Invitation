@@ -255,28 +255,32 @@ section {
     # Intro
 ============================================================================================*/
 .card section.main-content {
-    /* Use your intro background for the WHOLE thing */
-    background: url(../images/intro2-bg.png); 
-    background-repeat: repeat-y; /* Changed to repeat-y so it covers long content */
-    background-size: 100% auto;
-    background-position: top center;
-    
-    /* Removed height: 100vh so it grows with your content */
-    min-height: 100vh; 
+    /* REMOVE the background from here so it doesn't cover everything */
+    background: transparent; 
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 60px 20px; /* Space for the floral borders */
+    padding: 0; /* Remove the general padding */
 }
 
 /* Adjust the intro part to still feel like a full first page */
-.intro-part {
-    height: 80vh; 
+.intro-part{
+    width: 100%;
+    min-height: 100vh; /* Keeps it full screen like image_a67d1d.jpg */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    
+    /* Move background HERE so it stays at the top only */
+    background: url(../images/intro2-bg.png); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    padding: 60px 20px;
 }
-
 /* Your info part simply follows underneath */
 .info-part {
     width: 100%;
