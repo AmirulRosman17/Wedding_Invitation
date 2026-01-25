@@ -720,50 +720,58 @@ section {
 /*============================================================================================
     # RSVP
 ============================================================================================*/
+/* Ensure the RSVP section wraps everything neatly */
+.card section.info .rsvp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0; /* Add vertical breathing room */
+    gap: 20px;       /* Automatically spaces out Title, List, and Buttons */
+}
+
+/* Fix the Title spacing */
+.card section.info .rsvp h2 {
+    margin-bottom: 10px; /* Reduced so it doesn't push too far */
+    font-weight: 700;
+}
+
 .card section.info .rsvp .beri-ucapan-button button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 10px;
+    gap: 10px;         /* Keeps icon and text perfectly apart */
     width: 48%;
+    padding: 12px 5px;
     border-radius: 12px;
-    
-    /* GLASS EFFECT: White with 40% opacity */
-    background: rgba(255, 255, 255, 0.4); 
-    
-    /* BLUR: This makes the background behind the button look blurry */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    
-    /* BORDER: A very thin, light border helps the glass edge pop */
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    gap: 8px;
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.7); /* Soft glass white */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* SOFT TEXT COLOR: Using your theme green with a slight fade */
+/* Ensure the text is visible and pretty */
 .card section.info .rsvp .beri-ucapan-button button span {
-    font-size: 14px;
-    color: #565a2f; /* Your olive green */
+    color: #565a2f;    /* Your theme olive green */
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    white-space: nowrap; /* Forces text to stay on one line */
 }
 
-/* SOFT ICON COLOR */
-.card section.info .rsvp .beri-ucapan-button button .bx {
-    font-size: 18px;
-    color: #565a2f; 
-    opacity: 0.8;
+.card section.info .rsvp .container-message {
+    width: 90%;
+    max-height: 300px; /* Limit height so buttons stay visible on screen */
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow-y: auto;
 }
 
-/* HOVER EFFECT: Brighten the glass slightly */
-.card section.info .rsvp .beri-ucapan-button button:hover {
-    background: rgba(255, 255, 255, 0.6);
-    transform: translateY(-2px);
-    opacity: 1; /* Reset the opacity from your previous code */
+/* Style each individual message row */
+.card section.info .rsvp .container-message .content {
+    border-bottom: 1px solid rgba(86, 90, 47, 0.1); /* Soft green divider */
+    padding: 10px 0;
 }
 /*============================================================================================
     # Footer
@@ -1120,7 +1128,7 @@ section {
     border-radius: 5px;
     padding: 8px 6px;
     cursor: pointer;
-    background: #fffcf6;
+    color: darkcyan;
     gap: 5px;
 }
 
