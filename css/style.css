@@ -730,173 +730,90 @@ section {
     margin-top: 30px;
     margin-bottom: 50px;
     z-index: 500;
+    gap: 20px; /* Ensures vertical spacing between title, list, and buttons */
 }
 
 .card section.main-content .rsvp h2 {
     text-transform: uppercase;
     color: #565a2f;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px; /* Reduced to keep layout tight */
 }
 
 .card section.main-content .rsvp .container-message {
-    width: 95%;
-    height: 450px;
+    width: 90%; /* Better fit for mobile */
+    height: 350px; /* Balanced height to prevent pushing buttons off-screen */
     overflow-y: auto;
-    padding: 0px 16px;
-    border-top: 1px solid wheat;
-    border-bottom: 1px solid wheat;
+    padding: 16px;
+    background: rgba(255, 252, 246, 0.4); /* Glassy version of your #fffcf6 */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Individual Message Styling */
 .card section.main-content .rsvp .container-message .content {
     overflow: hidden;
     width: 100%;
     white-space: normal;
-    text-overflow: ellipsis;
-    border-bottom: 1px solid #DDDDDD;
-}
-
-.card section.main-content .rsvp .container-message .content p {
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    text-align: left;
-}
-
-.card section.main-content .rsvp .container-message .content p.name {
-    color: darkcyan;
-    margin-top: 10px;
-}
-
-.card section.main-content .rsvp .container-message .content p.name::before {
-    content: '--';
-    color: grey;
-    font-size: 0.9em;
-    margin-right: 8px;
-}
-
-.card section.main-content .rsvp .container-message .content p.name::after {
-    content: '--';
-    color: grey;
-    font-size: 16px;
-    margin-left: 8px;
-}
-
-.card section.main-content .rsvp .container-message .content p.message {
-    color: darkgrey;
-    margin-top: 10px;
+    border-bottom: 1px solid rgba(86, 90, 47, 0.1);
+    padding-bottom: 10px;
     margin-bottom: 10px;
 }
 
-.card section.main-content .rsvp .container-message .content-empty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+.card section.main-content .rsvp .container-message .content p.name {
+    color: #565a2f; /* Changed from darkcyan to match theme */
+    font-weight: 700;
 }
 
-.card section.main-content .rsvp .container-message .content-empty p.empty-message {
-    color: darkgray;
-    text-align: center;
+.card section.main-content .rsvp .container-message .content p.message {
+    color: #707070;
+    font-size: 14px;
 }
 
-
-.card section.main-content .rsvp .container-message::-webkit-scrollbar {
-    width: 2px;
-    background-color: #ADD8E6;
-}
-
-.card section.main-content .rsvp .container-message::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 6px rgb(114, 243, 243);
-    -webkit-box-shadow: inset 0 0 6px rgb(1, 66, 66);
-    background-color: navy;
-    border-radius: 12px;
-}
-
+/* Main RSVP Buttons: Sahkan Kehadiran & Berikan Ucapan */
 .card section.info .rsvp .beri-ucapan-button {
-
-    width: 100%;
-
+    width: 90%;
     display: flex;
-
+    flex-direction: row; /* Force side-by-side */
     align-items: center;
-
-    justify-content: center;
-
-    margin-top: 20px;
-
-    margin-bottom: 50px;
-
-    gap: 5px;
-
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
 }
-
-
 
 .card section.info .rsvp .beri-ucapan-button button {
-
+    flex: 1; /* Makes both buttons equal width */
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    padding: 16px 0px;
-
-    width: 45%;
-
-    border-radius: 10px;
-
-    border: 1px solid grey;
-
-    /* background: linear-gradient(90deg, #E5BDF6, #D8DEDE) !important; */
-
-    /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
-
+    padding: 12px 5px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 252, 246, 0.7); /* Glass ivory */
+    backdrop-filter: blur(5px);
     cursor: pointer;
-
-    gap: 10px;
-
-    background: #fffcf6;
-
+    gap: 8px;
+    transition: all 0.3s ease;
 }
-
-
 
 .card section.info .rsvp .beri-ucapan-button button:hover {
-
-    /* background: linear-gradient(90deg, #E5BDF6, #D8DEDE) !important; */
-
-    /* background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
-
     background: #fffcf6;
-
-    opacity: 0.8;
-
+    transform: translateY(-2px);
+    opacity: 1;
 }
-
-
 
 .card section.info .rsvp .beri-ucapan-button button .bx {
-
-    font-size: 16px;
-
-    color: darkcyan;
-
+    font-size: 18px;
+    color: #565a2f; /* Consistent green */
 }
 
-
-
 .card section.info .rsvp .beri-ucapan-button button span {
-
-    font-size: 14px;
-
-    color: darkcyan;
-
-    font-weight: 500;
-
+    font-size: 12px;
+    color: #565a2f;
+    font-weight: 600;
+    white-space: nowrap;
 }
 /*============================================================================================
     # Footer
@@ -1204,74 +1121,47 @@ section {
     font-size: 30px;
 }
 
-.toggle-menu .ucapan-tetamu form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.toggle-menu .ucapan-tetamu form label {
-    text-align: center;
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.toggle-menu .ucapan-tetamu form input {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 12px;
-    outline: none;
-}
-
-.toggle-menu .ucapan-tetamu form textarea {
-    width: 100%;
-    resize: none;
-    padding: 12px 16px;
-    outline: none;
-    border-radius: 12px;
-}
-
 .toggle-menu .ucapan-tetamu .button {
     width: 100%;
     display: flex;
+    flex-direction: row; /* Side by side */
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 10px;
     margin-top: 20px;
 }
 
 .toggle-menu .ucapan-tetamu .button button {
+    flex: 1; /* Balanced width */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 6px;
+    border-radius: 10px;
+    padding: 12px 5px;
     cursor: pointer;
     background: #fffcf6;
-    gap: 5px;
-}
-
-.toggle-menu .ucapan-tetamu .button button:hover {
-    background: #fffcf6;
-    opacity: 0.9;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    gap: 8px;
+    transition: 0.3s;
 }
 
 .toggle-menu .ucapan-tetamu .button button i {
-    font-size: 24px;
+    font-size: 20px;
 }
 
+.toggle-menu .ucapan-tetamu .button button span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #565a2f; /* Softened text color */
+}
+
+/* Specific Icon Colors for Modal */
 .toggle-menu .ucapan-tetamu .button button i.bxs-paper-plane {
-    color: darkcyan;
+    color: #565a2f; /* Matched to green theme */
 }
 
 .toggle-menu .ucapan-tetamu .button button i.bx-x {
-    color: red;
+    color: #e74c3c; /* Keep red for 'Tutup' but slightly softer */
 }
 
 .toggle-menu .success-message {
