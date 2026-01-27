@@ -1131,10 +1131,10 @@ section {
 
 .toggle-menu .ucapan-tetamu form label {
     text-align: center;
-    color: darkcyan;
+    color: white;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .toggle-menu .ucapan-tetamu form input {
@@ -1170,18 +1170,17 @@ section {
     border-radius: 5px;
     padding: 8px 6px;
     cursor: pointer;
-    background: #fffcf6;
+    background: #F8F4FF;
     gap: 5px;
 }
 
 .toggle-menu .ucapan-tetamu .button button:hover {
-    background: #fffcf6;
+    background: #F8F4FF;
     opacity: 0.9;
 }
 
 .toggle-menu .ucapan-tetamu .button button i {
     font-size: 24px;
-    color: darkcyan;
 }
 
 .toggle-menu .ucapan-tetamu .button button i.bxs-paper-plane {
