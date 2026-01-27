@@ -1033,6 +1033,7 @@ section {
     gap: 5px;
     cursor: pointer;
     background: #fffcf6;
+    font-size: 16px; /* This stops the auto-zoom */
 }
 
 .toggle-menu .rsvp .button button:hover {
@@ -1150,6 +1151,7 @@ section {
     padding: 12px 16px;
     outline: none;
     border-radius: 12px;
+    font-size: 16px; /* This stops the auto-zoom */
 }
 
 .toggle-menu .ucapan-tetamu .button {
