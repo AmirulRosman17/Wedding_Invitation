@@ -1121,6 +1121,37 @@ section {
     font-size: 30px;
 }
 
+.toggle-menu .ucapan-tetamu form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.toggle-menu .ucapan-tetamu form label {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.toggle-menu .ucapan-tetamu form input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    outline: none;
+}
+
+.toggle-menu .ucapan-tetamu form textarea {
+    width: 100%;
+    resize: none;
+    padding: 12px 16px;
+    outline: none;
+    border-radius: 12px;
+}
+
 .toggle-menu .ucapan-tetamu .button {
     width: 100%;
     display: flex;
