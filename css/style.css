@@ -65,18 +65,22 @@ body::before {
 .overlay {
     width: 100%;
     max-width: 420px;
-    height: 100vh; /* Use vh to match the card */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../images/intro2-bg.png'); 
+    
+    /* THE FIX: Apply the image AND the semi-transparent cover here */
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
+                url('../images/intro2-bg.png'); 
+    
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center;
     position: relative;
-    /* Remove the height: 100% from overlay-content inside this as well */
     box-shadow: 0 10px 30px rgba(93, 64, 55, 0.2);
 }
+
 
 .overlay .overlay-content {
     display: flex;
