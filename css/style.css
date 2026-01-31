@@ -13,6 +13,7 @@ body {
     font-family: "Montserrat", sans-serif;
     position: relative;/*add this*/
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 body::before {
@@ -415,8 +416,8 @@ section {
 }
 
 .card section.info .event-info .two p {
-    font-family: "Playfair Display", serif;
-    color: #565a2f; 
+    font-family: 'Montserrat', sans-serif;
+    color: #d76e7d; 
     font-weight: 700;
     font-size: 18px;
 }
