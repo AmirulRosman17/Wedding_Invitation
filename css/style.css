@@ -50,6 +50,8 @@ body::before {
     opacity: 0; 
     
   transition: opacity 1s ease-out; /* Speed for fading IN */
+/* ADD THIS LINE */
+    overflow: hidden;
 }
 
 /* This class will be added by JavaScript when the page loads */
@@ -80,6 +82,8 @@ body::before {
     background-position: center;
     position: relative;
     box-shadow: 0 10px 30px rgba(93, 64, 55, 0.2);
+    /* ADD THIS LINE */
+    overflow: hidden;
 }
 
 
