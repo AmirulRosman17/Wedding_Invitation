@@ -12,77 +12,35 @@
 // });
 // This runs as soon as the page is finished loading
 window.addEventListener('load', function() {
-
     const wrapper = document.querySelector('.wrapper');
-
     if (wrapper) {
-
         // A tiny delay (100ms) makes the start of the fade feel more intentional
-
         setTimeout(() => {
-
             wrapper.classList.add('visible');
-
-        }, 100);
-
+      }, 100);
     }
-
 });
-
-
-
 // Your existing toggle-content code stays below this...
-
 document.getElementById("toggle-content").addEventListener("click", function () {
-
     var wrapper = document.querySelector(".wrapper");
-
     var card = document.querySelector(".card");
-
     const audioPlayer = document.getElementById("audio-player");
-
-
-
     // 1. Play the audio immediately
-
     if (audioPlayer) {
-
         audioPlayer.play().catch(e => console.log("Audio play prevented"));
-
     }
-
-
-
     // 2. Unlock the body scroll immediately so the transition is fluid
-
     document.body.style.overflowY = "auto";
-
     document.body.classList.add("unlocked");
-
-
-
     // 3. Start the cross-fade
-
     // Wrapper fades out (via CSS .hidden class)
-
     wrapper.classList.add("hidden");
-
-    
-
     // Card fades in (via CSS .show class)
-
     card.classList.add("show");
-
-
-
     // 4. Clean up: Only hide the wrapper from the DOM after it's fully invisible
-
    setTimeout(() => {
-
         wrapper.style.display = "none";
-
     }, 2000); // Matches the 1.2s transition time in your CSS
-
 });
 /** =====================================================
  *  Timer Countdown
