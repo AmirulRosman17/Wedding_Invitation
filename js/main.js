@@ -583,43 +583,47 @@ document.addEventListener("DOMContentLoaded", loadWishes);
 setInterval(loadWishes, 10000);
 
 
-let currentIndex = 0;
-const cards = document.querySelectorAll('.stack-card');
+let cards = Array.from(document.querySelectorAll('.stack-card'));
+let isDragging = false;
+let startX = 0;
 
 function updateStack() {
     cards.forEach((card, index) => {
-        // Calculate the relative position in the "loop"
-        let displayIndex = (index - currentIndex + cards.length) % cards.length;
-
-        // Only the top card (displayIndex 0) is interactable
-        if (displayIndex === 0) {
-            card.style.transform = "translate(0, 0) scale(1) rotate(0deg)";
-            card.style.opacity = "1";
-            card.style.zIndex = cards.length;
-            card.style.pointerEvents = "auto";
-        } else {
-            // Push other cards slightly back and down
-            let offset = displayIndex * 15; // moves it down 15px
-            let scale = 1 - (displayIndex * 0.05); // shrinks it 5%
-            card.style.transform = `translateY(${offset}px) scale(${scale})`;
-            card.style.opacity = displayIndex > 2 ? "0" : "1"; // hide cards deep in stack
-            card.style.zIndex = cards.length - displayIndex;
-            card.style.pointerEvents = "none";
-        }
+        card.style.zIndex = cards.length - index;
+        card.style.transform = `scale(${1 - index * 0.05}) translateY(${index * 15}px)`;
+        card.style.opacity = index > 3 ? 0 : 1; // Hide cards deep in the stack
     });
 }
 
-// To go FORWARD (Next Photo)
-function nextPhoto() {
-    currentIndex = (currentIndex + 1) % cards.length;
-    updateStack();
-}
+cards.forEach(card => {
+    card.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+    });
 
-// To go BACKWARD (Previous Photo)
-function prevPhoto() {
-    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-    updateStack();
-}
+    card.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        let endX = e.changedTouches[0].clientX;
+        let diff = startX - endX;
+
+        if (Math.abs(diff) > 50) { // Swipe threshold
+            if (diff > 0) {
+                // Swiped Left: Move top card to bottom
+                let topCard = cards.shift();
+                cards.push(topCard);
+            } else {
+                // Swiped Right: Pull bottom card to top
+                let bottomCard = cards.pop();
+                cards.unshift(bottomCard);
+            }
+            updateStack();
+        }
+        isDragging = false;
+    });
+});
+
+// Run once on load
+updateStack();
 /** =====================================================
  *  Image Carousel
   ======================================================= */
