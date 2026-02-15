@@ -583,51 +583,6 @@ document.addEventListener("DOMContentLoaded", loadWishes);
 setInterval(loadWishes, 10000);
 
 
-let cards = Array.from(document.querySelectorAll('.stack-card'));
-
-function moveTopToBottom() {
-    const topCard = cards[0];
-    
-    // 1. Move the card UP and fade it out slightly
-    topCard.style.transform = "translateY(-120%) scale(0.8)";
-    topCard.style.opacity = "0";
-
-    setTimeout(() => {
-        // 2. Move it to the bottom of the array
-        cards.shift();
-        cards.push(topCard);
-        
-        // 3. Reset the positions of all cards
-        updateStack();
-    }, 300); // This matches the animation speed
-}
-
-function moveBottomToTop() {
-    const bottomCard = cards[cards.length - 1];
-
-    // 1. Position it "above" the stack while invisible
-    bottomCard.style.transition = "none";
-    bottomCard.style.transform = "translateY(-120%) scale(0.8)";
-    
-    setTimeout(() => {
-        // 2. Move it to the front of the array
-        cards.pop();
-        cards.unshift(bottomCard);
-        
-        // 3. Animate it sliding DOWN into the top position
-        bottomCard.style.transition = "transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease";
-        updateStack();
-    }, 10);
-}
-
-function updateStack() {
-    cards.forEach((card, index) => {
-        card.style.zIndex = cards.length - index;
-        // The higher the index, the further down it sits
-        card.style.transform = `translateY(${index * 15}px) scale(${1 - index * 0.05})`;
-        card.style.opacity = index > 3 ? "0" : "1";
-    });
-}
 /** =====================================================
  *  Image Carousel
   ======================================================= */
