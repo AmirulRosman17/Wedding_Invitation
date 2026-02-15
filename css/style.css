@@ -1298,6 +1298,15 @@ section {
     cursor: grab;
     user-select: none;
     touch-action: none; /* Prevents the whole page from scrolling while swiping photos */
+/* ADD THIS: This helps with the 'back and forth' feel */
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* Add a class for when the card is being dragged so it feels responsive */
+.stack-card.dragging {
+    transition: none !important;
+    cursor: grabbing;
 }
 
 .swipe-hint {
