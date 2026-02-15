@@ -52,6 +52,7 @@ body::before {
   transition: opacity 1s ease-out; /* Speed for fading IN */
 /* ADD THIS LINE */
     overflow: hidden;
+    touch-action: none; /* Prevents swiping/scrolling on mobile */
 }
 
 /* This class will be added by JavaScript when the page loads */
