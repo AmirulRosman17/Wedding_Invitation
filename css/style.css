@@ -1301,8 +1301,9 @@ section {
 /* ADD THIS: This helps with the 'back and forth' feel */
     will-change: transform, opacity;
     backface-visibility: hidden;
-    transition: transform 0.6s ease, opacity 0.6s ease, z-index 0s; 
-    /* z-index 0s makes the layer swap happen instantly so it doesn't clip through others */
+    /* Ensure the card being moved doesn't look 'choppy' */
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease;
+    will-change: transform, opacity;
 }
 
 /* Add a class for when the card is being dragged so it feels responsive */
