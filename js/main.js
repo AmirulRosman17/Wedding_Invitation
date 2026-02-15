@@ -584,46 +584,50 @@ setInterval(loadWishes, 10000);
 
 
 let cards = Array.from(document.querySelectorAll('.stack-card'));
-let isDragging = false;
-let startX = 0;
+
+function moveTopToBottom() {
+    const topCard = cards[0];
+    
+    // 1. Move the card UP and fade it out slightly
+    topCard.style.transform = "translateY(-120%) scale(0.8)";
+    topCard.style.opacity = "0";
+
+    setTimeout(() => {
+        // 2. Move it to the bottom of the array
+        cards.shift();
+        cards.push(topCard);
+        
+        // 3. Reset the positions of all cards
+        updateStack();
+    }, 300); // This matches the animation speed
+}
+
+function moveBottomToTop() {
+    const bottomCard = cards[cards.length - 1];
+
+    // 1. Position it "above" the stack while invisible
+    bottomCard.style.transition = "none";
+    bottomCard.style.transform = "translateY(-120%) scale(0.8)";
+    
+    setTimeout(() => {
+        // 2. Move it to the front of the array
+        cards.pop();
+        cards.unshift(bottomCard);
+        
+        // 3. Animate it sliding DOWN into the top position
+        bottomCard.style.transition = "transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease";
+        updateStack();
+    }, 10);
+}
 
 function updateStack() {
     cards.forEach((card, index) => {
         card.style.zIndex = cards.length - index;
-        card.style.transform = `scale(${1 - index * 0.05}) translateY(${index * 15}px)`;
-        card.style.opacity = index > 3 ? 0 : 1; // Hide cards deep in the stack
+        // The higher the index, the further down it sits
+        card.style.transform = `translateY(${index * 15}px) scale(${1 - index * 0.05})`;
+        card.style.opacity = index > 3 ? "0" : "1";
     });
 }
-
-cards.forEach(card => {
-    card.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        startX = e.touches[0].clientX;
-    });
-
-    card.addEventListener('touchend', (e) => {
-        if (!isDragging) return;
-        let endX = e.changedTouches[0].clientX;
-        let diff = startX - endX;
-
-        if (Math.abs(diff) > 50) { // Swipe threshold
-            if (diff > 0) {
-                // Swiped Left: Move top card to bottom
-                let topCard = cards.shift();
-                cards.push(topCard);
-            } else {
-                // Swiped Right: Pull bottom card to top
-                let bottomCard = cards.pop();
-                cards.unshift(bottomCard);
-            }
-            updateStack();
-        }
-        isDragging = false;
-    });
-});
-
-// Run once on load
-updateStack();
 /** =====================================================
  *  Image Carousel
   ======================================================= */
