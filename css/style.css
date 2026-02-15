@@ -1266,8 +1266,6 @@ section {
 }
 
 
-
-
 .gallery-container {
     width: 100%;
     max-width: 420px;
@@ -1293,23 +1291,12 @@ section {
     border-radius: 20px;
     border: 8px solid #ffffff;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
     /* CHANGE: Slower duration (0.7s) and smoother movement */
     transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
     cursor: grab;
     user-select: none;
     touch-action: none; /* Prevents the whole page from scrolling while swiping photos */
-/* ADD THIS: This helps with the 'back and forth' feel */
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    /* Ensure the card being moved doesn't look 'choppy' */
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease;
-    will-change: transform, opacity;
-}
-
-/* Add a class for when the card is being dragged so it feels responsive */
-.stack-card.dragging {
-    transition: none !important;
-    cursor: grabbing;
 }
 
 .swipe-hint {
