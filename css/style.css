@@ -1024,6 +1024,7 @@ section {
     gap: 10px;
     width: 100%;
     margin-top: 10px;
+    font-size: 16px; /* This stops the auto-zoom */
 }
 
 .toggle-menu .rsvp .button button {
@@ -1057,6 +1058,7 @@ section {
 .toggle-menu .rsvp .button #btn-tidak-hadir i {
     color: red;
 }
+
 
 .toggle-menu .contact .content {
     width: 100%;
