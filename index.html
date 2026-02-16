@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <div class="wrapper"> 
+    <div class="wrapper">
     <div class="overlay"> <div class="overlay-content" id="toggle-content"> <button class="toggle-button">
                 <p>Putri<p>&<p>Amirul</p> <span class="buka">BUKA</span>
             </button>
@@ -26,9 +26,7 @@
     </div>
 </div>
     <div class="card">
-        <div class="background-fixed"></div>
         <div class="petal-container"></div>
-        <div class="scrollable-container">
         <!-- Intro Section -->
         <section class="intro">
             <div class="content">
@@ -52,7 +50,7 @@
                     <p>kami</p>
                     <div class="parent">
                         <p>Zefri Firdaus Bin Alwadood</p>
-                        <p>&</p>
+                        <p>Dan pasangan pilihannya</p>
                         <p>Zuraida Binti Ramli</p>
                     </div>
                     <p>Menjemput</p>
@@ -61,37 +59,17 @@
                     <p>majlis perkahwinan puteri kami</p>
                 </div>
                 <div class="two">
-                    <p>Putri Kamelia Binti Zefri Firdaus</p> </div>
-                <div class="one"> <p>Dengan Pasangan Pilihannya</p> </div>
-                 <div class="two">
+                    <p>Putri Kamelia Binti Zefri Firdaus</p>
+                    <p>&</p>
                     <p>Muhammad Amirul Bin Rosman</p><br><br>
                 </div>
-
-               <div class="three">
-                    <p class="title">Tempat</p>
-                    <p>Kingsman Hall</p>
-                    <p>Kamalinda Event & Wedding Space</p>
-                    <p>Jalan Kontraktor U1/14</p>
-                    <p>Hicom-glenmarie Industrial Park</p>
-                    <p>40150 Shah Alam, Selangor</p>
-                </div>
-                <div class="four">
-                    <p class="title">Tarikh</p>
-                    <p>Sabtu, 11 Julai 2026</p>
-                    <p>Bersamaan 26 Muharram 1448H</p>
-                </div>
-                <div class="five">
-                    <p class="title">Masa</p>
-                    <p>11:00 AM - 4:00 PM</p>
-                </div>
-                
                  <div class="gallery-container">
                     <div class="gallery-stack">
-                        <img src="images/photo5.jpeg" class="stack-card">
-                        <img src="images/photo4.jpeg" class="stack-card">
-                        <img src="images/photo3.jpeg" class="stack-card">
-                        <img src="images/photo2.jpeg" class="stack-card">
                         <img src="images/photo1.jpeg" class="stack-card">
+                        <img src="images/photo2.jpeg" class="stack-card">
+                        <img src="images/photo3.jpeg" class="stack-card">
+                        <img src="images/photo4.jpeg" class="stack-card">
+                        <img src="images/photo5.jpeg" class="stack-card">
                     </div>
                     <p class="swipe-hint">Slide to see photos ↔</p>
                 </div>
@@ -164,12 +142,17 @@
                     </div>
                 </div>
             </div>
+            <img src="./images/divider.png" alt="" class="divider reveal fade-bottom">
             <div class="rsvp">
-                <h2 class="reveal fade-bottom">Ucapan</h2>
+                
                 <div class="container-message reveal fade-bottom">
-        
-                    
+                <h2 class="reveal fade-bottom">Ucapan</h2> <div
+                class="wish-list-wrapper">
                 </div>
+                </div>
+                
+
+                
                 <div class="beri-ucapan-button reveal fade-bottom">
                     <button id="kehadiran-btn">
                         <i class='bx bxs-check-square'></i>
@@ -179,7 +162,6 @@
                         <i class='bx bxs-pen'></i>
                         <span>Berikan Ucapan</span>
                     </button>
-                </div>
                 </div>
             </div>
         </section>
@@ -254,7 +236,7 @@
         <h1>Kehadiran</h1>
         
         <div style="margin-bottom: 15px; text-align: left; width: 100%;">
-            <label for="guest-name-input" style="display: block; margin-bottom: 5px; font-size: 16px;">Nama Anda:</label>
+            <label for="guest-name-input" style="display: block; margin-bottom: 5px; font-size: 14px;">Nama Anda:</label>
             <input type="text" id="guest-name-input" placeholder="Sila masukkan nama" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%; box-sizing: border-box;">
         </div>
 
@@ -264,6 +246,8 @@
                 <option value="1">1 Pax</option>
                 <option value="2">2 Pax</option>
                 <option value="3">3 Pax</option>
+                <option value="4">4 Pax</option>
+                <option value="5">5 Pax</option>
             </select>
         </div>
 
@@ -288,7 +272,7 @@
                     <div class="first-section">
                         <i class='bx bxs-user-circle'></i>
                         <div class="name">
-                            <span>Encik Zefri Firdaus</span>
+                            <span>Zefri Firdaus Bin Alwadood</span>
                             <span>Bapa Pengantin Perempuan</span>
                         </div>
                     </div>
@@ -301,7 +285,7 @@
                     <div class="first-section">
                         <i class='bx bxs-user-circle'></i>
                         <div class="name">
-                            <span>Puan Zuraida</span>
+                            <span>Zuraida Binti Ramli</span>
                             <span>Ibu Pengantin Perempuan</span>
                         </div>
                     </div>
@@ -314,26 +298,26 @@
                     <div class="first-section">
                         <i class='bx bxs-user-circle'></i>
                         <div class="name">
-                            <span>Puan Shimanorhiza</span>
-                            <span>Mummy Pengantin Perempuan</span>
+                            <span>Putri Kamelia Binti Zefri Firdaus</span>
+                            <span>Pengantin Perempuan</span>
                         </div>
                     </div>
                     <div class="second-section">
-                        <button onclick="makePhoneCall('+60122509388')"><i class='bx bx-phone'></i></button>
-                        <button onclick="openWhatsApp('+60122509388')"><i class='bx bxl-whatsapp'></i></button>
+                        <button onclick="makePhoneCall('+60124160611')"><i class='bx bx-phone'></i></button>
+                        <button onclick="openWhatsApp('+60124160611')"><i class='bx bxl-whatsapp'></i></button>
                     </div>
                 </div>
                 <div class="person">
                     <div class="first-section">
                         <i class='bx bxs-user-circle'></i>
                         <div class="name">
-                            <span>Nurul Izwani</span>
-                            <span>Kawan Pengantin Perempuan</span>
+                            <span>Muhammad Amirul Bin Rosman</span>
+                            <span>Pengantin Lelaki</span>
                         </div>
                     </div>
                     <div class="second-section">
-                        <button onclick="makePhoneCall('+60143211809')"><i class='bx bx-phone'></i></button>
-                        <button onclick="openWhatsApp('+60143211809')"><i class='bx bxl-whatsapp'></i></button>
+                        <button onclick="makePhoneCall('+60193979594')"><i class='bx bx-phone'></i></button>
+                        <button onclick="openWhatsApp('+60193979594')"><i class='bx bxl-whatsapp'></i></button>
                     </div>
                 </div>
             </div>
