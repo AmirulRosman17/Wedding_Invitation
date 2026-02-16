@@ -1266,38 +1266,54 @@ section {
     color: white;
 }
 
-/* Styling for the Timestamp in Wish Card */
-.wish-time {
-    font-size: 11px;
-    color: #999;
-    font-weight: 400;
-    float: right;
-    font-style: italic;
-    margin-top: 2px;
+/* The Main Container (Glassy Pinkish Box) */
+.container-message {
+    width: 90%;
+    max-width: 400px;
+    height: 450px; /* Fixed height for internal scrolling */
+    margin: 30px auto; /* Space from content above */
+    padding: 0; /* Padding handled by internal elements */
+    
+    /* Glassy Pinkish Style */
+    background: rgba(255, 192, 203, 0.2); /* Semi-transparent pink */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Keeps the title and list in bounds */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Specific styling for the Latest/New Wish */
-.container-message .content:first-child {
-    border-left: 4px solid #d4af37; /* Gold accent for the top wish */
-    background: rgba(212, 175, 55, 0.05); /* Very subtle gold tint */
-    transition: all 0.3s ease;
+/* The Title (Locked at the top of the box) */
+.container-message h2 {
+    padding: 15px;
+    margin: 0;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 20px;
+    color: #565a2f; /* Maintaining your theme color */
 }
 
-/* Animation for the wish when it appears */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-        background-color: rgba(212, 175, 55, 0.2);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        background-color: rgba(212, 175, 55, 0.05);
-    }
+/* The Scrollable List Area */
+.wish-list-wrapper {
+    flex: 1;
+    overflow-y: auto; /* This enables scrolling within the box */
+    padding: 15px;
+    scroll-behavior: smooth;
 }
 
-/* Scannability fix for names */
+/* Individual Wish Styling */
+.container-message .content {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Maintain text formatting */
 .container-message .name {
     display: flex;
     justify-content: space-between;
@@ -1306,6 +1322,54 @@ section {
     font-weight: bold;
     color: #333;
 }
+
+/* Timestamp in AM/PM format styling */
+.wish-time {
+    font-size: 11px;
+    color: #707070;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Specific styling for the Latest/New Wish */
+.container-message .content:first-child {
+    border-left: 4px solid #d4af37;
+    background: rgba(212, 175, 55, 0.1); /* Slightly stronger tint for the newest */
+    padding-left: 10px;
+    /* Apply the new animation */
+    animation: dropAndGlow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* New Wish Animation Logic */
+@keyframes dropAndGlow {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+        background-color: rgba(212, 175, 55, 0.4); /* Brighter glow at start */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(5px) scale(1.02); /* Slight bounce overreach */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        background-color: rgba(212, 175, 55, 0.05); /* Settles to subtle tint */
+    }
+}
+
+.wish-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* Other properties you already have... */
+}
+
+.container-message .content {
+    /* Prevents the elements below from 'jumping' instantly */
+    transition: all 0.4s ease; 
+}
+
+
 
 
 .gallery-container {
