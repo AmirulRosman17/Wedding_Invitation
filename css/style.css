@@ -1268,7 +1268,7 @@ section {
 
 /* The Main Glass Container */
 .container-message {
-    width: 90%;
+    width: 100%;
     max-width: 800px;
     height: 350px;
     margin: 40px auto; /* Added more gap above */
