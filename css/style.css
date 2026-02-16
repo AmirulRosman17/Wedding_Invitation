@@ -1027,6 +1027,17 @@ section {
     font-size: 16px; /* This stops the auto-zoom */
 }
 
+/* This targets the actual text you type in the box */
+#guest-name-input {
+    font-size: 16px !important; 
+    font-family: inherit; /* Optional: makes it match the rest of your font */
+}
+
+/* This targets the placeholder text specifically */
+#guest-name-input::placeholder {
+    font-size: 16px;
+}
+
 .toggle-menu .rsvp .button button {
     display: flex;
     align-items: center;
