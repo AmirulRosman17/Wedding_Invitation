@@ -576,3 +576,21 @@ setInterval(loadWishes, 10000);
   ======================================================= */
 
 
+
+// Example of how your wish submission should look:
+function addNewWish(name, message) {
+    const container = document.querySelector('.container-message');
+    
+    const wishHTML = `
+        <div class="content">
+            <span class="name">${name}</span>
+            <span class="message">${message}</span>
+        </div>
+    `;
+    
+    // .insertAdjacentHTML with 'afterbegin' puts it at the TOP
+    container.insertAdjacentHTML('afterbegin', wishHTML);
+    
+    // Optional: Auto-scroll to the top to see the new wish
+    container.scrollTop = 0;
+}
