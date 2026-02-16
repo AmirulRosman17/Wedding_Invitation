@@ -888,19 +888,24 @@ section {
     bottom: -100%;
     left: 0;
     right: 0;
-    max-width: 400px;
+    max-width: 380px; /* Matching the footer width for a consistent look */
     margin: 0 auto;
-    background: #5a601f;
-    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    transition: bottom 0.4s;
-    z-index: 1000;
-    border-radius: 10px;
-    opacity: 0.9;
+    
+    /* THE SEMI-TRANSPARENT GREEN */
+    background: rgba(90, 96, 31, 0.85); /* Slightly more solid than footer for readability */
+    backdrop-filter: blur(12px);       /* Glass effect */
+    -webkit-backdrop-filter: blur(12px);
+    
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother slide */
+    z-index: 999; /* Just below the footer if they overlap, or 1001 to stay on top */
+    border-radius: 25px; /* Softer corners to match the pill theme */
 }
 
 .toggle-menu.open {
-    bottom: 10%;
+    /* ADJUST THIS: Pushes the pop-up higher above the floating footer */
+    bottom: 90px; 
 }
 
 .toggle-menu h1 {
