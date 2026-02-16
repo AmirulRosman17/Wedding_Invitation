@@ -1266,80 +1266,45 @@ section {
     color: white;
 }
 
-/* The single large Glass Container */
-.container-message {
-    width: 95%;
-    height: 350px; /* Fixed height so it becomes scrollable */
-    margin: 30px auto; /* Space from previous content */
-    
-    background: rgba(255, 255, 255, 0.2); 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 20px;
-    padding: 15px;
-    
-    overflow-y: auto; /* Makes it scrollable when full */
-    display: flex;
-    flex-direction: column; /* Stack messages vertically */
-    gap: 0; /* No gaps because we want a continuous list */
-    
-    /* Smooth scrolling for mobile */
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+/* Styling for the Timestamp in Wish Card */
+.wish-time {
+    font-size: 11px;
+    color: #999;
+    font-weight: 400;
+    float: right;
+    font-style: italic;
+    margin-top: 2px;
 }
 
-/* Individual Message Row (No border) */
-.container-message .content {
-    padding: 15px 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Light divider line */
-    animation: dropIn 0.5s ease-out forwards; /* The drop-down animation */
+/* Specific styling for the Latest/New Wish */
+.container-message .content:first-child {
+    border-left: 4px solid #d4af37; /* Gold accent for the top wish */
+    background: rgba(212, 175, 55, 0.05); /* Very subtle gold tint */
+    transition: all 0.3s ease;
 }
 
-/* Remove border from the very last message */
-.container-message .content:last-child {
-    border-bottom: none;
-}
-
-/* The "Drop Down" Animation */
-@keyframes dropIn {
-    0% {
+/* Animation for the wish when it appears */
+@keyframes slideIn {
+    from {
         opacity: 0;
-        transform: translateY(-50px);
+        transform: translateY(-20px);
+        background-color: rgba(212, 175, 55, 0.2);
     }
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
+        background-color: rgba(212, 175, 55, 0.05);
     }
 }
 
-.container-message .content .name {
-    font-size: 16px;
-    font-weight: 700;
-    color: #5a601f;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.container-message .content .message {
-    font-size: 15px;
-    line-height: 1.8; /* Breathable spacing */
+/* Scannability fix for names */
+.container-message .name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
     color: #333;
-    display: block;
-}
-
-/* The timestamp inside the card */
-.wish-time {
-    font-size: 10px;
-    color: rgba(0, 0, 0, 0.4);
-    font-style: italic;
-}
-
-/* The first/latest wish still gets a special gold touch */
-.container-message .content:first-child {
-    border: 1px solid rgba(212, 175, 55, 0.5); /* Gold glass edge */
-    background: rgba(212, 175, 55, 0.1);      /* Subtle gold glass tint */
 }
 
 
