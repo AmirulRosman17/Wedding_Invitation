@@ -715,7 +715,7 @@ section {
 }
 
 .card section.info .ucapan img {
-    width: 100%;
+    width: auto;
     height: auto;
 }
 
