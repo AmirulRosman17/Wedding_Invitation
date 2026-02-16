@@ -404,19 +404,17 @@ section {
 
 .card section.info .event-info .one .parent {
     display: flex;
-    width: 100%;
-    padding: 0 10px;          /* Safety gap so it doesn't touch screen edges */
-    box-sizing: border-box;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 5px;
 }
 
-.card section.info .event-info .one .parent p:first-child {
-    white-space: nowrap;      /* Forces text to stay in one line */
-    overflow: hidden;         /* Hides any part that might go off-screen */
-    text-overflow: ellipsis;  /* Optional: adds '...' if names are too long */
-    font-size: 12px;          /* Making it smaller helps it fit the width */
-    display: block;
-    width: 100%;
-    text-align: center;
+.card section.info .event-info .one .parent p {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.8;
 }
 
 .card section.info .event-info .two {
