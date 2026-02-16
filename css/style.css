@@ -1269,7 +1269,7 @@ section {
 /* The Main Glass Container */
 .container-message {
     width: 90%;
-    max-width: 600px;
+    max-width: 800px;
     height: 350px;
     margin: 40px auto; /* Added more gap above */
     padding: 0;
