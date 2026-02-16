@@ -1266,41 +1266,58 @@ section {
     color: white;
 }
 
-/* Each individual wish card */
-.container-message .content {
-    background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
-    backdrop-filter: blur(10px);         /* The "Glass" effect */
-    -webkit-backdrop-filter: blur(10px); /* Support for Safari */
-    
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle glass edge */
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 15px;
-    
-    /* Clean Spacing Fixes */
+/* The container for the whole list */
+.container-message {
+    margin-top: 25px; /* Adds space from the previous content (RSVP title/info) */
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Adds space between name and message so they don't stack */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    gap: 15px; /* Adds space BETWEEN the wish cards so they don't touch */
 }
 
-/* Scannability fix for names */
+/* Individual Glass Wish Cards */
+.container-message .content {
+    /* THE GLASS EFFECT */
+    background: rgba(255, 255, 255, 0.25); /* Low opacity for transparency */
+    backdrop-filter: blur(12px) saturate(180%); /* Strong blur + color boost */
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    
+    /* SHAPE & BORDER */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* High contrast thin edge */
+    border-radius: 20px;
+    padding: 18px; /* More internal padding for a 'premium' feel */
+    
+    /* FIXING THE CRAMP */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Space between Name row and Message row */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Name and Time Row */
 .container-message .name {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-size: 16px;
+    align-items: baseline;
     font-weight: 700;
-    color: #5a601f; /* Using your theme green */
+    color: #5a601f;
+    font-size: 16px;
 }
 
-/* The actual message text */
+/* The actual wish/message text */
 .container-message .message {
-    font-size: 14px;
-    line-height: 1.6; /* Prevents text lines from feeling squashed */
-    color: #444;
-    text-align: left;
+    font-size: 15px;
+    line-height: 1.8; /* SIGNIFICANTLY increased line spacing to stop 'cramping' */
+    color: #333;
+    font-weight: 400;
+    word-break: break-word; /* Prevents text overflow */
+}
+
+/* The timestamp inside the card */
+.wish-time {
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.4);
+    font-style: italic;
 }
 
 /* The first/latest wish still gets a special gold touch */
