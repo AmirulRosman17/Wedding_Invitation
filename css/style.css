@@ -266,7 +266,7 @@ body::before {
     /* ADD: This is the speed of the fade-in */
     transition: opacity 2s ease-in-out;
 
-    padding-bottom: 100px; /* Gives extra space so content can be scrolled above the pill menu */
+    padding-bottom: 50px; /* Gives extra space so content can be scrolled above the pill menu */
 }
 
 /* This is the class your JavaScript will add to make it fade in */
@@ -1269,7 +1269,7 @@ section {
 /* The Main Glass Container */
 .container-message {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     height: 350px;
     margin: 40px auto; /* Added more gap above */
     padding: 0;
