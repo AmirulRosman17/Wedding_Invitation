@@ -1266,51 +1266,67 @@ section {
     color: white;
 }
 
-/* The container for the whole list */
+/* The single large Glass Container */
 .container-message {
-    margin-top: 25px; /* Adds space from the previous content (RSVP title/info) */
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Adds space BETWEEN the wish cards so they don't touch */
-}
-
-/* Individual Glass Wish Cards */
-.container-message .content {
-    /* THE GLASS EFFECT */
-    background: rgba(255, 255, 255, 0.25); /* Low opacity for transparency */
-    backdrop-filter: blur(12px) saturate(180%); /* Strong blur + color boost */
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    width: 95%;
+    height: 350px; /* Fixed height so it becomes scrollable */
+    margin: 30px auto; /* Space from previous content */
     
-    /* SHAPE & BORDER */
-    border: 1px solid rgba(255, 255, 255, 0.4); /* High contrast thin edge */
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 20px;
-    padding: 18px; /* More internal padding for a 'premium' feel */
+    padding: 15px;
     
-    /* FIXING THE CRAMP */
+    overflow-y: auto; /* Makes it scrollable when full */
     display: flex;
-    flex-direction: column;
-    gap: 12px; /* Space between Name row and Message row */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    flex-direction: column; /* Stack messages vertically */
+    gap: 0; /* No gaps because we want a continuous list */
+    
+    /* Smooth scrolling for mobile */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Name and Time Row */
-.container-message .name {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+/* Individual Message Row (No border) */
+.container-message .content {
+    padding: 15px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Light divider line */
+    animation: dropIn 0.5s ease-out forwards; /* The drop-down animation */
+}
+
+/* Remove border from the very last message */
+.container-message .content:last-child {
+    border-bottom: none;
+}
+
+/* The "Drop Down" Animation */
+@keyframes dropIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container-message .content .name {
+    font-size: 16px;
     font-weight: 700;
     color: #5a601f;
-    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
 }
 
-/* The actual wish/message text */
-.container-message .message {
+.container-message .content .message {
     font-size: 15px;
-    line-height: 1.8; /* SIGNIFICANTLY increased line spacing to stop 'cramping' */
+    line-height: 1.8; /* Breathable spacing */
     color: #333;
-    font-weight: 400;
-    word-break: break-word; /* Prevents text overflow */
+    display: block;
 }
 
 /* The timestamp inside the card */
