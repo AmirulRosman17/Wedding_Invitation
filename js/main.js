@@ -363,33 +363,42 @@ if (closeButton) {
 const kehadiranBtn = document.getElementById("kehadiran-btn");
 
 
-
-
 /** =====================================================
  * Wish Card Board Handling (Google Sheets Version)
  * ===================================================== */
-const wishApiUrl = "https://script.google.com/macros/s/AKfycbxHW_WAUJBE6yjUkFZB7yvC84XmCH5MDWS9OAUZC_XXiXofmXQxRKls-vcnkAU1tNMTmQ/exec"; // Put your URL from Step 3 here
+const wishApiUrl = "https://script.google.com/macros/s/AKfycbxHW_WAUJBE6yjUkFZB7yvC84XmCH5MDWS9OAUZC_XXiXofmXQxRKls-vcnkAU1tNMTmQ/exec"; 
 let hasSubmittedWish = false;
 
-// 1. Load existing wishes when the page opens
+// Helper function for Malaysian AM/PM Format
+function getMalaysianTime() {
+    const now = new Date();
+    // Returns format: "17/02/2026, 12:30 PM"
+    return now.toLocaleString('en-GB', { 
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: 'numeric', 
+        minute: '2-digit', 
+        hour12: true 
+    }).toUpperCase();
+}
+
 /** =====================================================
  * Fetch and Display Wishes with Live Updates
  * ===================================================== */
 async function loadWishes() {
-    const wishBoard = document.querySelector('.container-message');
+    // We target the scrollable list wrapper inside your glass box
+    const wishBoard = document.querySelector('.wish-list-wrapper') || document.querySelector('.container-message');
     
     try {
-        // Fetch data from your Google Web App URL
         const response = await fetch(wishApiUrl);
         const savedWishes = await response.json();
         
-        // We only update the board if the number of wishes has changed
-        // This prevents the screen from "flickering" every few seconds
         const currentDisplayedCount = wishBoard.querySelectorAll('.content').length;
         
         if (savedWishes.length !== currentDisplayedCount) {
-            // Clear and rebuild the board
             wishBoard.innerHTML = ''; 
+            // .reverse() ensures latest Google Sheet entries are at the top
             savedWishes.reverse().forEach(wish => {
                 const wishHTML = `
                     <div class="content">
@@ -401,7 +410,7 @@ async function loadWishes() {
                     </div>`;
                 wishBoard.insertAdjacentHTML('beforeend', wishHTML);
             });
-            console.log("Wish board updated with new messages.");
+            console.log("Wish board updated.");
         }
     } catch (e) {
         console.log("Checking for wishes...");
@@ -416,8 +425,9 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
     const nameInput = document.getElementById('wish-name');
     const messageInput = document.getElementById('wish-text');
     const btn = document.getElementById('btn-hantar-wish');
-    const now = new Date();
-    const timeString = now.toLocaleDateString('ms-MY') + " " + now.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
+    
+    // Use the new Malaysian AM/PM string
+    const timeString = getMalaysianTime();
 
     btn.disabled = true;
     btn.innerHTML = "<span>Menghantar...</span>";
@@ -436,33 +446,54 @@ document.getElementById('form-ucapan').onsubmit = function(e) {
     .then(() => {
         hasSubmittedWish = true;
         
-        // Add to board immediately at the top
-        const wishBoard = document.querySelector('.container-message');
+        // Target the inner scrollable area
+        const wishBoard = document.querySelector('.wish-list-wrapper') || document.querySelector('.container-message');
+        
+        // Add to board immediately at the top with your gold accent
         const newWishHTML = `
-            <div class="content" style="border-left: 3px solid #d4af37; animation: slideIn 0.5s ease-out;">
+            <div class="content" style="border-left: 4px solid #d4af37; background: rgba(212, 175, 55, 0.05);">
                 <div class="name">
                     <span>${data.Pengirim}</span>
                     <span class="wish-time">${data.Tarikh}</span>
                 </div>
                 <p class="message">${data.Ucapan}</p>
             </div>`;
+            
         wishBoard.insertAdjacentHTML('afterbegin', newWishHTML);
         
-       // Show Success Menu - No Refresh Version
-const successMenu = document.getElementById("success-menu");
-successMenu.innerHTML = `
-    <div class='success-message'>
-        <i class='bx bxs-heart' style='font-size: 50px; color: #d4af37;'></i>
-        <p style='margin-top: 15px;'>Terima kasih <b>${data.Pengirim}</b>!</p>
-        <p>Ucapan anda telah berjaya dihantar.</p>
-        <button onclick="document.getElementById('success-menu').classList.remove('open')" style='margin-top:10px; padding: 5px 15px;'>Tutup</button>
-    </div>`;
-successMenu.classList.add("open");
+        // Automatically scroll the box to the top to show the animation
+        wishBoard.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Show Success Menu
+        const successMenu = document.getElementById("success-menu");
+        successMenu.innerHTML = `
+            <div class='success-message' style="text-align: center; padding: 20px;">
+                <i class='bx bxs-heart' style='font-size: 50px; color: #d4af37;'></i>
+                <p style='margin-top: 15px;'>Terima kasih <b>${data.Pengirim}</b>!</p>
+                <p>Ucapan anda telah berjaya dihantar.</p>
+                <button onclick="document.getElementById('success-menu').classList.remove('open')" 
+                        style='margin-top:20px; padding: 8px 20px; background: #5a601f; color: white; border: none; border-radius: 10px;'>
+                    Tutup
+                </button>
+            </div>`;
+        successMenu.classList.add("open");
+
+        // Clear inputs
+        nameInput.value = '';
+        messageInput.value = '';
+        btn.disabled = false;
+        btn.innerHTML = "<span>Hantar Ucapan</span>";
+    })
+    .catch(err => {
+        console.error("Error sending wish:", err);
+        btn.disabled = false;
+        btn.innerHTML = "<span>Hantar Ucapan</span>";
     });
 };
 
 // Start loading when page is ready
 document.addEventListener("DOMContentLoaded", loadWishes);
+
 
 
 /** =====================================================
@@ -575,22 +606,3 @@ setInterval(loadWishes, 10000);
  *  Image Carousel
   ======================================================= */
 
-
-
-// Example of how your wish submission should look:
-function addNewWish(name, message) {
-    const container = document.querySelector('.container-message');
-    
-    const wishHTML = `
-        <div class="content">
-            <span class="name">${name}</span>
-            <span class="message">${message}</span>
-        </div>
-    `;
-    
-    // .insertAdjacentHTML with 'afterbegin' puts it at the TOP
-    container.insertAdjacentHTML('afterbegin', wishHTML);
-    
-    // Optional: Auto-scroll to the top to see the new wish
-    container.scrollTop = 0;
-}
