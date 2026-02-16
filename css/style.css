@@ -1266,35 +1266,22 @@ section {
     color: white;
 }
 
-/* Styling for the Timestamp in Wish Card */
-.wish-time {
-    font-size: 11px;
-    color: #999;
-    font-weight: 400;
-    float: right;
-    font-style: italic;
-    margin-top: 2px;
-}
-
-/* Specific styling for the Latest/New Wish */
-.container-message .content:first-child {
-    border-left: 4px solid #d4af37; /* Gold accent for the top wish */
-    background: rgba(212, 175, 55, 0.05); /* Very subtle gold tint */
-    transition: all 0.3s ease;
-}
-
-/* Animation for the wish when it appears */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-        background-color: rgba(212, 175, 55, 0.2);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        background-color: rgba(212, 175, 55, 0.05);
-    }
+/* Each individual wish card */
+.container-message .content {
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+    backdrop-filter: blur(10px);         /* The "Glass" effect */
+    -webkit-backdrop-filter: blur(10px); /* Support for Safari */
+    
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle glass edge */
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    
+    /* Clean Spacing Fixes */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Adds space between name and message so they don't stack */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* Scannability fix for names */
@@ -1303,8 +1290,23 @@ section {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    font-weight: bold;
-    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+    color: #5a601f; /* Using your theme green */
+}
+
+/* The actual message text */
+.container-message .message {
+    font-size: 14px;
+    line-height: 1.6; /* Prevents text lines from feeling squashed */
+    color: #444;
+    text-align: left;
+}
+
+/* The first/latest wish still gets a special gold touch */
+.container-message .content:first-child {
+    border: 1px solid rgba(212, 175, 55, 0.5); /* Gold glass edge */
+    background: rgba(212, 175, 55, 0.1);      /* Subtle gold glass tint */
 }
 
 
