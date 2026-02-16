@@ -1029,13 +1029,13 @@ section {
 
 /* This targets the actual text you type in the box */
 #guest-name-input {
-    font-size: 16px !important; 
+    font-size: 14px !important; 
     font-family: inherit; /* Optional: makes it match the rest of your font */
 }
 
 /* This targets the placeholder text specifically */
 #guest-name-input::placeholder {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .toggle-menu .rsvp .button button {
