@@ -721,7 +721,7 @@ section {
     /* THE FIXES */
     text-align: justify;        /* Aligns both sides */
     text-justify: inter-word;  /* Evenly distributes space between words */
-    line-height: 1.4;          /* Adds breathing room between lines so they don't 'stack' */
+    line-height: 1.5;          /* Adds breathing room between lines so they don't 'stack' */
     hyphens: auto;             /* Breaks long words if needed to prevent big gaps */
 }
 
