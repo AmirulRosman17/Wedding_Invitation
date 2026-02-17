@@ -368,7 +368,7 @@ section {
 }
 
 .card section.info .event-info {
-    width: 75%;
+    width: 90%;
     text-align: center;
     position: relative;
     z-index: 500;
