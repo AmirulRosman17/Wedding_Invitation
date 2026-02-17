@@ -595,6 +595,8 @@ section {
     margin: 0;
     font-size: 2.5rem;
     line-height: 2rem;
+    /* Updated Line Below */
+    font-family: "Times New Roman", Times, serif;
 }
 
 @media screen and (max-width: 768px) {
