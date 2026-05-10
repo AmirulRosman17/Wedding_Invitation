@@ -337,7 +337,7 @@ section {
 
 /* 1. Target the first line of the address to push it down from the date */
 .card section.intro .content .venue:first-of-type {
-    margin-top: 50px !important; /* This creates the specific gap you want */
+    margin-top: 80px !important; /* This creates the specific gap you want */
 }
 
 /* 2. Keep the rest of the address lines tight */
