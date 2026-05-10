@@ -333,9 +333,9 @@ section {
 .card section.intro .content img {
     width: 50%; 
     height: auto; /* Changed from 10% to auto to prevent squishing */
+    margin-bottom: 5px; /* Reduced from 50px */
 }
 
-/* 1. General style for all venue lines */
 .card section.intro .content .venue {
     color: #565a2f;
     font-family: "Times New Roman", Times, serif;
@@ -345,12 +345,6 @@ section {
     /* Use separate margins so they don't overwrite each other */
     margin-top: 2px; 
     margin-bottom: 2px;
-}
-
-/* 2. Specific gap for the first line only */
-/* We use :first-of-type because it's more reliable than :first-child */
-.card section.intro .content .venue:first-of-type {
-    margin-top: 60px !important; /* Forces the gap to stay */
 }
 /*============================================================================================
     # Event Info
