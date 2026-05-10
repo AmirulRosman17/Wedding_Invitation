@@ -170,20 +170,20 @@ function addGoogleCalendar() {
 
 /** =====================================================
  * Location for Google and Waze
- * ======================================================= */
+ ======================================================= */
 function openGoogleMaps() {
     // Exact Place ID for Utropolis Marketplace
-    const placeId = "ChIJx2V7S6BNzDER5Fq6vYlP77A";
+    const placeId = "ChIJG4yJabdNzDERnvyeqaLrZK8";
     
-    // Official Google Maps URL structure
+    // Updated to use the official Google Maps query format
     const url = `https://www.google.com/maps/search/?api=1&query=Utropolis+Marketplace&query_place_id=${placeId}`;
     window.open(url, "_blank");
 }
 
 function openWaze() {
-    // Coordinates for Utropolis Marketplace (Entrance/Drop-off)
-    const lat = 3.0905;
-    const lng = 101.5595;
+    // Exact coordinates for Utropolis Marketplace
+    const lat = 3.0901139;
+    const lng = 101.5598641;
     
     // Deep link for Waze navigation
     window.open(`https://waze.com/ul?ll=${lat},${lng}&navigate=yes&zoom=17`, "_blank");
