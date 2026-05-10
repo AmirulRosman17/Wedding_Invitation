@@ -335,19 +335,22 @@ section {
     height: auto; /* Changed from 10% to auto to prevent squishing */
 }
 
-/* This targets the first venue line to create the gap from the date */
-.card section.intro .content .venue:first-child {
-    margin-top: 60px; /* Adjust this number higher if you want an even bigger gap */
+/* 1. Target the first line of the address to push it down from the date */
+.card section.intro .content .venue:first-of-type {
+    margin-top: 50px !important; /* This creates the specific gap you want */
 }
 
+/* 2. Keep the rest of the address lines tight */
 .card section.intro .content .venue {
-    margin-top: 5px;     /* Tighten address lines */
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     color: #565a2f;
     font-family: "Times New Roman", Times, serif;
     letter-spacing: 1px;
-    margin: 2px 0; /* This brings the address lines very close together */
     font-size: 14px;
+    text-align: center;
+    line-height: 1.4;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 /*============================================================================================
