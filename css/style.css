@@ -333,7 +333,7 @@ section {
 .card section.intro .content img {
     width: 50%; 
     height: auto; /* Changed from 10% to auto to prevent squishing */
-    margin-bottom: 10px; /* Reduced from 50px */
+    margin-bottom: 15px; /* Reduced from 50px */
 }
 
 .card section.intro .content .venue {
