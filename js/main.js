@@ -172,18 +172,18 @@ function addGoogleCalendar() {
  * Location for Google and Waze
  * ======================================================= */
 function openGoogleMaps() {
-    // Exact Place ID for Victoria Hall (Kamalinda Events), Utropolis Glenmarie
-    const placeId = "ChIJJe7mxZ9NzDEReyyIHgMHW4o";
+    // Exact Place ID for Utropolis Marketplace
+    const placeId = "ChIJx2V7S6BNzDER5Fq6vYlP77A";
     
-    // Use the official Google Maps URL format
-    const url = `https://www.google.com/maps/search/?api=1&query=Victoria+Hall+Utropolis&query_place_id=${placeId}`;
+    // Official Google Maps URL structure
+    const url = `https://www.google.com/maps/search/?api=1&query=Utropolis+Marketplace&query_place_id=${placeId}`;
     window.open(url, "_blank");
 }
 
 function openWaze() {
-    // Accurate coordinates for the Utropolis Marketplace entrance
-    const lat = 3.0903744;
-    const lng = 101.5597045;
+    // Coordinates for Utropolis Marketplace (Entrance/Drop-off)
+    const lat = 3.0905;
+    const lng = 101.5595;
     
     // Deep link for Waze navigation
     window.open(`https://waze.com/ul?ll=${lat},${lng}&navigate=yes&zoom=17`, "_blank");
