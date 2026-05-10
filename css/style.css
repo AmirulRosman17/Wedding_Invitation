@@ -335,6 +335,11 @@ section {
     height: auto; /* Changed from 10% to auto to prevent squishing */
 }
 
+/* This targets the first venue line to create the gap from the date */
+.card section.intro .content .venue:first-child {
+    margin-top: 40px; /* Adjust this number higher if you want an even bigger gap */
+}
+
 .card section.intro .content .venue {
     margin-top: 5px;     /* Tighten address lines */
     margin-bottom: 5px;
