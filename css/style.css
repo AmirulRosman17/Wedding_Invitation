@@ -1312,11 +1312,10 @@ section {
     font-family: "Cinzel", serif; /* Or your preferred font */
 }
 
-/* The Scrollable Area - Ensure this is strictly contained */
+/* The Scrollable Area */
 .wish-list-wrapper {
     flex: 1;
-    overflow-y: auto;  /* This adds the scrollbar so the box stays 350px */
-    max-height: 280px; /* Limits the inner area so the title stays visible */
+    overflow-y: auto;
     padding: 10px 20px;
     scroll-behavior: smooth;
 }
@@ -1380,14 +1379,22 @@ section {
     }
 }
 
+/* The Scrollable Area - Ensure this is strictly contained */
 .wish-list-wrapper {
-    display: flex;
-    flex-direction: column;
-    /* Other properties you already have... */
+    flex: 1;
+    overflow-y: auto;  /* This adds the scrollbar so the box stays 350px */
+    max-height: 280px; /* Limits the inner area so the title stays visible */
+    padding: 10px 20px;
+    scroll-behavior: smooth;
+}
 
-.container-message .content {
-    /* Prevents the elements below from 'jumping' instantly */
-    transition: all 0.4s ease; 
+/* Update this specific selector in your CSS */
+.container-message .content p {
+    white-space: pre-wrap; /* This preserves line breaks and spaces */
+    word-wrap: break-word; /* Ensures long words don't break the box */
+    text-align: left;      /* Standard for multi-line messages */
+    margin: 5px 0;
+}
 
 
 .gallery-container {
