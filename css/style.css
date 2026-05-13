@@ -1330,14 +1330,6 @@ section {
     gap: 8px;
 }
 
-/* Update this specific selector in your CSS */
-.container-message .content p {
-    white-space: pre-wrap; /* This preserves line breaks and spaces */
-    word-wrap: break-word; /* Ensures long words don't break the box */
-    text-align: left;      /* Standard for multi-line messages */
-    margin: 5px 0;
-}
-
 /* Removing border for the last one to look clean */
 .container-message .content:last-child {
     border-bottom: none;
