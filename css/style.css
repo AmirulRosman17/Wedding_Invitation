@@ -1379,17 +1379,22 @@ section {
     }
 }
 
+/* The Scrollable Area - Ensure this is strictly contained */
 .wish-list-wrapper {
-    display: flex;
-    flex-direction: column;
-    /* Other properties you already have... */
+    flex: 1;
+    overflow-y: auto; /* This creates the scrollbar so the box doesn't grow */
+    max-height: 280px; /* Limits the height of the message area specifically */
+    padding: 10px 20px;
+    scroll-behavior: smooth;
 }
 
-.container-message .content {
-    /* Prevents the elements below from 'jumping' instantly */
-    transition: all 0.4s ease; 
+/* Add this to keep the text from stretching the box horizontally */
+.container-message .content p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin: 5px 0;
+    line-height: 1.5;
 }
-
 
 
 
