@@ -1312,10 +1312,11 @@ section {
     font-family: "Cinzel", serif; /* Or your preferred font */
 }
 
-/* The Scrollable Area */
+/* The Scrollable Area - Ensure this is strictly contained */
 .wish-list-wrapper {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto;  /* This adds the scrollbar so the box stays 350px */
+    max-height: 280px; /* Limits the inner area so the title stays visible */
     padding: 10px 20px;
     scroll-behavior: smooth;
 }
@@ -1327,6 +1328,14 @@ section {
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+/* Update this specific selector in your CSS */
+.container-message .content p {
+    white-space: pre-wrap; /* This preserves line breaks and spaces */
+    word-wrap: break-word; /* Ensures long words don't break the box */
+    text-align: left;      /* Standard for multi-line messages */
+    margin: 5px 0;
 }
 
 /* Removing border for the last one to look clean */
@@ -1379,22 +1388,14 @@ section {
     }
 }
 
-/* The Scrollable Area - Ensure this is strictly contained */
 .wish-list-wrapper {
-    flex: 1;
-    overflow-y: auto;  /* This adds the scrollbar so the box stays 350px */
-    max-height: 280px; /* Limits the inner area so the title stays visible */
-    padding: 10px 20px;
-    scroll-behavior: smooth;
-}
+    display: flex;
+    flex-direction: column;
+    /* Other properties you already have... */
 
-/* Update this specific selector in your CSS */
-.container-message .content p {
-    white-space: pre-wrap; /* This preserves line breaks and spaces */
-    word-wrap: break-word; /* Ensures long words don't break the box */
-    text-align: left;      /* Standard for multi-line messages */
-    margin: 5px 0;
-}
+.container-message .content {
+    /* Prevents the elements below from 'jumping' instantly */
+    transition: all 0.4s ease; 
 
 
 .gallery-container {
