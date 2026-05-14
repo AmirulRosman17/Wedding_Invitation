@@ -797,18 +797,24 @@ section {
 .card section.info .rsvp .beri-ucapan-button {
     width: 90%;
     display: flex;
-    flex-direction: row; /* Force side-by-side */
+    flex-direction: row;    /* Keeps them side-by-side */
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: center; /* CHANGED: Pulls both buttons to the center */
+    gap: 15px;              /* This creates the specific gap at the center */
+    
+    /* Centering the container itself on the screen */
+    margin-left: auto;
+    margin-right: auto;
+    
     margin-top: 10px;
-    margin-bottom: 20px; /* Extra space at the very bottom of the buttons */
+    margin-bottom: 20px;
     position: relative;
-    z-index: 501; /* Ensure it stays above background decorations */
+    z-index: 501;
 }
 
 .card section.info .rsvp .beri-ucapan-button button {
     flex: 1; /* Makes both buttons equal width */
+    max-width: 160px;       /* Prevents buttons from getting too wide on large phones */
     display: flex;
     align-items: center;
     justify-content: center;
