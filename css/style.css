@@ -794,18 +794,17 @@ section {
 }
 
 /* Main RSVP Buttons: Sahkan Kehadiran & Berikan Ucapan */
-/* 1. Standardize the selector to match your main container */
-.card section.main-content .rsvp .beri-ucapan-button {
+.card section.info .rsvp .beri-ucapan-button {
     width: 90%;
-    max-width: 400px;    /* Prevents buttons from getting too wide on tablets */
     display: flex;
-    flex-direction: row; 
+    flex-direction: row; /* Force side-by-side */
     align-items: center;
-    justify-content: center; /* Changed from space-between to center */
-    gap: 12px;           /* Control the gap between the two buttons here */
-    margin: 20px auto;   /* 'auto' horizontally centers the entire button row */
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Extra space at the very bottom of the buttons */
     position: relative;
-    z-index: 501;
+    z-index: 501; /* Ensure it stays above background decorations */
 }
 
 .card section.info .rsvp .beri-ucapan-button button {
