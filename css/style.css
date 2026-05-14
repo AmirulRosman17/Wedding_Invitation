@@ -794,39 +794,42 @@ section {
 }
 
 /* Main RSVP Buttons: Sahkan Kehadiran & Berikan Ucapan */
-.card section.info .rsvp .beri-ucapan-button {
+/* 1. Standardize the selector to match your main container */
+.card section.main-content .rsvp .beri-ucapan-button {
     width: 90%;
+    max-width: 400px;    /* Prevents buttons from getting too wide on tablets */
     display: flex;
-    flex-direction: row; /* Force side-by-side */
+    flex-direction: row; 
     align-items: center;
-    justify-content: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px; /* Extra space at the very bottom of the buttons */
+    justify-content: center; /* Changed from space-between to center */
+    gap: 12px;           /* Control the gap between the two buttons here */
+    margin: 20px auto;   /* 'auto' horizontally centers the entire button row */
     position: relative;
-    z-index: 501; /* Ensure it stays above background decorations */
+    z-index: 501;
 }
 
-.card section.info .rsvp .beri-ucapan-button button {
-    flex: 1; /* Makes both buttons equal width */
+/* 2. Button Styling */
+.card section.main-content .rsvp .beri-ucapan-button button {
+    flex: 1; 
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 5px;
+    padding: 12px 8px;   /* Slightly more padding for a better tap target */
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.5);
-    background: rgba(255, 252, 246, 0.7); /* Glass ivory */
+    background: rgba(255, 252, 246, 0.7); 
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     cursor: pointer;
     gap: 8px;
     transition: all 0.3s ease;
 }
 
-.card section.info .rsvp .beri-ucapan-button button:hover {
+/* 3. Hover state for better feedback */
+.card section.main-content .rsvp .beri-ucapan-button button:hover {
     background: #fffcf6;
     transform: translateY(-2px);
-    opacity: 1;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .card section.info .rsvp .beri-ucapan-button button .bx {
