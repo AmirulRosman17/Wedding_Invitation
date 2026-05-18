@@ -496,14 +496,11 @@ document.addEventListener("DOMContentLoaded", loadWishes);
 
 
 /** =====================================================
- * Handle Quick RSVP (Name, Pax & Anti-Spam Version)
+ * Handle Quick RSVP (Formspree + Spreadsheet Backup)
  * ===================================================== */
-// Add this variable at the very top of your main.js file to track submission status
+// Track submission status to prevent spam double-clicks
 let hasSubmittedRSVP = false;
 
-/** =====================================================
- * Handle Quick RSVP (Name, Pax & Anti-Spam Version)
- * ===================================================== */
 function sendQuickRSVP(status, successMessage, iconClass) {
     // 1. Check if they already submitted in this session
     if (hasSubmittedRSVP) {
@@ -511,7 +508,9 @@ function sendQuickRSVP(status, successMessage, iconClass) {
         return;
     }
 
-    const rsvpformspreeUrl = "https://formspree.io/f/xvzzpjgn";
+    const rsvpFormspreeUrl = "https://formspree.io/f/xvzzpjgn";
+    // REPLACE THIS with your Google Apps Script Web App URL or SheetDB URL
+    const rsvpSpreadsheetUrl = "https://script.google.com/macros/s/AKfycbzJHu40ub6Cl6B3nlQGFlVmR-dD-ff69ggvRhUu2xk68yilvFTETHh9CvH3E9PN_kHAjg/exec"; 
 
     const nameInput = document.getElementById("guest-name-input");
     const guestName = nameInput ? nameInput.value.trim() : "";
@@ -535,20 +534,34 @@ function sendQuickRSVP(status, successMessage, iconClass) {
         Guest_Name: guestName,
         Attendance: status,
         Total_Pax: status === "Hadir" ? paxValue : "0",
-        Message: "Quick RSVP from menu"
+        Message: "Quick RSVP from menu",
+        Timestamp: new Date().toLocaleString("en-GB", { timeZone: "Asia/Kuala_Lumpur" }) // Helpful for sorting Excel files later
     };
 
-    fetch(rsvpformspreeUrl, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        if (response.ok) {
-            // 3. Set the global lock to true
+    // 3. Fire BOTH requests simultaneously using Promise.allSettled
+    // This ensures even if Formspree fails, it still tries to save to Excel (and vice versa)
+    Promise.allSettled([
+        // Platform 1: Formspree (Email Alerts)
+        fetch(rsvpFormspreeUrl, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }),
+        // Platform 2: Spreadsheet API (Excel Track)
+        fetch(rsvpSpreadsheetUrl, {
+            method: 'POST',
+            mode: 'no-cors', // Required if using Google Apps Script to bypass browser CORS blocks
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+    ])
+    .then(results => {
+        // Check if at least one of the platforms successfully processed the request
+        const formspreeSuccess = results[0].status === "fulfilled";
+        const sheetSuccess = results[1].status === "fulfilled";
+
+        if (formspreeSuccess || sheetSuccess) {
+            // Set the global lock to true
             hasSubmittedRSVP = true;
 
             const successMenu = document.getElementById("success-menu");
@@ -564,25 +577,28 @@ function sendQuickRSVP(status, successMessage, iconClass) {
             const rsvpMenu = document.getElementById("rsvp-menu");
             if (rsvpMenu) rsvpMenu.classList.remove("open");
 
-            // 4. Change the main RSVP button appearance (Optional but helpful)
             const mainRSVPBtn = document.getElementById("rsvp-btn");
             if (mainRSVPBtn) {
                 mainRSVPBtn.style.opacity = "0.5";
                 mainRSVPBtn.title = "Anda telah menghantar RSVP";
             }
         } else {
-            alert("Maaf, sistem sedang sibuk.");
-            btnHadir.disabled = false;
-            btnTidakHadir.disabled = false;
-            btnHadir.innerHTML = originalHadirText;
+            // Both platforms completely failed
+            alert("Maaf, sistem sedang sibuk. Sila cuba seketika lagi.");
+            resetButtons(btnHadir, btnTidakHadir, originalHadirText);
         }
     })
     .catch(error => {
-        alert("Ralat sambungan.");
-        btnHadir.disabled = false;
-        btnTidakHadir.disabled = false;
-        btnHadir.innerHTML = originalHadirText;
+        alert("Ralat sambungan internet.");
+        resetButtons(btnHadir, btnTidakHadir, originalHadirText);
     });
+}
+
+// Helper function to keep code clean
+function resetButtons(btn1, btn2, originalText) {
+    btn1.disabled = false;
+    btn2.disabled = false;
+    btn1.innerHTML = originalText;
 }
 
 // Keep your event listeners
@@ -593,7 +609,6 @@ document.getElementById("btn-hadir").onclick = function() {
 document.getElementById("btn-tidak-hadir").onclick = function() {
     sendQuickRSVP("Tidak Hadir", "Terima kasih atas makluman anda.", "bx bxs-sad");
 };
-
 // Load wishes immediately when page opens
 document.addEventListener("DOMContentLoaded", loadWishes);
 
