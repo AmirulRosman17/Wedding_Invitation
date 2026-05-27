@@ -8,26 +8,14 @@
     box-sizing: border-box;
 }
 
-/* Merged Global Body Definition */
 body {
-    margin: 0;
-    padding: 0;
+    background: linear-gradient(to right, #FDFCFB 0%); 
     font-family: "Montserrat", sans-serif;
-    position: relative;
+    position: relative;/*add this*/
     overflow-x: hidden;
     min-height: 100vh;
-    
-    /* FALLBACK & GRADIENT: Kept your Boho Nude styling */
-    background-color: #f4f1ea; 
-    background: linear-gradient(to right, #FDFCFB 0%, #F4EEE8 100%); 
-    
-    /* CENTERING FIX: For Premium Tall Phones & Desktops */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;  /* Allows short devices like iPhone SE to scroll naturally */
 }
 
-/* Fixed Background Layer (Maintained exactly as you had it) */
 body::before {
     content: "";
     position: fixed;
@@ -35,7 +23,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/base.png'); 
+    background-image: url('../images/base.png'); /* Ensure this path is correct */
     background-size: cover;
     background-position: center;
     z-index: -1; 
@@ -256,45 +244,32 @@ body::before {
 
 
 /*============================================================================================
-    # Card (Optimized for Ultra-Tall and Short Mobile Screens)
+    # Card
 ============================================================================================*/
 .card {
-    /* Kept from your original logic: JavaScript Fade-in setup */
-    display: flex; /* Changed from block to flex to manage vertical spacing easily */
-    flex-direction: column;
-    align-items: center;
+    /* CHANGE: Instead of none, we keep it in layout but invisible */
+    display: block; 
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 2s ease-in-out;
-    position: relative;
-    overflow-y: visible; /* Prevents unwanted horizontal shaking/scrolling */
+    visibility: hidden; /* This prevents clicking things inside while hidden */
     
-    /* Structure & Design Limits */
-    width: 100vw;
-    max-width: 450px;       /* FIX FOR ULTRA: Stops the card from stretching too wide */
-    min-height: 100vh;      /* FIX FOR SE: Forces card to take full screen height at minimum */
-    height: auto;           /* FIX FOR SE: Allows natural scrolling if screen is too short */
-    
+    max-width: 600px;
     margin: 0 auto;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    background: transparent;
     border-radius: 3px;
     font-size: 14px;
     line-height: 16px;
     font-family: "Roboto", sans-serif;
+    position: relative;
+    overflow: hidden;
     
-    /* Background Setup */
-    background-image: url('your-background-image.png'); /* Put your floral background image path here */
-    background-position: center top; /* Keeps top floral frame anchored perfectly */
-    background-repeat: no-repeat;
-    background-size: cover;          /* Ensures image cleanly hugs the card boundaries */
-    background-color: #fffcf6;       /* Fallback elegant ivory base theme */
+    /* ADD: This is the speed of the fade-in */
+    transition: opacity 2s ease-in-out;
 
-    /* Safe Zones for Layout Padding */
-    padding: 20px 15px 120px 15px; /* FIX FOR SE: 120px bottom padding creates a massive safe zone so venue text isn't blocked by the bottom menu bar */
-    box-sizing: border-box;         /* Ensures padding doesn't break width calculations */
+    padding-bottom: 50px; /* Gives extra space so content can be scrolled above the pill menu */
 }
 
-/* Kept exactly as you had it for JavaScript initialization */
+/* This is the class your JavaScript will add to make it fade in */
 .card.show {
     opacity: 1;
     visibility: visible;
