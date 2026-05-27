@@ -267,7 +267,7 @@ body::before {
     visibility: hidden;
     transition: opacity 2s ease-in-out;
     position: relative;
-    overflow-x: hidden; /* Prevents unwanted horizontal shaking/scrolling */
+    overflow-y: visible; /* Prevents unwanted horizontal shaking/scrolling */
     
     /* Structure & Design Limits */
     width: 100vw;
